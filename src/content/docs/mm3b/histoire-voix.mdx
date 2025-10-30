@@ -1,0 +1,299 @@
+---
+title: 2. L'histoire à plusieurs voix
+description: Vous montez le film en direct
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+# L'histoire à plusieurs voix
+
+## 🎬 Référence cinéma : Rashomon et la vérité multiple
+
+Dans **Rashomon** (1950), Akira Kurosawa raconte le même événement à travers quatre témoignages contradictoires. Chaque personnage a sa version de la vérité : l'optimiste, le cynique, le romantique, le pragmatique.
+
+Au cinéma, le réalisateur décide dans quel ordre vous entendez ces voix. **Sur le web, c'est vous qui choisissez**.
+
+Vous devenez le monteur : chaque clic sélectionne une voix, un fragment audio, une perspective. Vous tissez votre propre version de l'histoire.
+
+---
+
+## ✨ Expérience interactive
+
+Trois personnages racontent la même scène : une rencontre dans un café. Cliquez sur les zones pour entendre leur version des événements.
+
+<iframe 
+  src="https://codesandbox.io/embed/histoire-plusieurs-voix-example?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:600px; border:0; border-radius: 4px; overflow:hidden;"
+  title="L'histoire à plusieurs voix"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+:::tip[Expérimentez]
+- Cliquez sur les trois personnages dans différents ordres
+- Écoutez toute une version avant de passer à une autre
+- Essayez d'interrompre une voix pour en lancer une autre
+- Quelle version vous semble la plus vraie ?
+:::
+
+---
+
+## 🎭 Analyse narrative
+
+### Ce que vous venez d'expérimenter
+
+Vous venez de créer votre propre montage narratif. Selon l'ordre de vos clics :
+- **Version A puis B puis C** : progression du désespoir à l'espoir
+- **Version C puis A puis B** : désillusion progressive
+- **Alternance rapide** : confusion, multiplicité des points de vue
+
+**Même histoire, émotions complètement différentes.**
+
+### Ce que le web permet
+
+**Au cinéma** : Kurosawa décide de l'ordre des témoignages. Vous suivez sa structure narrative.
+
+**Sur le web** : Vous êtes le monteur. Vous créez le rythme, l'ordre, les contrastes. Vous décidez quelle voix interrompt quelle autre.
+
+### Variations narratives possibles
+
+<CardGrid>
+  <Card title="🕵️ Enquête policière" icon="magnifier">
+    Interrogez des témoins. Vos clics révèlent les incohérences dans leurs récits.
+  </Card>
+  <Card title="💭 Souvenirs fragmentés" icon="star">
+    Une personne se souvient. Chaque clic retrouve un fragment de mémoire, dans le désordre.
+  </Card>
+  <Card title="🎭 Théâtre de marionnettes" icon="heart">
+    Plusieurs personnages sur scène. Vos clics décident qui prend la parole.
+  </Card>
+  <Card title="🎼 Composition musicale" icon="puzzle">
+    Pas de mots, que des sons. Vos clics composent une mélodie unique.
+  </Card>
+</CardGrid>
+
+---
+
+## 📝 Le scénario interactif
+
+### Ingrédients de l'histoire
+
+```javascript
+// Les trois narrateurs de notre scène
+const voixOptimiste = {
+  audio: new Audio('optimiste.mp3'),
+  texte: "C'était une belle journée. Nos regards se sont croisés et j'ai souri.",
+  couleur: "#FFD700"
+};
+
+const voixCynique = {
+  audio: new Audio('cynique.mp3'),
+  texte: "Encore un café bondé. Cette personne me fixait. Génant.",
+  couleur: "#808080"
+};
+
+const voixPoetique = {
+  audio: new Audio('poetique.mp3'),
+  texte: "Le soleil dansait sur le comptoir. Deux âmes se sont effleurées, furtivement.",
+  couleur: "#FF69B4"
+};
+
+// Quelle voix est actuellement en train de parler ?
+let voixActive = null;
+```
+
+### Le scénario
+
+```javascript
+// QUAND le spectateur clique sur le personnage optimiste
+document.querySelector('#personnage-optimiste').addEventListener('click', () => {
+  
+  // EMBRANCHEMENT : Si une autre voix parle déjà
+  if (voixActive !== null) {
+    // L'interrompre (comme un cut au montage)
+    voixActive.audio.pause();
+    voixActive.audio.currentTime = 0;
+  }
+  
+  // Lancer la nouvelle voix
+  voixOptimiste.audio.play();
+  voixActive = voixOptimiste;
+  
+  // Afficher le texte correspondant
+  document.querySelector('#narration').textContent = voixOptimiste.texte;
+  document.querySelector('#narration').style.color = voixOptimiste.couleur;
+  
+  // Effet visuel : mettre ce personnage en avant
+  document.querySelector('#personnage-optimiste').style.transform = 'scale(1.2)';
+  document.querySelector('#personnage-cynique').style.transform = 'scale(0.9)';
+  document.querySelector('#personnage-poetique').style.transform = 'scale(0.9)';
+});
+
+// QUAND le spectateur clique sur le personnage cynique
+document.querySelector('#personnage-cynique').addEventListener('click', () => {
+  // (Même logique, voix différente)
+  if (voixActive !== null) {
+    voixActive.audio.pause();
+    voixActive.audio.currentTime = 0;
+  }
+  
+  voixCynique.audio.play();
+  voixActive = voixCynique;
+  
+  document.querySelector('#narration').textContent = voixCynique.texte;
+  document.querySelector('#narration').style.color = voixCynique.couleur;
+  
+  document.querySelector('#personnage-cynique').style.transform = 'scale(1.2)';
+  document.querySelector('#personnage-optimiste').style.transform = 'scale(0.9)';
+  document.querySelector('#personnage-poetique').style.transform = 'scale(0.9)';
+});
+
+// QUAND le spectateur clique sur le personnage poétique
+document.querySelector('#personnage-poetique').addEventListener('click', () => {
+  // (Même logique, voix différente)
+  if (voixActive !== null) {
+    voixActive.audio.pause();
+    voixActive.audio.currentTime = 0;
+  }
+  
+  voixPoetique.audio.play();
+  voixActive = voixPoetique;
+  
+  document.querySelector('#narration').textContent = voixPoetique.texte;
+  document.querySelector('#narration').style.color = voixPoetique.couleur;
+  
+  document.querySelector('#personnage-poetique').style.transform = 'scale(1.2)';
+  document.querySelector('#personnage-optimiste').style.transform = 'scale(0.9)';
+  document.querySelector('#personnage-cynique').style.transform = 'scale(0.9)';
+});
+```
+
+### Décryptage narratif
+
+**Ce code est une table de montage :**
+
+1. **Rushes** : Les trois fichiers audio sont nos plans tournés
+2. **Monteur** : Le spectateur qui clique
+3. **Cut** : Quand on interrompt une voix pour en lancer une autre
+4. **Timeline** : L'ordre des clics crée la séquence narrative
+
+**Équivalent Premiere/After Effects :**
+- `audio.play()` = déplacer un clip audio sur la timeline
+- `audio.pause()` = arrêter la lecture
+- `currentTime = 0` = revenir au début du clip
+- Les clics = vos décisions de montage en temps réel
+
+---
+
+## 🎨 Variations créatives
+
+### Exercice 1 : Accumuler au lieu de remplacer
+
+Et si au lieu d'interrompre les voix, elles s'accumulaient ? Créer une cacophonie ou une harmonie :
+
+```javascript
+// Au lieu de mettre en pause, on laisse tout jouer en même temps
+// (Ne pas mettre voixActive.audio.pause())
+
+// On peut jouer sur le volume pour créer un mix
+voixOptimiste.audio.volume = 0.3;
+voixCynique.audio.volume = 0.5;
+voixPoetique.audio.volume = 0.8;
+```
+
+### Exercice 2 : Mémoire des clics
+
+Gardez une trace des choix du spectateur et révélez un message secret selon l'ordre :
+
+```javascript
+// Tableau qui enregistre l'ordre des clics
+let parcours = [];
+
+// À chaque clic, ajouter le personnage au parcours
+parcours.push('optimiste'); // ou 'cynique', ou 'poetique'
+
+// SI le spectateur a cliqué dans un ordre précis
+if (parcours.join('-') === 'optimiste-cynique-poetique') {
+  // ALORS révéler une quatrième voix cachée
+  document.querySelector('#voix-secrete').style.display = 'block';
+}
+```
+
+### Exercice 3 : Timeline visuelle
+
+Afficher visuellement l'historique des voix écoutées, comme une frise chronologique :
+
+```javascript
+// Créer un cercle de couleur pour chaque clic
+const cercle = document.createElement('div');
+cercle.style.backgroundColor = voixOptimiste.couleur;
+cercle.style.width = '30px';
+cercle.style.height = '30px';
+document.querySelector('#timeline').appendChild(cercle);
+```
+
+---
+
+## 🎵 Aller plus loin : Sound design interactif
+
+### Layering audio
+
+Créez plusieurs couches sonores qui se mélangent selon les clics :
+
+```javascript
+// Ambiance de base (toujours présente)
+const ambiance = new Audio('cafe-ambiance.mp3');
+ambiance.loop = true;
+ambiance.volume = 0.3;
+ambiance.play();
+
+// Voix des personnages (déclenchées par clics)
+// Musique émotionnelle (change selon le personnage actif)
+const musiqueJoyeuse = new Audio('musique-joyeuse.mp3');
+const musiqueTriste = new Audio('musique-triste.mp3');
+
+// Quand le spectateur clique sur l'optimiste
+// → jouer la voix + changer la musique
+```
+
+### Effets audio selon le timing
+
+Si le spectateur interrompt rapidement, créer un effet de surprise :
+
+```javascript
+// SI l'audio a été interrompu avant la fin
+if (voixActive.audio.currentTime < voixActive.audio.duration) {
+  // ALORS jouer un son de "coupure"
+  const sonCoupure = new Audio('interruption.mp3');
+  sonCoupure.play();
+}
+```
+
+---
+
+## 💡 Ce que vous avez appris
+
+<CardGrid>
+  <Card title="Le clic comme choix" icon="document">
+    Chaque clic n'est pas juste une action, c'est une décision narrative qui modifie l'expérience
+  </Card>
+  <Card title="Contrôle audio en temps réel" icon="star">
+    play(), pause(), volume, currentTime : les outils du sound designer interactif
+  </Card>
+  <Card title="Le spectateur-monteur" icon="pencil">
+    Offrir le contrôle du montage crée des expériences narratives uniques à chaque visionnage
+  </Card>
+  <Card title="État et mémoire" icon="puzzle">
+    Se souvenir des choix précédents permet de créer des récits qui s'adaptent au parcours
+  </Card>
+</CardGrid>
+
+---
+
+## ➡️ Prochaine étape
+
+Maintenant que vous maîtrisez le regard (chapitre 1) et le choix (chapitre 2), explorons **l'espace comme narration** avec "La chambre des souvenirs".
+
+Vous allez créer un récit où la géographie de l'écran devient une carte narrative à explorer.
+
+**[Chapitre 3 : La chambre des souvenirs →](/mm3b/chambre-souvenirs)**

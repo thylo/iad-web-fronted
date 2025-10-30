@@ -1,0 +1,1275 @@
+---
+title: Cours 4 - Interactivité et Finalisation
+description: Ajouter de l'interactivité et finaliser le projet
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## 📚 Concepts clés
+
+Dans ce cours, vous allez apprendre à :
+- Créer des transitions et animations CSS
+- Gérer les états interactifs (hover, focus, active)
+- Utiliser les transformations CSS (scale, rotate, translate)
+- Introduction au JavaScript pour l'interactivité
+- Optimiser et valider votre projet
+
+**Durée** : 4 heures (1h théorie + 2h30 pratique + 30min Q&A/Demo)
+
+---
+
+## Transitions CSS
+
+Les transitions permettent d'animer le changement d'une propriété CSS.
+
+### Syntaxe de base
+
+```css
+.element {
+  /* Propriétés initiales */
+  background-color: #FF6B6B;
+  transform: scale(1);
+  
+  /* Transition */
+  transition: background-color 0.3s ease;
+}
+
+.element:hover {
+  /* Propriétés finales */
+  background-color: #E85555;
+  transform: scale(1.1);
+}
+```
+
+### Propriétés de `transition`
+
+```css
+.element {
+  transition-property: background-color;  /* Quelle propriété animer */
+  transition-duration: 0.3s;              /* Durée */
+  transition-timing-function: ease;       /* Courbe d'animation */
+  transition-delay: 0s;                   /* Délai avant le début */
+}
+
+/* Syntaxe courte */
+.element {
+  transition: background-color 0.3s ease 0s;
+}
+```
+
+### Animer plusieurs propriétés
+
+```css
+.button {
+  background: #FF6B6B;
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* Animer plusieurs propriétés */
+  transition: 
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.button:hover {
+  background: #E85555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Ou animer toutes les propriétés */
+.button {
+  transition: all 0.3s ease;
+}
+```
+
+### Timing functions (courbes d'animation)
+
+```css
+.element {
+  /* Courbes prédéfinies */
+  transition: all 0.3s ease;        /* Démarre lentement, accélère, ralentit */
+  transition: all 0.3s linear;      /* Vitesse constante */
+  transition: all 0.3s ease-in;     /* Démarre lentement */
+  transition: all 0.3s ease-out;    /* Ralentit à la fin */
+  transition: all 0.3s ease-in-out; /* Démarre et ralentit lentement */
+  
+  /* Courbe personnalisée */
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+```
+
+### Exemples pratiques
+
+#### Bouton avec effet au survol
+
+```css
+.button {
+  background: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+```
+
+#### Carte avec effet au survol
+
+```css
+.card {
+  background: white;
+  border-radius: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  transition: transform 0.3s ease;
+}
+
+.card:hover img {
+  transform: scale(1.05);
+}
+```
+
+---
+
+## Transform : Transformations CSS
+
+`transform` permet de déplacer, redimensionner, faire pivoter des éléments.
+
+### `translate` : Déplacer
+
+```css
+.element {
+  /* Déplacer horizontalement */
+  transform: translateX(20px);
+  
+  /* Déplacer verticalement */
+  transform: translateY(-10px);
+  
+  /* Déplacer dans les deux directions */
+  transform: translate(20px, -10px);
+}
+```
+
+### `scale` : Redimensionner
+
+```css
+.element {
+  /* Agrandir de 10% */
+  transform: scale(1.1);
+  
+  /* Agrandir en largeur uniquement */
+  transform: scaleX(1.2);
+  
+  /* Agrandir en hauteur uniquement */
+  transform: scaleY(1.2);
+  
+  /* Rétrécir */
+  transform: scale(0.9);
+}
+```
+
+### `rotate` : Faire pivoter
+
+```css
+.element {
+  /* Rotation en degrés */
+  transform: rotate(45deg);
+  transform: rotate(-15deg);
+  
+  /* Rotation complète */
+  transform: rotate(360deg);
+}
+```
+
+### Combiner plusieurs transformations
+
+```css
+.element {
+  /* Déplacer ET agrandir */
+  transform: translateY(-5px) scale(1.05);
+  
+  /* Déplacer ET pivoter */
+  transform: translate(10px, -10px) rotate(5deg);
+  
+  /* Tout combiner */
+  transform: translate(0, -10px) scale(1.1) rotate(2deg);
+}
+```
+
+### `transform-origin` : Point d'origine
+
+```css
+.element {
+  /* Par défaut : centre (50% 50%) */
+  transform-origin: center;
+  
+  /* Coin supérieur gauche */
+  transform-origin: top left;
+  
+  /* Personnalisé */
+  transform-origin: 20px 30px;
+}
+```
+
+---
+
+## États interactifs
+
+### `:hover` : Survol
+
+```css
+a:hover {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+
+.button:hover {
+  background: var(--color-primary-dark);
+}
+```
+
+### `:focus` : Focus (important pour l'accessibilité)
+
+```css
+/* Liens et boutons */
+a:focus,
+button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Champs de formulaire */
+input:focus,
+textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(255, 107, 107, 0.2);
+}
+```
+
+### `:active` : Click en cours
+
+```css
+.button:active {
+  transform: scale(0.98);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+```
+
+### `:visited` : Liens visités
+
+```css
+a:visited {
+  color: purple;
+}
+```
+
+### Ordre recommandé (LVHA)
+
+```css
+a:link { /* Lien non visité */ }
+a:visited { /* Lien visité */ }
+a:hover { /* Survol */ }
+a:active { /* Click en cours */ }
+```
+
+---
+
+## Animations CSS
+
+Pour des animations plus complexes ou en boucle.
+
+### Définir une animation avec `@keyframes`
+
+```css
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ou avec pourcentages */
+@keyframes bounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+```
+
+### Appliquer une animation
+
+```css
+.element {
+  animation: fadeIn 0.6s ease forwards;
+  /*
+    fadeIn: nom de l'animation
+    0.6s: durée
+    ease: courbe
+    forwards: garder l'état final
+  */
+}
+```
+
+### Propriétés d'animation
+
+```css
+.element {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0s;
+  animation-iteration-count: infinite; /* ou un nombre */
+  animation-direction: alternate; /* normal, reverse, alternate */
+  animation-fill-mode: forwards; /* none, forwards, backwards, both */
+}
+
+/* Syntaxe courte */
+.element {
+  animation: bounce 1s ease-in-out 0s infinite alternate;
+}
+```
+
+### Exemples pratiques
+
+#### Apparition en fondu
+
+```css
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease forwards;
+}
+```
+
+#### Animation de pulsation
+
+```css
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+```
+
+#### Spinner de chargement
+
+```css
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+```
+
+---
+
+## Introduction au JavaScript
+
+JavaScript permet d'ajouter de l'interactivité comportementale à votre site.
+
+### Inclure JavaScript
+
+```html
+<head>
+  <!-- Autres balises... -->
+  <script src="js/main.js" defer></script>
+</head>
+```
+
+L'attribut `defer` charge le script après le HTML.
+
+### Sélectionner des éléments : `querySelector`
+
+```javascript
+// Sélectionner un élément par classe
+const button = document.querySelector('.button');
+
+// Sélectionner un élément par ID
+const menu = document.querySelector('#menu');
+
+// Sélectionner le premier lien
+const link = document.querySelector('a');
+
+// Sélectionner tous les éléments (retourne une liste)
+const allButtons = document.querySelectorAll('.button');
+```
+
+### Ajouter/Retirer des classes : `classList`
+
+```javascript
+const element = document.querySelector('.card');
+
+// Ajouter une classe
+element.classList.add('active');
+
+// Retirer une classe
+element.classList.remove('active');
+
+// Alterner une classe (toggle)
+element.classList.toggle('active');
+
+// Vérifier si une classe existe
+if (element.classList.contains('active')) {
+  console.log('La carte est active');
+}
+```
+
+### Écouter des événements : `addEventListener`
+
+```javascript
+const button = document.querySelector('.button');
+
+// Écouter un click
+button.addEventListener('click', function() {
+  console.log('Bouton cliqué !');
+});
+
+// Syntaxe moderne avec arrow function
+button.addEventListener('click', () => {
+  console.log('Bouton cliqué !');
+});
+```
+
+### Exemple : Menu burger mobile
+
+```html
+<button class="menu-toggle" aria-label="Toggle menu">
+  ☰
+</button>
+
+<nav class="main-nav">
+  <ul>
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/histoire">Histoire</a></li>
+    <li><a href="/personnages">Personnages</a></li>
+  </ul>
+</nav>
+```
+
+```css
+/* Navigation cachée par défaut sur mobile */
+.main-nav {
+  display: none;
+}
+
+.main-nav.is-open {
+  display: block;
+}
+
+/* Bouton menu visible sur mobile uniquement */
+.menu-toggle {
+  display: block;
+  /* styles du bouton... */
+}
+
+@media (min-width: 768px) {
+  /* Sur desktop : menu toujours visible, bouton caché */
+  .main-nav {
+    display: block;
+  }
+  
+  .menu-toggle {
+    display: none;
+  }
+}
+```
+
+```javascript
+// Sélectionner les éléments
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+// Écouter le click sur le bouton
+menuToggle.addEventListener('click', () => {
+  // Alterner la classe 'is-open' sur la navigation
+  mainNav.classList.toggle('is-open');
+  
+  // Optionnel : changer l'icône du bouton
+  if (mainNav.classList.contains('is-open')) {
+    menuToggle.textContent = '✕';
+  } else {
+    menuToggle.textContent = '☰';
+  }
+});
+```
+
+### Exemple : Afficher/masquer un contenu
+
+```html
+<button class="toggle-btn" data-target="details">
+  Voir les détails
+</button>
+
+<div id="details" class="hidden">
+  <p>Voici les détails cachés...</p>
+</div>
+```
+
+```css
+.hidden {
+  display: none;
+}
+```
+
+```javascript
+const toggleBtn = document.querySelector('.toggle-btn');
+const details = document.querySelector('#details');
+
+toggleBtn.addEventListener('click', () => {
+  details.classList.toggle('hidden');
+  
+  // Changer le texte du bouton
+  if (details.classList.contains('hidden')) {
+    toggleBtn.textContent = 'Voir les détails';
+  } else {
+    toggleBtn.textContent = 'Masquer les détails';
+  }
+});
+```
+
+### Exemple : Smooth scroll vers une section
+
+```html
+<a href="#chapitre1" class="smooth-scroll">Aller au chapitre 1</a>
+
+<section id="chapitre1">
+  <h2>Chapitre 1</h2>
+  <!-- contenu... -->
+</section>
+```
+
+```javascript
+// Sélectionner tous les liens avec smooth scroll
+const smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+
+smoothScrollLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault(); // Empêcher le comportement par défaut
+    
+    // Récupérer la cible (ex: "#chapitre1")
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    // Scroller vers la section
+    targetSection.scrollIntoView({
+      behavior: 'smooth'
+    });
+  });
+});
+```
+
+---
+
+## Optimisation et finalisation
+
+### Validation du code
+
+#### HTML
+
+Utilisez le [W3C HTML Validator](https://validator.w3.org/) :
+- Uploadez votre fichier HTML ou copiez l'URL
+- Corrigez toutes les erreurs
+- Les warnings sont moins critiques mais à considérer
+
+Erreurs fréquentes :
+- Balises non fermées
+- Attributs `alt` manquants
+- Hiérarchie de titres incorrecte
+- IDs dupliqués
+
+#### CSS
+
+Utilisez le [W3C CSS Validator](https://jigsaw.w3.org/css-validator/) :
+- Uploadez votre fichier CSS
+- Corrigez les erreurs
+- Attention aux propriétés non-standard (préfixes vendeur)
+
+### Accessibilité
+
+#### Checklist de base
+
+- [ ] Toutes les images ont un attribut `alt`
+- [ ] La hiérarchie des titres est logique (h1 → h2 → h3)
+- [ ] Les liens ont un texte descriptif (pas "cliquez ici")
+- [ ] Les boutons et liens sont focusables (`:focus` visible)
+- [ ] Contraste texte/fond suffisant (4.5:1 minimum)
+- [ ] Le site est navigable au clavier (Tab, Enter, Espace)
+
+#### Tester l'accessibilité
+
+- [WAVE](https://wave.webaim.org/) : scanner d'accessibilité
+- [Contrast Checker](https://webaim.org/resources/contrastchecker/) : vérifier les contrastes
+- Navigation au clavier : testez avec Tab, Shift+Tab, Enter, Espace
+
+### Performance
+
+#### Optimiser les images
+
+1. **Taille appropriée** : Ne chargez pas une image 4000px si elle s'affiche à 400px
+2. **Format optimal** :
+   - JPEG pour les photos
+   - PNG pour les graphiques avec transparence
+   - SVG pour les icônes et logos
+   - WebP pour les navigateurs modernes (poids plus léger)
+3. **Compression** : utilisez [TinyPNG](https://tinypng.com/) ou [Squoosh](https://squoosh.app/)
+
+#### Optimiser le CSS
+
+```css
+/* ❌ Éviter les sélecteurs trop complexes */
+body div.container ul li a.link { }
+
+/* ✅ Préférer les classes simples */
+.nav-link { }
+```
+
+- Supprimez le CSS inutilisé
+- Regroupez les propriétés similaires
+- Utilisez des variables CSS pour éviter la répétition
+
+#### Optimiser le JavaScript
+
+- Minimisez le JavaScript inline dans le HTML
+- Utilisez `defer` pour charger les scripts
+- Évitez les librairies lourdes si pas nécessaires
+
+### SEO de base
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Titre unique pour chaque page (50-60 caractères) -->
+  <title>Les Aventures de Léo - Chapitre 1</title>
+  
+  <!-- Description (150-160 caractères) -->
+  <meta name="description" content="Découvrez le premier chapitre des aventures de Léo, une histoire magique pour les enfants de 6 à 8 ans.">
+  
+  <!-- Mots-clés (optionnel) -->
+  <meta name="keywords" content="histoire enfants, aventure, Léo, conte">
+  
+  <!-- Auteur -->
+  <meta name="author" content="Votre Nom">
+</head>
+```
+
+### Checklist finale
+
+Avant de livrer votre projet :
+
+- [ ] Toutes les pages HTML sont valides (W3C)
+- [ ] Le CSS est valide (W3C)
+- [ ] Tous les liens fonctionnent (pas de liens cassés)
+- [ ] Les images se chargent correctement
+- [ ] Le site est responsive (mobile, tablette, desktop)
+- [ ] Les transitions/animations fonctionnent
+- [ ] Le JavaScript ne génère pas d'erreurs (console F12)
+- [ ] L'accessibilité de base est respectée
+- [ ] Les images sont optimisées
+- [ ] Les meta tags (title, description) sont remplis
+
+---
+
+## 💡 Exemple complet : Site avec interactivité
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Les Aventures de Léo - Une histoire interactive pour enfants">
+  <title>Les Aventures de Léo</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  
+  <header class="site-header">
+    <div class="container">
+      <h1>Les Aventures de Léo</h1>
+      
+      <!-- Bouton menu burger (mobile) -->
+      <button class="menu-toggle" aria-label="Toggle menu">
+        <span>☰</span>
+      </button>
+      
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/histoire">Histoire</a></li>
+          <li><a href="/personnages">Personnages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2 class="fade-in">Bienvenue dans l'univers de Léo</h2>
+        <p class="fade-in">Prêt pour l'aventure ?</p>
+        <a href="#chapitres" class="button smooth-scroll">Découvrir les chapitres</a>
+      </div>
+    </section>
+
+    <section id="chapitres" class="chapters">
+      <div class="container">
+        <h2>Les chapitres</h2>
+        <div class="chapters-grid">
+          
+          <article class="chapter-card">
+            <img src="images/ch1.jpg" alt="Chapitre 1">
+            <h3>Chapitre 1</h3>
+            <p class="chapter-excerpt">Le réveil magique...</p>
+            <button class="toggle-details" data-target="ch1-details">
+              Voir plus
+            </button>
+            <div id="ch1-details" class="chapter-details hidden">
+              <p>Ce matin-là, Léo se réveilla avec une étrange sensation...</p>
+              <a href="/chapitre1" class="button">Lire le chapitre</a>
+            </div>
+          </article>
+
+          <!-- Autres cartes... -->
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Les Aventures de Léo</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+```
+
+```css
+/* Variables et reset */
+:root {
+  --color-primary: #FF6B6B;
+  --color-secondary: #4ECDC4;
+  --color-text: #2C3E50;
+  --transition-speed: 0.3s;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Menu burger - Mobile */
+.menu-toggle {
+  display: block;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: transform var(--transition-speed);
+}
+
+.menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+.main-nav {
+  display: none;
+}
+
+.main-nav.is-open {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+/* Desktop : menu toujours visible */
+@media (min-width: 768px) {
+  .menu-toggle {
+    display: none;
+  }
+  
+  .main-nav {
+    display: block;
+  }
+  
+  .main-nav ul {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+/* Boutons */
+.button {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-speed) ease;
+}
+
+.button:hover {
+  background: #E85555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+/* Cartes */
+.chapter-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all var(--transition-speed) ease;
+}
+
+.chapter-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform var(--transition-speed);
+}
+
+.chapter-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Détails cachés */
+.chapter-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease;
+}
+
+.chapter-details:not(.hidden) {
+  max-height: 500px;
+  padding: 1rem;
+}
+
+.hidden {
+  display: none;
+}
+```
+
+```javascript
+// Menu burger
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.querySelector('.main-nav');
+
+if (menuToggle) {
+  menuToggle.addEventListener('click', () => {
+    mainNav.classList.toggle('is-open');
+    
+    const span = menuToggle.querySelector('span');
+    if (mainNav.classList.contains('is-open')) {
+      span.textContent = '✕';
+    } else {
+      span.textContent = '☰';
+    }
+  });
+}
+
+// Toggle détails des chapitres
+const toggleButtons = document.querySelectorAll('.toggle-details');
+
+toggleButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const targetId = button.getAttribute('data-target');
+    const target = document.querySelector(`#${targetId}`);
+    
+    target.classList.toggle('hidden');
+    
+    // Changer le texte du bouton
+    if (target.classList.contains('hidden')) {
+      button.textContent = 'Voir plus';
+    } else {
+      button.textContent = 'Voir moins';
+    }
+  });
+});
+
+// Smooth scroll
+const smoothScrollLinks = document.querySelectorAll('.smooth-scroll');
+
+smoothScrollLinks.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+      targetSection.scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+```
+
+---
+
+## 🎯 Objectifs du fil rouge (Cours 4)
+
+### 1. Ajouter des transitions CSS (45 min)
+- Transitions sur les liens et boutons
+- Effet au survol des cartes
+- Transitions sur la navigation
+- Effet au focus pour l'accessibilité
+
+### 2. Ajouter une petite animation (30 min)
+- Animation d'apparition au chargement
+- Ou animation de pulsation sur un élément important
+- Ou spinner de chargement
+
+### 3. Ajouter de l'interactivité avec JavaScript (1h)
+- Menu burger mobile (si vous avez une navigation)
+- Toggle pour afficher/masquer du contenu
+- Smooth scroll (optionnel)
+- Autre interactivité selon votre projet
+
+### 4. Finaliser et optimiser (1h45)
+- Valider HTML et CSS
+- Optimiser les images
+- Tester l'accessibilité
+- Tester sur différentes tailles d'écran
+- Corriger les bugs
+- Compléter les meta tags
+
+### 5. Préparer la présentation (30 min)
+- Préparez une courte démo (2-3 minutes)
+- Points forts de votre projet
+- Difficultés rencontrées et solutions trouvées
+
+---
+
+## 🔧 Exercices dirigés
+
+### Exercice 1 : Créer un bouton animé
+
+Créez un bouton avec :
+- Transition au survol (couleur + position)
+- Effet au click (scale down)
+- Focus accessible
+
+<details>
+<summary>Voir la solution</summary>
+
+```css
+.button {
+  background: #FF6B6B;
+  color: white;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button:hover {
+  background: #E85555;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button:focus {
+  outline: 2px solid #FF6B6B;
+  outline-offset: 4px;
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+```
+</details>
+
+### Exercice 2 : Toggle avec JavaScript
+
+Créez un système pour afficher/masquer un panneau.
+
+<details>
+<summary>Voir la solution</summary>
+
+```html
+<button class="toggle" data-target="panel">Toggle Panel</button>
+<div id="panel" class="panel hidden">
+  <p>Contenu caché...</p>
+</div>
+```
+
+```css
+.panel {
+  background: #f0f0f0;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  transition: opacity 0.3s ease;
+}
+
+.panel.hidden {
+  display: none;
+}
+```
+
+```javascript
+const toggleBtn = document.querySelector('.toggle');
+const panel = document.querySelector('#panel');
+
+toggleBtn.addEventListener('click', () => {
+  panel.classList.toggle('hidden');
+  
+  if (panel.classList.contains('hidden')) {
+    toggleBtn.textContent = 'Afficher';
+  } else {
+    toggleBtn.textContent = 'Masquer';
+  }
+});
+```
+</details>
+
+---
+
+## 📖 Ressources complémentaires
+
+### Transitions & Animations
+- [CSS Transitions - MDN](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Transitions/Using_CSS_transitions)
+- [CSS Animations - MDN](https://developer.mozilla.org/fr/docs/Web/CSS/CSS_Animations)
+- [Animista](https://animista.net/) : générateur d'animations CSS
+
+### JavaScript
+- [JavaScript.info](https://javascript.info/) : tutoriel complet
+- [MDN JavaScript](https://developer.mozilla.org/fr/docs/Web/JavaScript) : documentation de référence
+
+### Outils de validation
+- [W3C HTML Validator](https://validator.w3.org/)
+- [W3C CSS Validator](https://jigsaw.w3.org/css-validator/)
+- [WAVE Accessibility](https://wave.webaim.org/)
+- [PageSpeed Insights](https://pagespeed.web.dev/) : performance
+
+### Optimisation images
+- [TinyPNG](https://tinypng.com/) : compression PNG/JPEG
+- [Squoosh](https://squoosh.app/) : compression tous formats
+
+---
+
+## ✅ Checklist finale du projet
+
+### Code
+- [ ] HTML valide (W3C)
+- [ ] CSS valide (W3C)
+- [ ] JavaScript sans erreurs (console)
+- [ ] Code commenté en français
+- [ ] Indentation cohérente
+
+### Contenu
+- [ ] Toutes les pages sont complètes
+- [ ] Les images ont un `alt` descriptif
+- [ ] Les textes sont corrigés (orthographe)
+- [ ] Les liens fonctionnent tous
+
+### Design
+- [ ] Cohérence visuelle sur tout le site
+- [ ] Typographie lisible
+- [ ] Couleurs adaptées au public cible
+- [ ] Espacements cohérents
+
+### Responsive
+- [ ] Fonctionne sur mobile (375px)
+- [ ] Fonctionne sur tablette (768px)
+- [ ] Fonctionne sur desktop (1024px+)
+- [ ] Pas de scroll horizontal
+- [ ] Navigation mobile fonctionnelle
+
+### Interactivité
+- [ ] Transitions sur les liens/boutons
+- [ ] États hover/focus visibles
+- [ ] JavaScript fonctionnel
+- [ ] Animations fluides (pas de lag)
+
+### Accessibilité
+- [ ] Hiérarchie des titres correcte
+- [ ] Contraste texte/fond suffisant
+- [ ] Navigation au clavier possible
+- [ ] Focus visible sur tous les éléments interactifs
+
+### Performance
+- [ ] Images optimisées (< 200KB par image idéalement)
+- [ ] Temps de chargement raisonnable
+- [ ] Pas de ressources manquantes (404)
+
+### SEO
+- [ ] Balise `<title>` unique par page
+- [ ] Meta description remplie
+- [ ] Structure sémantique HTML5
+
+---
+
+## 🎓 Récapitulatif du cours MM2B
+
+Félicitations ! Vous avez complété le cours MM2B. Voici ce que vous maîtrisez maintenant :
+
+<CardGrid>
+  <Card title="Cours 1 : HTML Sémantique" icon="document">
+    Structure sémantique, accessibilité, navigation, media
+  </Card>
+  <Card title="Cours 2 : Typographie & Couleurs" icon="pencil">
+    Google Fonts, variables CSS, palettes de couleurs, identité visuelle
+  </Card>
+  <Card title="Cours 3 : Layout & Responsive" icon="setting">
+    Flexbox, CSS Grid, media queries, images fluides
+  </Card>
+  <Card title="Cours 4 : Interactivité" icon="rocket">
+    Transitions CSS, animations, JavaScript, optimisation
+  </Card>
+</CardGrid>
+
+## 📦 Livrables
+
+Pour l'évaluation finale, préparez :
+
+1. **Les fichiers du projet**
+   - Tous les fichiers HTML, CSS, JS
+   - Images optimisées
+   - Structure de dossiers claire
+
+2. **Documentation** (README.md)
+   - Titre et description du projet
+   - Public cible
+   - Choix de design (polices, couleurs) et justification
+   - Difficultés rencontrées
+   - Ce dont vous êtes fier·e
+
+3. **Présentation orale** (2-3 minutes)
+   - Démonstration du site
+   - Explication des choix créatifs
+   - Aspect technique dont vous êtes fier·e
+
+---
+
+## Questions fréquentes
+
+### Mes transitions ne fonctionnent pas, pourquoi ?
+
+Vérifiez :
+- La propriété `transition` est sur l'état initial, pas sur `:hover`
+- Vous animez une propriété qui peut être animée (pas `display` par exemple)
+- La syntaxe est correcte : `transition: property duration timing-function;`
+
+### Mon JavaScript ne s'exécute pas, pourquoi ?
+
+Vérifiez :
+- L'attribut `defer` est sur la balise `<script>`
+- Le chemin vers le fichier JS est correct
+- Il n'y a pas d'erreurs dans la console (F12)
+- Les `querySelector` correspondent à des éléments qui existent
+
+### Comment choisir entre transition et animation ?
+
+- **Transition** : changement entre deux états (hover, focus, etc.)
+- **Animation** : animation plus complexe, en boucle, ou avec plusieurs étapes
+
+### Mon site est lent, que faire ?
+
+1. Optimisez les images (compression + taille appropriée)
+2. Limitez les animations lourdes
+3. Évitez les librairies JavaScript non nécessaires
+4. Utilisez PageSpeed Insights pour identifier les problèmes
+
+---
+
+## Bravo !
+
+Vous avez maintenant toutes les bases pour créer des sites web interactifs, responsives et accessibles. Continuez à pratiquer, explorez, expérimentez !
+
+**N'oubliez pas** : le meilleur moyen de progresser est de coder régulièrement et de regarder comment d'autres sites sont construits (inspectez le code avec F12).
+
+Bonne chance pour votre projet final ! 🚀

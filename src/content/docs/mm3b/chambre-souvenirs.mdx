@@ -1,0 +1,344 @@
+---
+title: 3. La chambre des souvenirs
+description: Vous choisissez la chronologie
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+# La chambre des souvenirs
+
+## 🎬 Référence cinéma : Mémento et la chronologie éclatée
+
+Dans **Mémento** (2000), Christopher Nolan raconte une histoire à rebours. Le spectateur découvre les événements dans le désordre, reconstituant le puzzle narratif au fil du visionnage.
+
+Mais Nolan décide quand vous découvrez chaque pièce du puzzle. **Sur le web, c'est vous qui explorez**.
+
+Imaginez une pièce remplie d'objets. Chaque objet contient un souvenir, un fragment d'histoire. Vous choisissez quel objet toucher, dans quel ordre explorer les souvenirs. **La géographie de l'écran devient une carte narrative.**
+
+---
+
+## ✨ Expérience interactive
+
+Une chambre abandonnée. Des objets éparpillés. Chacun contient un fragment de l'histoire de la personne qui vivait ici. Survolez les objets pour découvrir leurs souvenirs.
+
+<iframe 
+  src="https://codesandbox.io/embed/chambre-souvenirs-example?fontsize=14&hidenavigation=1&theme=dark&view=preview"
+  style="width:100%; height:600px; border:0; border-radius: 4px; overflow:hidden;"
+  title="La chambre des souvenirs"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+:::tip[Explorez librement]
+- Survolez chaque objet et observez ce qui se passe
+- Restez sur certains objets plus longtemps
+- Créez votre propre chemin narratif à travers la pièce
+- Quel ordre d'exploration change le plus l'histoire ?
+:::
+
+---
+
+## 🎭 Analyse narrative
+
+### Ce que vous venez d'expérimenter
+
+Vous avez reconstitué une histoire à travers l'espace. Selon votre parcours :
+- **Horloge → Photo → Livre** : chronologie logique, histoire qui se dévoile naturellement
+- **Livre → Horloge → Photo** : révélation finale qui change le sens de tout ce qui précède
+- **Photo en dernier** : coup de théâtre émotionnel
+- **Exploration aléatoire** : impression de fragments, comme une vraie mémoire
+
+**Même histoire, mais votre géographie narrative crée des émotions différentes.**
+
+### Ce que le web permet
+
+**Au cinéma** : Nolan décide de l'ordre des scènes. La structure est fixe, même si elle est non-linéaire.
+
+**Sur le web** : Vous êtes l'archéologue. Vous décidez dans quel ordre exhumer les souvenirs. L'espace devient une dimension narrative.
+
+### Variations narratives possibles
+
+<CardGrid>
+  <Card title="🏚️ Scène de crime" icon="magnifier">
+    Inspectez une pièce. Chaque indice révèle une vidéo. Vous reconstituez le crime.
+  </Card>
+  <Card title="🎨 Galerie d'art" icon="star">
+    Chaque tableau raconte une partie d'une histoire. L'ordre de visite change l'interprétation.
+  </Card>
+  <Card title="🌌 Constellation narrative" icon="puzzle">
+    Des étoiles dans l'espace. Reliez-les pour former votre propre constellation-histoire.
+  </Card>
+  <Card title="💭 Esprit fragmenté" icon="heart">
+    La carte mentale d'une personne. Explorez ses pensées de manière non-linéaire.
+  </Card>
+</CardGrid>
+
+---
+
+## 📝 Le scénario interactif
+
+### Ingrédients de l'histoire
+
+```javascript
+// Les objets de notre chambre, chacun avec son souvenir
+const objets = {
+  horloge: {
+    video: document.querySelector('#video-horloge'),
+    texte: "Il était toujours en retard. Cette horloge n'a jamais fonctionné.",
+    position: { x: 100, y: 150 }
+  },
+  
+  photo: {
+    video: document.querySelector('#video-photo'),
+    texte: "Nous étions heureux ce jour-là. Nous ne savions pas encore.",
+    position: { x: 300, y: 200 }
+  },
+  
+  livre: {
+    video: document.querySelector('#video-livre'),
+    texte: "Son roman préféré. Il l'a lu cent fois, cherchant toujours quelque chose.",
+    position: { x: 500, y: 180 }
+  },
+  
+  lettre: {
+    video: document.querySelector('#video-lettre'),
+    texte: "La lettre qu'il n'a jamais envoyée. Ses mots les plus vrais, jamais dits.",
+    position: { x: 250, y: 400 }
+  }
+};
+
+// Quel est l'ordre de découverte du spectateur ?
+let parcoursSouvenirs = [];
+```
+
+### Le scénario
+
+```javascript
+// QUAND le spectateur survole l'horloge
+document.querySelector('#horloge').addEventListener('mouseenter', () => {
+  
+  // Déclencher le souvenir associé
+  objets.horloge.video.play();
+  
+  // Afficher le texte du souvenir
+  document.querySelector('#narration').textContent = objets.horloge.texte;
+  
+  // Effet visuel : illuminer l'objet
+  document.querySelector('#horloge').style.filter = 'brightness(1.5) drop-shadow(0 0 20px gold)';
+  
+  // Enregistrer dans le parcours
+  parcoursSouvenirs.push('horloge');
+  
+  // EMBRANCHEMENT : Si c'est le premier objet touché
+  if (parcoursSouvenirs.length === 1) {
+    document.querySelector('#indication').textContent = "Vous commencez votre exploration...";
+  }
+});
+
+// QUAND le spectateur quitte l'horloge
+document.querySelector('#horloge').addEventListener('mouseleave', () => {
+  
+  // Mettre en pause le souvenir
+  objets.horloge.video.pause();
+  
+  // Retirer l'illumination
+  document.querySelector('#horloge').style.filter = 'brightness(1)';
+  
+  // Le texte reste (mémoire visuelle)
+  // On ne l'efface pas, pour garder une trace
+});
+
+// (Même logique pour photo, livre, lettre...)
+
+// QUAND le spectateur a exploré tous les objets
+function verifierParcoursComplet() {
+  const objetsUniques = [...new Set(parcoursSouvenirs)];
+  
+  if (objetsUniques.length === 4) {
+    // TOUS les souvenirs ont été découverts
+    // ALORS révéler la conclusion
+    
+    document.querySelector('#conclusion').style.display = 'block';
+    
+    // Message différent selon l'ordre d'exploration
+    const ordre = parcoursSouvenirs.join('-');
+    
+    if (ordre.startsWith('horloge')) {
+      document.querySelector('#conclusion-texte').textContent = 
+        "Vous avez commencé par le temps. Logique. Chronologique. Comme lui.";
+        
+    } else if (ordre.startsWith('lettre')) {
+      document.querySelector('#conclusion-texte').textContent = 
+        "Vous avez commencé par la fin. Par ce qui n'a pas été dit.";
+        
+    } else if (ordre.startsWith('photo')) {
+      document.querySelector('#conclusion-texte').textContent = 
+        "Vous avez commencé par le bonheur. Peut-être pour retarder le reste.";
+    }
+    
+    // Lancer la vidéo finale
+    document.querySelector('#video-finale').play();
+  }
+}
+
+// Appeler cette fonction à chaque survol
+document.querySelectorAll('.objet').forEach(objet => {
+  objet.addEventListener('mouseenter', verifierParcoursComplet);
+});
+```
+
+### Décryptage narratif
+
+**Ce code est une carte narrative :**
+
+1. **Géographie** : Chaque objet a une position (x, y) dans l'espace
+2. **Exploration** : Le spectateur crée son propre chemin
+3. **Mémoire** : Le code se souvient du parcours (`parcoursSouvenirs`)
+4. **Révélation** : La conclusion s'adapte au parcours
+
+**Équivalent Premiere/After Effects :**
+- `mouseenter/mouseleave` = points d'entrée/sortie sur la timeline
+- `video.play()` = lancer la lecture d'un clip
+- `parcoursSouvenirs` = markers sur votre timeline qui enregistrent les choix
+- La vérification du parcours = conditions basées sur l'ordre des markers
+
+---
+
+## 🎨 Variations créatives
+
+### Exercice 1 : Temps de survol
+
+Changez le comportement selon combien de temps le spectateur reste sur un objet :
+
+```javascript
+let tempsDebut;
+
+document.querySelector('#horloge').addEventListener('mouseenter', () => {
+  tempsDebut = Date.now();
+  // ...
+});
+
+document.querySelector('#horloge').addEventListener('mouseleave', () => {
+  const tempsPasse = Date.now() - tempsDebut;
+  
+  // SI le spectateur est resté plus de 5 secondes
+  if (tempsPasse > 5000) {
+    // ALORS révéler un détail supplémentaire
+    document.querySelector('#detail-cache-horloge').style.opacity = 1;
+  }
+});
+```
+
+### Exercice 2 : Connexions entre objets
+
+Créez des liens visuels entre les objets lorsqu'ils sont explorés dans un certain ordre :
+
+```javascript
+// SI le spectateur touche la photo JUSTE APRÈS l'horloge
+if (parcoursSouvenirs[parcoursSouvenirs.length - 2] === 'horloge' && 
+    parcoursSouvenirs[parcoursSouvenirs.length - 1] === 'photo') {
+  
+  // ALORS dessiner une ligne entre les deux
+  const ligne = document.createElement('div');
+  ligne.className = 'connexion';
+  ligne.style.position = 'absolute';
+  ligne.style.left = objets.horloge.position.x + 'px';
+  ligne.style.top = objets.horloge.position.y + 'px';
+  // ... calculs pour relier horloge et photo
+  document.querySelector('#chambre').appendChild(ligne);
+}
+```
+
+### Exercice 3 : Audio spatial
+
+Ajoutez un son d'ambiance dont le volume change selon la proximité de la souris :
+
+```javascript
+document.addEventListener('mousemove', (geste) => {
+  
+  // Pour chaque objet, calculer la distance avec la souris
+  Object.keys(objets).forEach(nomObjet => {
+    const objet = objets[nomObjet];
+    const distance = Math.sqrt(
+      Math.pow(geste.clientX - objet.position.x, 2) +
+      Math.pow(geste.clientY - objet.position.y, 2)
+    );
+    
+    // Plus on est proche, plus le son de l'objet est fort
+    objet.audio.volume = Math.max(0, 1 - (distance / 300));
+  });
+});
+```
+
+---
+
+## 🎬 Aller plus loin : Scrubbing vidéo
+
+### Contrôler la vidéo avec le temps de survol
+
+Au lieu de simplement play/pause, faites avancer la vidéo selon combien de temps on survole :
+
+```javascript
+let intervalSurvol;
+
+document.querySelector('#horloge').addEventListener('mouseenter', () => {
+  // Chaque 100ms, avancer la vidéo de 0.5 secondes
+  intervalSurvol = setInterval(() => {
+    objets.horloge.video.currentTime += 0.5;
+    
+    // Ne pas dépasser la durée totale
+    if (objets.horloge.video.currentTime >= objets.horloge.video.duration) {
+      objets.horloge.video.currentTime = 0;
+    }
+  }, 100);
+});
+
+document.querySelector('#horloge').addEventListener('mouseleave', () => {
+  clearInterval(intervalSurvol);
+});
+```
+
+### Position de la souris = position dans la vidéo
+
+Comme un scrubbing manuel :
+
+```javascript
+document.querySelector('#horloge').addEventListener('mousemove', (geste) => {
+  // Obtenir la position relative dans l'objet (0 à 1)
+  const rect = document.querySelector('#horloge').getBoundingClientRect();
+  const positionRelative = (geste.clientX - rect.left) / rect.width;
+  
+  // Appliquer cette position à la vidéo
+  objets.horloge.video.currentTime = 
+    positionRelative * objets.horloge.video.duration;
+});
+```
+
+---
+
+## 💡 Ce que vous avez appris
+
+<CardGrid>
+  <Card title="L'espace comme narration" icon="puzzle">
+    La position des éléments n'est pas juste décorative, elle crée une géographie narrative
+  </Card>
+  <Card title="Survol intelligent" icon="star">
+    mouseenter/mouseleave + mémoire du parcours = récit qui s'adapte à l'exploration
+  </Card>
+  <Card title="Contrôle vidéo avancé" icon="document">
+    play(), pause(), currentTime, duration : synchroniser image et interaction
+  </Card>
+  <Card title="Le parcours comme récit" icon="pencil">
+    Se souvenir de l'ordre d'exploration permet d'adapter la conclusion à chaque spectateur
+  </Card>
+</CardGrid>
+
+---
+
+## ➡️ Prochaine étape
+
+Vous maîtrisez maintenant le regard, le choix, et l'espace. Il reste une dimension : **le temps**.
+
+Dans le chapitre final, nous explorerons comment **votre vitesse de défilement devient le rythme narratif** avec "La vitesse du temps".
+
+**[Chapitre 4 : La vitesse du temps →](/mm3b/vitesse-temps)**

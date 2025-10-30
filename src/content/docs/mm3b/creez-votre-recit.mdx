@@ -1,0 +1,373 @@
+---
+title: Créez votre récit interactif
+description: À votre tour de raconter une histoire
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+# À votre tour : Créez votre récit interactif
+
+Vous avez exploré les 4 dimensions de l'interaction narrative web. Il est temps de créer votre propre expérience.
+
+## 🎬 Votre boîte à outils narrative
+
+Vous maîtrisez maintenant ces 4 outils de narration interactive :
+
+<CardGrid>
+  <Card title="Le regard" icon="magnifier">
+    **mousemove** : Le spectateur cadre l'émotion par son regard
+  </Card>
+  <Card title="Le choix" icon="add-document">
+    **click + audio** : Le spectateur monte le récit par ses décisions
+  </Card>
+  <Card title="L'espace" icon="puzzle">
+    **mouseenter/leave + vidéo** : Le spectateur explore une géographie narrative
+  </Card>
+  <Card title="Le temps" icon="star">
+    **scroll + vidéo** : Le spectateur contrôle le tempo du récit
+  </Card>
+</CardGrid>
+
+---
+
+## 💡 Étapes pour concevoir votre projet
+
+### 1. Trouvez votre intention narrative
+
+Avant de coder, demandez-vous :
+
+**Quelle émotion voulez-vous transmettre ?**
+- Nostalgie, anxiété, émerveillement, mystère, joie ?
+
+**Quel est le rôle du spectateur dans votre histoire ?**
+- Témoin, enquêteur, complice, voyeur, confident ?
+
+**Comment l'interaction renforce-t-elle le propos ?**
+- L'interaction doit être au service du récit, pas juste décorative
+
+### 2. Choisissez votre structure
+
+Voici quelques structures narratives adaptées au web interactif :
+
+<CardGrid>
+  <Card title="🌳 Structure en arbre" icon="document">
+    Un tronc commun avec des embranchements. Les choix du spectateur créent des variations narratives.
+    
+    **Bon pour** : Histoires à choix multiples, fins alternatives
+  </Card>
+  
+  <Card title="🗺️ Structure spatiale" icon="puzzle">
+    Une carte à explorer librement. Aucun ordre imposé, chaque parcours crée un récit unique.
+    
+    **Bon pour** : Enquêtes, explorations, mémoires fragmentées
+  </Card>
+  
+  <Card title="➰ Structure en boucle" icon="star">
+    Une histoire qui revient à son point de départ, mais transformée. Répétition avec variations.
+    
+    **Bon pour** : Routines, obsessions, cycles temporels
+  </Card>
+  
+  <Card title="〰️ Structure linéaire modulée" icon="forward-slash">
+    Un récit linéaire dont le ton/rythme s'adapte aux actions du spectateur.
+    
+    **Bon pour** : Histoires contemplatives, ambiances adaptatives
+  </Card>
+</CardGrid>
+
+### 3. Rassemblez vos médias
+
+Vous aurez besoin de :
+
+**Visuels**
+- Images fixes (format web : JPG, PNG, WebP)
+- Vidéos courtes (MP4, 10-30 secondes par clip)
+- Formes géométriques (créées en CSS ou SVG)
+
+**Audio**
+- Sons d'ambiance (boucles musicales)
+- Effets sonores (clics, transitions)
+- Voix narratives (enregistrements courts)
+
+**Textes**
+- Narration principale
+- Textes réactifs (qui changent selon l'interaction)
+- Indications pour le spectateur
+
+:::tip[Ressources libres de droits]
+- **Vidéo** : Pexels Videos, Pixabay, Coverr
+- **Audio** : Freesound, ccMixter, YouTube Audio Library
+- **Images** : Unsplash, Pexels, Pixabay
+
+Ou mieux : créez vos propres médias !
+:::
+
+---
+
+## 🛠️ Template de départ
+
+Voici un template CodeSandbox pour démarrer votre projet. Il contient la structure de base avec les 4 types d'interactions déjà configurées.
+
+<iframe 
+  src="https://codesandbox.io/embed/template-recit-interactif?fontsize=14&hidenavigation=1&theme=dark&view=editor"
+  style="width:100%; height:600px; border:0; border-radius: 4px; overflow:hidden;"
+  title="Template récit interactif"
+  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
+
+**Ce template contient :**
+- Structure HTML de base
+- CSS avec animations
+- JavaScript avec commentaires détaillés
+- Exemples de chaque type d'interaction
+- Placeholders pour vos médias
+
+---
+
+## 📋 Idées de projets
+
+Besoin d'inspiration ? Voici des concepts de départ :
+
+### Projet 1 : "Journal d'une journée"
+
+**Concept** : Une journée ordinaire racontée de manière extraordinaire
+
+**Interactions** :
+- **Mousemove** : Le soleil suit votre souris (temps qui passe)
+- **Click** : Cliquer sur des moments clés pour entendre des pensées intérieures
+- **Hover** : Survoler des objets révèle des souvenirs associés
+- **Scroll** : Contrôler la vitesse du temps (matin → soir)
+
+**Médias nécessaires** :
+- Time-lapse d'une journée (ou séquence d'images)
+- Ambiances sonores (oiseaux le matin, circulation le midi, crickets le soir)
+- Voix narrative pour les pensées
+
+---
+
+### Projet 2 : "Avant/Après"
+
+**Concept** : Un lieu dans deux époques différentes (avant/après un événement)
+
+**Interactions** :
+- **Mousemove** : Position de la souris révèle avant (gauche) ou après (droite)
+- **Click** : Basculer entre passé et présent
+- **Hover** : Objets qui révèlent leur histoire
+- **Scroll** : Progression temporelle de l'événement qui a tout changé
+
+**Médias nécessaires** :
+- Photos du même lieu à deux moments différents
+- Sons d'ambiance contrastés (vie/silence, joie/tristesse)
+- Textes narratifs pour chaque élément
+
+---
+
+### Projet 3 : "La boîte à souvenirs"
+
+**Concept** : Explorer la mémoire fragmentée d'une personne
+
+**Interactions** :
+- **Mousemove** : Illuminer des zones de la pièce
+- **Click** : Ouvrir des tiroirs, des boîtes (révéler des souvenirs)
+- **Hover** : Objets qui murmurent leurs histoires
+- **Scroll** : Voyager dans le temps (enfance → âge adulte)
+
+**Médias nécessaires** :
+- Photos de famille, objets personnels
+- Enregistrements audio de voix différentes
+- Musique évolutive selon l'époque
+
+---
+
+### Projet 4 : "Rythmes urbains"
+
+**Concept** : La ville change selon votre regard et votre tempo
+
+**Interactions** :
+- **Mousemove** : Différents quartiers avec différentes ambiances
+- **Click** : Entrer dans des lieux (cafés, rues, parcs)
+- **Hover** : Personnages qui racontent leur quotidien
+- **Scroll** : Contrôler le rythme de la ville (calme vs rush hour)
+
+**Médias nécessaires** :
+- Time-lapses urbains à différents moments
+- Bruits de ville superposés (trafic, conversations, musique de rue)
+- Portraits de personnages urbains
+
+---
+
+## 🎯 Conseils de réalisation
+
+### Commencez simple
+
+**Sprint 1 - MVP (Minimum Viable Product)**
+- Une seule interaction
+- Un seul média (vidéo OU audio)
+- Récit court (30 secondes à 1 minute)
+- Testez le concept de base
+
+**Sprint 2 - Enrichissement**
+- Ajoutez une deuxième interaction
+- Combinez audio + vidéo
+- Allongez le récit
+- Ajoutez des variations
+
+**Sprint 3 - Polissage**
+- Affinez les transitions
+- Ajoutez des détails visuels
+- Travaillez le sound design
+- Testez sur d'autres personnes
+
+### Pensez mobile (optionnel)
+
+Si vous voulez que ça fonctionne sur mobile/tablette :
+- `mousemove` → `touchmove`
+- `click` → `touchstart`
+- `mouseenter/leave` → `touchstart/touchend`
+- `scroll` → fonctionne tel quel
+
+### Optimisez vos médias
+
+**Vidéos**
+- Format : MP4 (H.264)
+- Résolution : 1920x1080 max
+- Durée : 10-30 secondes par clip
+- Poids : < 5 MB par vidéo
+
+**Audio**
+- Format : MP3 ou OGG
+- Qualité : 128-192 kbps suffisant
+- Boucles : bien vérifier que ça boucle sans coupure
+- Poids : < 1 MB par fichier
+
+**Images**
+- Format : WebP (meilleur que JPG)
+- Résolution : adaptée à l'usage (pas de 4K si pas nécessaire)
+- Compression : utiliser TinyPNG ou Squoosh
+
+---
+
+## 🧪 Testez votre récit
+
+### Questions à se poser
+
+**L'intention est-elle claire ?**
+- Est-ce que les testeurs comprennent l'émotion/le message ?
+- L'interaction renforce-t-elle le propos ?
+
+**L'interaction est-elle intuitive ?**
+- Les testeurs comprennent-ils ce qu'ils peuvent faire ?
+- Faut-il ajouter des indications ?
+
+**L'expérience est-elle engageante ?**
+- Les testeurs explorent-ils naturellement ?
+- Vont-ils jusqu'au bout ?
+
+**Y a-t-il des surprises ?**
+- Découvrent-ils des choses qu'ils n'attendaient pas ?
+- L'exploration est-elle récompensée ?
+
+### Faites tester par d'autres
+
+- Observez sans expliquer
+- Notez où ils bloquent, où ils s'ennuient
+- Demandez-leur de penser à voix haute
+- Ne défendez pas vos choix, écoutez
+
+---
+
+## 📚 Ressources supplémentaires
+
+### Inspiration
+
+**Sites narratifs interactifs**
+- [clickclickclick.click](https://clickclickclick.click) - tracking narratif
+- [The Boat](http://www.sbs.com.au/theboat/) - webdoc scroll
+- [Bear 71](https://bear71vr.nfb.ca/) - expérience interactive
+- [High Rise](http://highrise.nfb.ca/) - documentaire interactif urbain
+
+**Studios spécialisés**
+- Studio Moniker (clickclickclick)
+- IDEO - design interactif
+- Submarine Channel - récits interactifs
+- ONF/NFB - webdocs canadiens
+
+### Aller plus loin techniquement
+
+**Bibliothèques JavaScript utiles**
+- **Three.js** : 3D dans le navigateur
+- **GSAP** : animations fluides et complexes
+- **Howler.js** : gestion audio avancée
+- **Scroll Magic** : effets de scroll sophistiqués
+
+**Frameworks web**
+- **Svelte** : réactivité simple pour interactions complexes
+- **P5.js** : dessiner et animer facilement
+
+---
+
+## ✅ Checklist du projet fini
+
+Avant de considérer votre projet terminé :
+
+- [ ] L'intention narrative est claire
+- [ ] Au moins 2 types d'interactions sont utilisés
+- [ ] Audio et vidéo sont synchronisés et optimisés
+- [ ] Le récit a un début et une fin (même non-linéaire)
+- [ ] Les transitions sont fluides
+- [ ] Ça fonctionne dans différents navigateurs
+- [ ] Au moins 3 personnes l'ont testé
+- [ ] Le code est commenté (pour vous relire plus tard)
+- [ ] Vous êtes fier du résultat
+
+---
+
+## 🎓 Réflexion finale
+
+### Ce que vous avez appris
+
+Au-delà du JavaScript, vous avez découvert que :
+
+**Le code est un langage de création narrative**
+- Pas juste de la technique, mais un outil d'expression
+- Comme le montage, le cadrage, la mise en scène
+
+**Le web est un médium narratif unique**
+- Ni cinéma, ni jeu vidéo, mais quelque chose de nouveau
+- Le spectateur devient co-auteur
+
+**L'interaction peut être poétique**
+- Un clic n'est pas qu'un clic
+- C'est un geste chargé de sens narratif
+
+### Questions pour aller plus loin
+
+- Comment l'interaction peut-elle servir des sujets difficiles (deuil, trauma, injustice) ?
+- Où sont les limites éthiques de l'interaction narrative ?
+- Comment créer de l'empathie par l'interaction ?
+- Le spectateur doit-il toujours avoir le contrôle ?
+
+---
+
+## 🚀 Partagez votre travail
+
+Une fois votre projet terminé :
+
+1. **Hébergez-le** : CodeSandbox, Netlify, Vercel, GitHub Pages
+2. **Documentez-le** : expliquez votre intention, vos choix
+3. **Collectez les retours** : comment les gens l'ont vécu ?
+
+**Le web est fait pour être partagé. Votre récit aussi.**
+
+---
+
+## 💬 Besoin d'aide ?
+
+N'oubliez pas :
+- Revenez aux 4 chapitres précédents pour revoir les exemples
+- Le code n'est qu'un outil, commencez par l'histoire
+- Testez tôt et souvent
+- La simplicité bien exécutée vaut mieux que la complexité bancale
+
+**Bon courage pour votre création ! 🎬✨**

@@ -1,0 +1,1060 @@
+---
+title: Cours 3 - Layout et Responsive Design
+description: Créer des mises en page adaptatives
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## 📚 Concepts clés
+
+Dans ce cours, vous allez apprendre à :
+- Approfondir Flexbox pour des layouts complexes
+- Découvrir CSS Grid pour des compositions avancées
+- Créer des sites responsive avec les media queries
+- Rendre les images et media fluides
+
+**Durée** : 4 heures (1h théorie + 2h30 pratique + 30min Q&A)
+
+---
+
+## Rappel : Le Box Model
+
+Avant d'aborder les layouts, un rappel sur le box model CSS :
+
+```css
+.box {
+  width: 300px;
+  height: 200px;
+  padding: 20px;      /* Espace interne */
+  border: 2px solid #000;
+  margin: 10px;       /* Espace externe */
+}
+```
+
+**Taille totale** = width + padding + border + margin
+
+### `box-sizing: border-box`
+
+Par défaut, `width` ne compte pas le padding et border. C'est souvent déroutant !
+
+```css
+/* Mieux : inclure padding et border dans width */
+* {
+  box-sizing: border-box;
+}
+
+.box {
+  width: 300px;        /* Largeur TOTALE incluant padding et border */
+  padding: 20px;
+  border: 2px solid #000;
+}
+```
+
+:::tip[Bonne pratique]
+Ajoutez `* { box-sizing: border-box; }` au début de votre CSS. Cela facilite grandement le calcul des dimensions.
+:::
+
+---
+
+## Flexbox : Approfondissement
+
+Vous connaissez déjà les bases de Flexbox. Allons plus loin.
+
+### Rappel des concepts de base
+
+```css
+.container {
+  display: flex;
+  flex-direction: row;        /* Horizontal (défaut) */
+  justify-content: flex-start; /* Alignement horizontal */
+  align-items: stretch;        /* Alignement vertical */
+  gap: 1rem;                   /* Espacement entre éléments */
+}
+```
+
+### `flex-wrap` : Passer à la ligne
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Les items passent à la ligne si pas assez de place */
+  gap: 1rem;
+}
+```
+
+**Exemple pratique** : Grille de cartes responsive
+
+```css
+.chapters-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.chapter-card {
+  flex: 1 1 300px; /* grow, shrink, basis */
+  /* Chaque carte fait minimum 300px, et grandit pour remplir l'espace */
+}
+```
+
+### Propriété `flex` : Contrôler la taille des items
+
+```css
+.item {
+  flex: 1 1 200px;
+}
+/* 
+  flex-grow: 1   → peut grandir
+  flex-shrink: 1 → peut rétrécir
+  flex-basis: 200px → taille de base
+*/
+```
+
+**Exemples pratiques** :
+
+```css
+/* Sidebar + Contenu principal */
+.container {
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  flex: 0 0 250px; /* Largeur fixe de 250px */
+}
+
+.main-content {
+  flex: 1; /* Prend tout l'espace restant */
+}
+```
+
+```css
+/* 3 colonnes égales */
+.three-columns {
+  display: flex;
+  gap: 1rem;
+}
+
+.column {
+  flex: 1; /* Chaque colonne prend 1/3 de l'espace */
+}
+```
+
+### `align-content` : Aligner les lignes
+
+Quand `flex-wrap: wrap` créé plusieurs lignes :
+
+```css
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between; /* Espace entre les lignes */
+  height: 600px; /* Nécessite une hauteur définie */
+}
+```
+
+### `order` : Changer l'ordre visuel
+
+```css
+.item-1 { order: 2; }
+.item-2 { order: 1; }
+.item-3 { order: 3; }
+```
+
+Utile pour réorganiser visuellement sans toucher au HTML (par exemple en responsive).
+
+### Exemple complet : Layout de page
+
+```css
+/* Layout global de la page */
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Toute la hauteur de la fenêtre */
+}
+
+header {
+  flex: 0 0 auto; /* Ne grandit ni rétrécit */
+}
+
+main {
+  flex: 1; /* Prend tout l'espace disponible */
+}
+
+footer {
+  flex: 0 0 auto;
+}
+```
+
+---
+
+## CSS Grid : Créer des grilles
+
+CSS Grid excelle pour créer des layouts en deux dimensions (lignes ET colonnes).
+
+### Syntaxe de base
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 colonnes égales */
+  grid-template-rows: auto;            /* Hauteur automatique */
+  gap: 1rem;                           /* Espacement */
+}
+```
+
+### Unité `fr` : Fraction de l'espace disponible
+
+```css
+/* 3 colonnes égales */
+.grid {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Colonne 1 = 2x plus large que colonnes 2 et 3 */
+.grid {
+  grid-template-columns: 2fr 1fr 1fr;
+}
+
+/* Mix de colonnes fixes et flexibles */
+.grid {
+  grid-template-columns: 250px 1fr 1fr; /* Sidebar fixe + 2 colonnes flexibles */
+}
+```
+
+### `repeat()` : Répéter une définition
+
+```css
+/* Au lieu de : 1fr 1fr 1fr 1fr */
+.grid {
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
+}
+
+/* Colonnes de minimum 250px, autant que possible */
+.grid {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+```
+
+### `auto-fit` et `auto-fill` : Grilles responsive
+
+```css
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+```
+
+Cette grille crée automatiquement autant de colonnes que possible, chaque colonne faisant minimum 300px. **Magique pour le responsive !**
+
+### Placer les items avec `grid-column` et `grid-row`
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+/* Cet item occupe 2 colonnes */
+.item-1 {
+  grid-column: span 2; /* Étend sur 2 colonnes */
+}
+
+/* Cet item occupe la largeur complète */
+.item-featured {
+  grid-column: 1 / -1; /* De la ligne 1 à la dernière ligne */
+}
+
+/* Cet item occupe 2 lignes */
+.item-tall {
+  grid-row: span 2;
+}
+```
+
+### Exemple : Layout de galerie
+
+```html
+<div class="gallery">
+  <div class="item featured">Image 1</div>
+  <div class="item">Image 2</div>
+  <div class="item">Image 3</div>
+  <div class="item tall">Image 4</div>
+  <div class="item">Image 5</div>
+  <div class="item">Image 6</div>
+</div>
+```
+
+```css
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.item {
+  background: #f0f0f0;
+  padding: 1rem;
+}
+
+.featured {
+  grid-column: span 2; /* Occupe 2 colonnes */
+  grid-row: span 2;    /* Occupe 2 lignes */
+}
+
+.tall {
+  grid-row: span 2;
+}
+```
+
+### Grid Areas : Nommer les zones
+
+Pour des layouts complexes :
+
+```css
+.page-layout {
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "sidebar main main"
+    "footer footer footer";
+  grid-template-columns: 250px 1fr 1fr;
+  gap: 1rem;
+}
+
+header { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+main { grid-area: main; }
+footer { grid-area: footer; }
+```
+
+---
+
+## Responsive Web Design
+
+Le responsive design consiste à adapter votre site à toutes les tailles d'écran.
+
+### Approche Mobile-First
+
+Commencez par designer pour mobile, puis ajoutez des styles pour écrans plus grands.
+
+```css
+/* Styles de base (mobile) */
+.container {
+  padding: 1rem;
+}
+
+.columns {
+  display: flex;
+  flex-direction: column; /* Colonnes empilées sur mobile */
+  gap: 1rem;
+}
+
+/* Tablettes et plus */
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+  }
+  
+  .columns {
+    flex-direction: row; /* Colonnes côte à côte sur tablette+ */
+  }
+}
+
+/* Desktop et plus */
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+```
+
+### Breakpoints recommandés
+
+```css
+/* Mobile par défaut (< 768px) */
+
+/* Tablette */
+@media (min-width: 768px) {
+  /* Styles pour tablette */
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  /* Styles pour desktop */
+}
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  /* Styles pour grands écrans */
+}
+```
+
+### Exemple : Navigation responsive
+
+```html
+<nav class="main-nav">
+  <ul>
+    <li><a href="/">Accueil</a></li>
+    <li><a href="/histoire">Histoire</a></li>
+    <li><a href="/personnages">Personnages</a></li>
+    <li><a href="/jeux">Jeux</a></li>
+  </ul>
+</nav>
+```
+
+```css
+/* Mobile : navigation verticale */
+.main-nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main-nav a {
+  display: block;
+  padding: 1rem;
+  background: var(--color-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+/* Tablette+ : navigation horizontale */
+@media (min-width: 768px) {
+  .main-nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .main-nav a {
+    padding: 0.75rem 1.5rem;
+  }
+}
+```
+
+### Exemple : Grille de cartes responsive
+
+```css
+/* Mobile : 1 colonne */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* Tablette : 2 colonnes */
+@media (min-width: 768px) {
+  .chapters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* Desktop : 3 colonnes */
+@media (min-width: 1024px) {
+  .chapters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+```
+
+### OU version automatique avec `auto-fit`
+
+```css
+.chapters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+/* Pas besoin de media queries ! */
+```
+
+---
+
+## Images et media responsives
+
+### Images fluides
+
+```css
+/* Rendre toutes les images fluides */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+```
+
+### `object-fit` : Contrôler le ratio d'aspect
+
+```css
+.chapter-thumbnail {
+  width: 100%;
+  height: 250px;
+  object-fit: cover; /* Couvre la zone sans déformation */
+  border-radius: 1rem;
+}
+```
+
+Valeurs de `object-fit` :
+- `cover` : couvre la zone (peut rogner)
+- `contain` : contient l'image entière (peut laisser des espaces)
+- `fill` : étire l'image (peut déformer)
+
+### Vidéo responsive
+
+```css
+video {
+  max-width: 100%;
+  height: auto;
+}
+```
+
+### Iframe responsive (YouTube, Vimeo)
+
+```html
+<div class="video-container">
+  <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
+</div>
+```
+
+```css
+.video-container {
+  position: relative;
+  aspect-ratio: 16 / 9; /* Ratio 16:9 */
+  background: black;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+```
+
+---
+
+## 💡 Exemple complet : Layout responsive de site d'histoire
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Les Aventures de Léo</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <header class="site-header">
+    <div class="container">
+      <h1>Les Aventures de Léo</h1>
+      <nav class="main-nav">
+        <ul>
+          <li><a href="/">Accueil</a></li>
+          <li><a href="/histoire">Histoire</a></li>
+          <li><a href="/personnages">Personnages</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Bienvenue dans l'univers de Léo</h2>
+        <p>Prêt pour l'aventure ?</p>
+      </div>
+    </section>
+
+    <section class="chapters">
+      <div class="container">
+        <h2>Les chapitres</h2>
+        <div class="chapters-grid">
+          <article class="chapter-card">
+            <img src="images/ch1.jpg" alt="Chapitre 1">
+            <h3>Chapitre 1</h3>
+            <p>Le réveil magique...</p>
+            <a href="/chapitre1" class="button">Lire</a>
+          </article>
+          <article class="chapter-card">
+            <img src="images/ch2.jpg" alt="Chapitre 2">
+            <h3>Chapitre 2</h3>
+            <p>La forêt mystérieuse...</p>
+            <a href="/chapitre2" class="button">Lire</a>
+          </article>
+          <article class="chapter-card">
+            <img src="images/ch3.jpg" alt="Chapitre 3">
+            <h3>Chapitre 3</h3>
+            <p>La rencontre...</p>
+            <a href="/chapitre3" class="button">Lire</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2025 Les Aventures de Léo</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+```
+
+```css
+/* ========================================
+   RESET & BASE
+   ======================================== */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ========================================
+   VARIABLES
+   ======================================== */
+
+:root {
+  --color-primary: #FF6B6B;
+  --color-secondary: #4ECDC4;
+  --color-text: #2C3E50;
+  --color-background: #FFFFFF;
+  
+  --font-body: 'Nunito', sans-serif;
+  --font-heading: 'Fredoka', sans-serif;
+  
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  
+  --container-width: 1200px;
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 0 var(--spacing-md);
+  }
+}
+
+main {
+  flex: 1;
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.site-header {
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  color: white;
+  padding: var(--spacing-md) 0;
+}
+
+.site-header h1 {
+  font-family: var(--font-heading);
+  text-align: center;
+  margin-bottom: var(--spacing-sm);
+}
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+
+/* Mobile : Navigation verticale */
+.main-nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main-nav a {
+  display: block;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  text-decoration: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  transition: background 0.3s;
+}
+
+.main-nav a:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Tablette+ : Navigation horizontale */
+@media (min-width: 768px) {
+  .main-nav ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+}
+
+/* ========================================
+   HERO
+   ======================================== */
+
+.hero {
+  background: var(--color-secondary);
+  color: white;
+  padding: var(--spacing-xl) 0;
+  text-align: center;
+}
+
+.hero h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+@media (min-width: 768px) {
+  .hero h2 {
+    font-size: 3rem;
+  }
+}
+
+/* ========================================
+   SECTIONS
+   ======================================== */
+
+section {
+  padding: var(--spacing-xl) 0;
+}
+
+section h2 {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  margin-bottom: var(--spacing-lg);
+  text-align: center;
+  color: var(--color-primary);
+}
+
+/* ========================================
+   GRILLE DE CHAPITRES
+   ======================================== */
+
+/* Mobile : 1 colonne */
+.chapters-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-md);
+}
+
+/* Tablette : 2 colonnes */
+@media (min-width: 768px) {
+  .chapters-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+  }
+}
+
+/* Desktop : 3 colonnes */
+@media (min-width: 1024px) {
+  .chapters-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ========================================
+   CARTES DE CHAPITRES
+   ======================================== */
+
+.chapter-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.chapter-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.chapter-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.chapter-card h3 {
+  font-family: var(--font-heading);
+  padding: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.chapter-card p {
+  padding: 0 var(--spacing-sm);
+  margin-bottom: var(--spacing-sm);
+}
+
+.chapter-card .button {
+  display: block;
+  margin: 0 var(--spacing-sm) var(--spacing-sm);
+}
+
+/* ========================================
+   BOUTONS
+   ======================================== */
+
+.button {
+  display: inline-block;
+  background: var(--color-primary);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  font-weight: 600;
+  text-align: center;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.button:hover {
+  background: #E85555;
+  transform: translateY(-2px);
+}
+
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.site-footer {
+  background: var(--color-text);
+  color: white;
+  padding: var(--spacing-lg) 0;
+  text-align: center;
+}
+```
+
+---
+
+## 🎯 Objectifs du fil rouge (Cours 3)
+
+Pendant la phase pratique, vous allez :
+
+### 1. Analyser votre layout actuel (30 min)
+- Identifiez les sections qui nécessitent un layout (grille, flex, etc.)
+- Dessinez un schéma de layout mobile vs desktop
+- Planifiez vos breakpoints
+
+### 2. Créer un layout responsive avec Flexbox et/ou Grid (1h30)
+- Layout global (header, main, footer)
+- Navigation responsive
+- Grille de contenu (chapitres, personnages, etc.)
+- Sidebar si nécessaire
+
+### 3. Rendre les images fluides (30 min)
+- Appliquer `max-width: 100%` aux images
+- Utiliser `object-fit` pour les thumbnails
+- Gérer les vidéos/iframes responsive
+
+### 4. Tester sur différentes tailles d'écran (1h)
+- Utilisez les DevTools (F12 → mode responsive)
+- Testez mobile (375px), tablette (768px), desktop (1024px+)
+- Ajustez les breakpoints si nécessaire
+- Vérifiez que tout est lisible et cliquable
+
+---
+
+## 🔧 Exercices dirigés
+
+### Exercice 1 : Créer une grille responsive
+
+Créez une grille qui affiche :
+- 1 colonne sur mobile
+- 2 colonnes sur tablette
+- 4 colonnes sur desktop
+
+<details>
+<summary>Voir la solution</summary>
+
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+```
+
+Ou version automatique :
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+```
+</details>
+
+### Exercice 2 : Layout sidebar + contenu
+
+Créez un layout avec :
+- Sur mobile : sidebar en haut, puis contenu
+- Sur desktop : sidebar à gauche (250px fixe), contenu flexible
+
+<details>
+<summary>Voir la solution</summary>
+
+```css
+/* Mobile */
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.sidebar {
+  /* Prend toute la largeur sur mobile */
+}
+
+.content {
+  /* Prend toute la largeur sur mobile */
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .page-layout {
+    flex-direction: row;
+  }
+  
+  .sidebar {
+    flex: 0 0 250px; /* Largeur fixe */
+  }
+  
+  .content {
+    flex: 1; /* Prend l'espace restant */
+  }
+}
+```
+</details>
+
+---
+
+## 📖 Ressources complémentaires
+
+### Flexbox
+- [Flexbox Froggy](https://flexboxfroggy.com/#fr) : jeu pour apprendre Flexbox
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) : guide complet
+
+### CSS Grid
+- [Grid Garden](https://cssgridgarden.com/#fr) : jeu pour apprendre Grid
+- [A Complete Guide to Grid](https://css-tricks.com/snippets/css/complete-guide-grid/) : guide complet
+
+### Responsive
+- [Responsive Design - MDN](https://developer.mozilla.org/fr/docs/Learn/CSS/CSS_layout/Responsive_Design)
+- [Media Queries](https://developer.mozilla.org/fr/docs/Web/CSS/Media_Queries)
+
+### Outils
+- [Responsively App](https://responsively.app/) : tester sur plusieurs tailles simultanément
+- Chrome DevTools : mode responsive (F12 → icône mobile)
+
+---
+
+## ✅ Checklist de fin de cours
+
+Avant le prochain cours, assurez-vous que :
+
+- [ ] Votre site utilise Flexbox ou Grid pour le layout
+- [ ] La navigation est responsive (verticale mobile, horizontale desktop)
+- [ ] Les grilles de contenu s'adaptent aux différentes tailles
+- [ ] Toutes les images sont fluides (`max-width: 100%`)
+- [ ] Le site est fonctionnel sur mobile (375px), tablette (768px) et desktop (1024px+)
+- [ ] Pas de scroll horizontal sur mobile
+- [ ] Les textes sont lisibles sur toutes les tailles d'écran
+
+---
+
+## Questions fréquentes
+
+### Flexbox ou Grid ?
+
+- **Flexbox** : pour des layouts en une dimension (ligne OU colonne), navigation, alignements
+- **Grid** : pour des layouts en deux dimensions (lignes ET colonnes), grilles de cartes
+- **Les deux** : souvent combinés dans un même projet !
+
+### Mes media queries ne fonctionnent pas, pourquoi ?
+
+Vérifiez que vous avez le meta viewport dans votre `<head>` :
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+### Quelle taille pour les breakpoints ?
+
+Les valeurs courantes :
+- Mobile : < 768px (par défaut)
+- Tablette : 768px
+- Desktop : 1024px
+- Large desktop : 1440px
+
+Mais adaptez selon votre contenu !
+
+### Mobile-first, c'est obligatoire ?
+
+Non, mais c'est recommandé car :
+- Vous forcez à prioriser le contenu essentiel
+- C'est plus facile d'ajouter que de retirer
+- Meilleure performance mobile
+
+---
+
+## Prochaine étape
+
+Dans le dernier cours, vous allez ajouter de l'interactivité avec CSS et JavaScript, et finaliser votre projet.
+
+**[Cours 4 : Interactivité et Finalisation →](/mm2b/interactivite-finalisation)**
