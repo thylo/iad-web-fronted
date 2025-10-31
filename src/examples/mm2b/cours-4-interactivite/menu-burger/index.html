@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Burger Mobile</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">Les Aventures de Léo</h1>
+
+      <!-- Bouton menu burger -->
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span class="hamburger"></span>
+      </button>
+
+      <!-- Navigation -->
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#" class="active">🏠 Accueil</a></li>
+          <li><a href="#">📖 Chapitres</a></li>
+          <li><a href="#">👥 Personnages</a></li>
+          <li><a href="#">🎨 Illustrations</a></li>
+          <li><a href="#">💬 Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <h2>Menu Burger avec JavaScript</h2>
+        <p>Redimensionnez la fenêtre et testez le menu burger sur mobile !</p>
+        <div class="features">
+          <div class="feature">✅ Click sur le burger pour ouvrir/fermer</div>
+          <div class="feature">✅ Animation fluide</div>
+          <div class="feature">✅ Accessible au clavier</div>
+          <div class="feature">✅ Responsive design</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="container">
+        <h3>Comment ça marche ?</h3>
+        <div class="code-explanation">
+          <div class="explanation-card">
+            <h4>1️⃣ HTML</h4>
+            <p>Bouton avec <code>aria-label</code> et navigation sémantique</p>
+          </div>
+          <div class="explanation-card">
+            <h4>2️⃣ CSS</h4>
+            <p>Classe <code>.is-open</code> pour afficher/masquer le menu</p>
+          </div>
+          <div class="explanation-card">
+            <h4>3️⃣ JavaScript</h4>
+            <p><code>classList.toggle()</code> pour alterner la classe</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>

@@ -4,6 +4,7 @@ description: Créer une identité visuelle cohérente
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import LiveCode from '../../../components/mdx/LiveCode.astro';
 
 ## 📚 Concepts clés
 
@@ -337,12 +338,9 @@ h1 {
 }
 ```
 
-**Aperçu du style :**
+**Exemple interactif avec Google Fonts :**
 
-<div style={{ padding: '1.5rem', backgroundColor: '#FFF9E6', borderRadius: '1rem', marginBottom: '1rem' }}>
-  <h3 style={{ fontSize: '2rem', fontWeight: 700, color: '#FF6B6B', marginBottom: '0.5rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>Les Aventures de Léo 🦁</h3>
-  <p style={{ fontSize: '18px', lineHeight: 1.8, color: '#2C3E50', fontFamily: 'system-ui, -apple-system, sans-serif' }}>Il était une fois un petit lion qui adorait explorer la savane. Chaque jour, il découvrait de nouvelles merveilles et se faisait plein d'amis. Les lettres sont grandes et arrondies pour faciliter la lecture.</p>
-</div>
+<LiveCode example="mm2b/cours-2-typographie/google-fonts" height="600px" />
 
 :::tip[Caractéristiques importantes pour les 6-8 ans]
 - **Taille de texte grande** (18px minimum) pour faciliter la lecture
@@ -664,89 +662,15 @@ button {
 
 ### Système de design complet avec variables
 
-```css
-:root {
-  /* Couleurs principales */
-  --color-primary: #FF6B6B;
-  --color-primary-dark: #E85555;
-  --color-primary-light: #FF9B9B;
-  
-  --color-secondary: #4ECDC4;
-  --color-secondary-dark: #3EBEAC;
-  --color-secondary-light: #7EDDD4;
-  
-  /* Couleurs neutres */
-  --color-text: #2C3E50;
-  --color-text-light: #7F8C8D;
-  --color-background: #FFFFFF;
-  --color-background-alt: #F8F9FA;
-  --color-border: #E1E8ED;
-  
-  /* Typographie */
-  --font-body: 'Open Sans', sans-serif;
-  --font-heading: 'Montserrat', sans-serif;
-  
-  --font-size-xs: 0.75rem;    /* 12px */
-  --font-size-sm: 0.875rem;   /* 14px */
-  --font-size-base: 1rem;     /* 16px */
-  --font-size-lg: 1.125rem;   /* 18px */
-  --font-size-xl: 1.25rem;    /* 20px */
-  --font-size-2xl: 1.5rem;    /* 24px */
-  --font-size-3xl: 2rem;      /* 32px */
-  --font-size-4xl: 2.5rem;    /* 40px */
-  
-  /* Espacements */
-  --spacing-xs: 0.25rem;   /* 4px */
-  --spacing-sm: 0.5rem;    /* 8px */
-  --spacing-md: 1rem;      /* 16px */
-  --spacing-lg: 1.5rem;    /* 24px */
-  --spacing-xl: 2rem;      /* 32px */
-  --spacing-2xl: 3rem;     /* 48px */
-  --spacing-3xl: 4rem;     /* 64px */
-  
-  /* Coins arrondis */
-  --radius-sm: 0.25rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 1rem;
-  
-  /* Ombres */
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
-}
+Voici un exemple interactif d'un système de variables CSS complet appliqué à un site :
 
-/* Application */
-body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-base);
-  color: var(--color-text);
-  background-color: var(--color-background);
-  line-height: 1.6;
-}
+<LiveCode example="mm2b/cours-2-typographie/variables-css" height="700px" />
 
-h1 {
-  font-family: var(--font-heading);
-  font-size: var(--font-size-4xl);
-  color: var(--color-primary);
-  margin-bottom: var(--spacing-lg);
-}
-
-.button {
-  background-color: var(--color-primary);
-  color: white;
-  padding: var(--spacing-md) var(--spacing-lg);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-}
-
-.card {
-  background-color: var(--color-background);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-xl);
-  box-shadow: var(--shadow-md);
-}
-```
+:::tip[Explorez le code]
+- Ouvrez le fichier `styles.css` pour voir toutes les variables définies dans `:root`
+- Observez comment les variables sont utilisées partout dans le CSS
+- Essayez de modifier les valeurs des variables pour voir l'effet sur tout le site
+:::
 
 ---
 
@@ -866,14 +790,16 @@ h1 {
 
 ### Exemple pratique : Hero section avec dégradé
 
-```css
-.hero {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: var(--spacing-3xl) var(--spacing-xl);
-  text-align: center;
-}
-```
+Voici un exemple interactif de hero section avec dégradé sophistiqué :
+
+<LiveCode example="mm2b/cours-2-typographie/hero-degrade" height="650px" />
+
+:::tip[Points à observer]
+- Dégradé à plusieurs couleurs avec différents points d'arrêt
+- Effets de texture avec pseudo-élément `::before`
+- Boutons avec différents styles (primary et secondary)
+- Cartes avec effets hover en dessous
+:::
 
 ---
 
