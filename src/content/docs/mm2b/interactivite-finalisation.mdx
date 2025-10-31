@@ -4,6 +4,7 @@ description: Ajouter de l'interactivité et finaliser le projet
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import LiveCode from '../../../components/mdx/LiveCode.astro';
 
 ## 📚 Concepts clés
 
@@ -100,56 +101,30 @@ Les transitions permettent d'animer le changement d'une propriété CSS.
 }
 ```
 
-### Exemples pratiques
+### Exemples interactifs de transitions
 
-#### Bouton avec effet au survol
+#### Boutons avec différents effets
 
-```css
-.button {
-  background: var(--color-primary);
-  color: white;
-  padding: 1rem 2rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
+<LiveCode example="mm2b/cours-4-interactivite/boutons-transitions" height="700px" />
 
-.button:hover {
-  background: var(--color-primary-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
+:::tip[Essayez différents états]
+- **:hover** - Survolez les boutons avec la souris
+- **:focus** - Appuyez sur Tab pour naviguer au clavier
+- **:active** - Maintenez le clic sur un bouton
+:::
 
-.button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-```
+#### Cartes avec effets au survol
 
-#### Carte avec effet au survol
+<LiveCode example="mm2b/cours-4-interactivite/cartes-hover" height="750px" />
 
-```css
-.card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.card img {
-  transition: transform 0.3s ease;
-}
-
-.card:hover img {
-  transform: scale(1.05);
-}
-```
+:::tip[Différents effets disponibles]
+- Effet de levée (lift)
+- Zoom
+- Lueur (glow)
+- Rotation
+- Glissement (slide)
+- Bordure animée
+:::
 
 ---
 
@@ -484,102 +459,28 @@ button.addEventListener('click', () => {
 });
 ```
 
-### Exemple : Menu burger mobile
+### Exemple interactif : Menu burger mobile
 
-```html
-<button class="menu-toggle" aria-label="Toggle menu">
-  ☰
-</button>
+<LiveCode example="mm2b/cours-4-interactivite/menu-burger" height="700px" />
 
-<nav class="main-nav">
-  <ul>
-    <li><a href="/">Accueil</a></li>
-    <li><a href="/histoire">Histoire</a></li>
-    <li><a href="/personnages">Personnages</a></li>
-  </ul>
-</nav>
-```
+:::tip[Points importants]
+- **Bouton burger animé** : l'icône se transforme en X au click
+- **Navigation responsive** : cachée sur mobile, toujours visible sur desktop
+- **Animation fluide** : les éléments du menu apparaissent avec un délai progressif
+- **Accessible** : utilisable au clavier et avec les lecteurs d'écran
+- **Redimensionnez la fenêtre** pour voir le comportement responsive
+:::
 
-```css
-/* Navigation cachée par défaut sur mobile */
-.main-nav {
-  display: none;
-}
+### Exemple interactif : Toggle de contenu
 
-.main-nav.is-open {
-  display: block;
-}
+<LiveCode example="mm2b/cours-4-interactivite/toggle-contenu" height="750px" />
 
-/* Bouton menu visible sur mobile uniquement */
-.menu-toggle {
-  display: block;
-  /* styles du bouton... */
-}
-
-@media (min-width: 768px) {
-  /* Sur desktop : menu toujours visible, bouton caché */
-  .main-nav {
-    display: block;
-  }
-  
-  .menu-toggle {
-    display: none;
-  }
-}
-```
-
-```javascript
-// Sélectionner les éléments
-const menuToggle = document.querySelector('.menu-toggle');
-const mainNav = document.querySelector('.main-nav');
-
-// Écouter le click sur le bouton
-menuToggle.addEventListener('click', () => {
-  // Alterner la classe 'is-open' sur la navigation
-  mainNav.classList.toggle('is-open');
-  
-  // Optionnel : changer l'icône du bouton
-  if (mainNav.classList.contains('is-open')) {
-    menuToggle.textContent = '✕';
-  } else {
-    menuToggle.textContent = '☰';
-  }
-});
-```
-
-### Exemple : Afficher/masquer un contenu
-
-```html
-<button class="toggle-btn" data-target="details">
-  Voir les détails
-</button>
-
-<div id="details" class="hidden">
-  <p>Voici les détails cachés...</p>
-</div>
-```
-
-```css
-.hidden {
-  display: none;
-}
-```
-
-```javascript
-const toggleBtn = document.querySelector('.toggle-btn');
-const details = document.querySelector('#details');
-
-toggleBtn.addEventListener('click', () => {
-  details.classList.toggle('hidden');
-  
-  // Changer le texte du bouton
-  if (details.classList.contains('hidden')) {
-    toggleBtn.textContent = 'Voir les détails';
-  } else {
-    toggleBtn.textContent = 'Masquer les détails';
-  }
-});
-```
+:::tip[Fonctionnalités]
+- **Chapitres extensibles** : cliquez sur "Voir plus" pour afficher les détails
+- **FAQ interactive** : questions avec réponses dépliables
+- **Animations** : transitions fluides à l'ouverture/fermeture
+- **Accessible au clavier** : fonctionne avec Enter et Espace
+:::
 
 ### Exemple : Smooth scroll vers une section
 
