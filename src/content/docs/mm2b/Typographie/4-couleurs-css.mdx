@@ -6,11 +6,11 @@ description: Maîtriser les systèmes de couleurs et les variables CSS
 import LiveCode from '../../../../components/mdx/LiveCode.astro';
 import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
 
-## Couleurs en CSS
+Il existe plusieurs façons de specifier des couleurs en CSS
 
-### Différentes façons de spécifier les couleurs
+## Différentes façons de spécifier les couleurs
 
-#### Notation hexadécimale
+### Notation hexadécimale
 
 ```css
 .element {
@@ -19,7 +19,7 @@ import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro'
 }
 ```
 
-#### RGB et RGBA
+### RGB et RGBA
 
 ```css
 .element {
@@ -32,7 +32,7 @@ import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro'
 Le quatrième paramètre (alpha) contrôle l'opacité de 0 (transparent) à 1 (opaque)
 :::
 
-#### HSL et HSLA
+### HSL et HSLA
 
 ```css
 .element {
@@ -243,6 +243,8 @@ body {
 
 ### Variables avec valeurs de secours
 
+Specifier une couleurs par defaut si une variable n'est pas définie.
+
 ```css
 .element {
   /* Si --color-primary n'existe pas, utilise #FF6B6B */
@@ -274,20 +276,3 @@ button {
 ```
 
 ---
-
-<CourseNavigation
-  prev={{
-    href: "/mm2b/Typographie/3-polices-locales",
-    label: "Polices locales"
-  }}
-  next={{
-    href: "/mm2b/Typographie/5-palettes-couleurs",
-    label: "Palettes de couleurs"
-  }}
-  courseHome={{
-    href: "/mm2b/Typographie",
-    label: "↑ Sommaire du cours 2"
-  }}
-  currentPage={5}
-  totalPages={9}
-/>

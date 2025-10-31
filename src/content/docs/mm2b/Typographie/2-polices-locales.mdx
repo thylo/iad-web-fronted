@@ -5,8 +5,6 @@ description: Héberger et utiliser vos propres fichiers de polices
 
 import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
 
-## Utiliser des polices locales avec @font-face
-
 Parfois, vous voudrez utiliser une police personnalisée qui n'est pas disponible sur Google Fonts, ou vous préférez héberger vos polices vous-même pour des raisons de performance ou de confidentialité.
 
 ### La règle @font-face
@@ -30,8 +28,6 @@ projet/
 ---
 
 ## Exemple complet
-
-### 1. Dans votre CSS
 
 ```css
 /* Déclaration de la police - poids normal */
@@ -226,20 +222,3 @@ h1, h2, h3 {
 ```
 
 ---
-
-<CourseNavigation
-  prev={{
-    href: "/mm2b/Typographie/2-polices-google-fonts",
-    label: "Google Fonts"
-  }}
-  next={{
-    href: "/mm2b/Typographie/4-couleurs-css",
-    label: "Couleurs CSS"
-  }}
-  courseHome={{
-    href: "/mm2b/Typographie",
-    label: "↑ Sommaire du cours 2"
-  }}
-  currentPage={4}
-  totalPages={9}
-/>
