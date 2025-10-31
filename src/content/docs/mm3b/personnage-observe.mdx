@@ -4,10 +4,9 @@ description: Votre regard guide l'émotion
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
+import LiveCode from '../../../components/mdx/LiveCode.astro';
 
-# Le personnage qui vous observe
-
-## 🎬 Référence cinéma : Le cadrage émotionnel
+## Référence cinéma : Le cadrage émotionnel
 
 Au cinéma, le réalisateur utilise le cadrage pour guider l'émotion du spectateur :
 - **Gros plan** : intimité, tension
@@ -20,17 +19,11 @@ Dans *In the Mood for Love* de Wong Kar-wai, la distance entre les personnages d
 
 ---
 
-## ✨ Expérience interactive
+## Expérience interactive
 
 Testez l'expérience ci-dessous. Bougez votre souris dans l'espace et observez comment le personnage réagit à votre "regard" :
 
-<iframe 
-  src="https://codesandbox.io/embed/personnage-observe-simple-example?fontsize=14&hidenavigation=1&theme=dark&view=preview"
-  style="width:100%; height:500px; border:0; border-radius: 4px; overflow:hidden;"
-  title="Le personnage qui vous observe"
-  allow="accelerometer; ambient-light-sensor; camera; encrypted-media; geolocation; gyroscope; hid; microphone; midi; payment; usb; vr; xr-spatial-tracking"
-  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
-></iframe>
+<LiveCode example="mm3b/personnage-observe" height="500px" />
 
 :::tip[Explorez les zones]
 - Approchez-vous du personnage (centre de l'écran)
@@ -41,9 +34,7 @@ Testez l'expérience ci-dessous. Bougez votre souris dans l'espace et observez c
 
 ---
 
-## 🎭 Analyse narrative
-
-### Ce que vous venez d'expérimenter
+## Ce que vous venez d'expérimenter
 
 Vous n'avez pas simplement "bougé une souris". Vous avez :
 - **Établi une relation** avec un personnage
@@ -57,35 +48,18 @@ Vous n'avez pas simplement "bougé une souris". Vous avez :
 
 **Sur le web** : Vous êtes le cadreur. Chaque spectateur crée sa propre version de la scène, avec son propre rythme émotionnel.
 
-### Variations narratives possibles
-
-Cette même mécanique d'interaction peut raconter des histoires très différentes :
-
-<CardGrid>
-  <Card title="🌙 Version contemplative" icon="star">
-    Un personnage solitaire qui trouve du réconfort quand vous vous approchez doucement
-  </Card>
-  <Card title="⚡ Version inquiétante" icon="warning">
-    Une créature qui vous traque, dont les yeux vous suivent partout
-  </Card>
-  <Card title="💕 Version romantique" icon="heart">
-    Deux personnages dont la connexion se renforce selon votre regard
-  </Card>
-  <Card title="🎨 Version abstraite" icon="puzzle">
-    Des formes/couleurs qui dansent selon vos mouvements, comme une peinture vivante
-  </Card>
-</CardGrid>
-
 ---
 
-## 📝 Le scénario interactif
+## Le code expliqué
 
-Voici comment cette expérience est "scénarisée" en code. Nous utilisons un langage narratif plutôt que du jargon technique.
+Voici comment cette expérience est construite. Nous utilisons un langage narratif plutôt que du jargon technique.
 
-### Ingrédients de l'histoire
+### 1. Les données de la scène
+
+Nous commençons par définir les éléments de notre scène :
 
 ```javascript
-// Personnages de notre scène
+// Éléments de la scène
 const personnage = document.querySelector('#personnage');
 const texteEmotion = document.querySelector('#emotion');
 
@@ -98,7 +72,11 @@ const emotions = {
 };
 ```
 
-### Le scénario
+**Équivalent After Effects** : C'est comme définir vos calques et vos variables au début de votre composition.
+
+### 2. Capter le mouvement
+
+Nous écoutons les mouvements de la souris pour connaître la position du "regard" :
 
 ```javascript
 // QUAND le spectateur bouge sa souris
@@ -116,51 +94,73 @@ document.addEventListener('mousemove', (geste) => {
   const distanceX = regardX - centreX;
   const distanceY = regardY - centreY;
   const distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
-  
-  // EMBRANCHEMENT NARRATIF : réaction selon la distance
-  if (distance < 100) {
-    // Regard très proche : intimité
-    personnage.style.transform = 'scale(1.2)';
-    personnage.style.filter = 'brightness(1.3)';
-    texteEmotion.textContent = emotions.proche;
-    
-  } else if (distance < 300) {
-    // Regard à distance moyenne : présence
-    personnage.style.transform = 'scale(1)';
-    personnage.style.filter = 'brightness(1)';
-    texteEmotion.textContent = emotions.centre;
-    
-  } else {
-    // Regard éloigné : solitude
-    personnage.style.transform = 'scale(0.8)';
-    personnage.style.filter = 'brightness(0.7) saturate(0.5)';
-    texteEmotion.textContent = emotions.distant;
-  }
-  
-  // Le personnage suit légèrement le regard (comme un tournesol)
-  const rotationX = (distanceY / window.innerHeight) * 10;
-  const rotationY = (distanceX / window.innerWidth) * 10;
-  personnage.style.transform += ` rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
 });
 ```
 
-### Décryptage narratif
+**Équivalent After Effects** : 
+- `geste.clientX/Y` = position d'un null object que vous animez
+- `distance` = expression `length(position1, position2)`
+
+### 3. Les réactions du personnage
+
+En fonction de la distance calculée, le personnage change d'état émotionnel :
+
+```javascript
+// EMBRANCHEMENT NARRATIF : réaction selon la distance
+if (distance < 100) {
+  // Regard très proche : intimité
+  personnage.classList.add('proche');
+  texteEmotion.textContent = emotions.proche;
+  
+} else if (distance < 300) {
+  // Regard à distance moyenne : présence
+  texteEmotion.textContent = emotions.centre;
+  
+} else {
+  // Regard éloigné : solitude
+  personnage.classList.add('distant');
+  texteEmotion.textContent = emotions.distant;
+}
+
+// Le personnage suit le regard selon un axe de rotation
+const rotationX = (distanceY / window.innerHeight) * 10;
+const rotationY = (distanceX / window.innerWidth) * 10;
+personnage.style.transform = `rotateX(${rotationX}deg) rotateY(${rotationY}deg)`;
+```
+
+**Équivalent After Effects** :
+- Les `if/else` = expressions conditionnelles comme vous en utilisez déjà
+- `style.transform` = propriétés Transform des calques (scale, rotation)
 
 **Ce code raconte une histoire en 3 actes :**
-
 1. **Exposition** : "Quand le spectateur bouge sa souris..." → établit la règle d'interaction
 2. **Conflit** : "Calculer la distance..." → mesure la relation entre spectateur et personnage
 3. **Résolution** : "Embranchement narratif..." → l'histoire réagit à cette relation
 
-**Équivalent After Effects :**
-- `geste.clientX/Y` = position d'un null object que vous animez
-- `distance` = expression `length(position1, position2)`
-- Les `if/else` = expressions conditionnelles comme vous en utilisez déjà
-- `style.transform` = propriétés Transform des calques (scale, rotation)
+---
+
+## Variations narratives possibles
+
+Cette même mécanique d'interaction peut raconter des histoires très différentes :
+
+<CardGrid>
+  <Card title="Version contemplative">
+    Un personnage solitaire qui trouve du réconfort quand vous vous approchez doucement
+  </Card>
+  <Card title="Version inquiétante">
+    Une créature qui vous traque, dont les yeux vous suivent partout
+  </Card>
+  <Card title="Version romantique">
+    Deux personnages dont la connexion se renforce selon votre regard
+  </Card>
+  <Card title="Version abstraite">
+    Des formes/couleurs qui dansent selon vos mouvements, comme une peinture vivante
+  </Card>
+</CardGrid>
 
 ---
 
-## 🎨 Variations créatives
+## Exercices
 
 ### Exercice 1 : Changer l'émotion
 
@@ -179,7 +179,7 @@ const musique = document.querySelector('#musique-ambiance');
 musique.volume = 1 - (distance / 500); // Volume inversement proportionnel à la distance
 ```
 
-### Exercice 3 : Multiple personnages
+### Exercice 3 : Multiples personnages
 
 Et si plusieurs personnages réagissaient différemment à votre regard ?
 - Un qui vous fuit
@@ -188,23 +188,23 @@ Et si plusieurs personnages réagissaient différemment à votre regard ?
 
 ---
 
-## 💡 Ce que vous avez appris
+## Ce que vous avez appris
 
 <CardGrid>
-  <Card title="Interaction = Narration" icon="document">
+  <Card title="Interaction = Narration">
     Un simple mouvement de souris devient un outil pour raconter une relation, une émotion, une histoire
   </Card>
-  <Card title="Le code comme scénario" icon="pencil">
+  <Card title="Le code comme scénario">
     Les conditions (if/else) sont des embranchements narratifs, pas juste de la logique
   </Card>
-  <Card title="Le spectateur co-auteur" icon="star">
+  <Card title="Le spectateur co-auteur">
     Chaque personne crée sa propre version de la scène par ses gestes
   </Card>
 </CardGrid>
 
 ---
 
-## ➡️ Prochaine étape
+## Prochaine étape
 
 Dans le chapitre suivant, nous explorerons comment **les clics deviennent des choix narratifs** avec "L'histoire à plusieurs voix".
 
