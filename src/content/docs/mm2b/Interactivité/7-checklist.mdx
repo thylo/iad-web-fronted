@@ -1,0 +1,344 @@
+---
+title: Checklist finale & Optimisation
+description: Valider, optimiser et finaliser votre projet
+---
+
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+## ✅ Checklist de validation
+
+### HTML
+
+- [ ] Code valide ([W3C Validator](https://validator.w3.org/))
+- [ ] Toutes les balises sont fermées
+- [ ] Attributs `alt` sur toutes les images
+- [ ] Un seul `<h1>` par page
+- [ ] Hiérarchie de titres logique (h1 → h2 → h3)
+- [ ] Pas d'IDs dupliqués
+
+<details>
+<summary>Erreurs fréquentes</summary>
+
+- Balises non fermées : `<div>...</div>` manquant
+- `alt` manquant sur `<img>`
+- Hiérarchie incorrecte : h1 → h3 (saute h2)
+- IDs dupliqués (doivent être uniques)
+- Attributs invalides
+</details>
+
+---
+
+### CSS
+
+- [ ] Code valide ([W3C CSS Validator](https://jigsaw.w3.org/css-validator/))
+- [ ] Pas de propriétés obsolètes
+- [ ] Variables CSS bien définies dans `:root`
+- [ ] Pas de code dupliqué
+
+<details>
+<summary>Optimisations CSS</summary>
+
+```css
+/* ❌ À éviter - sélecteurs trop longs */
+body div.container ul li a.link { }
+
+/* ✅ Préférer - classes simples */
+.nav-link { }
+
+/* ❌ Éviter - propriétés répétées */
+.btn-primary { background: #667eea; }
+.btn-secondary { background: #667eea; }
+
+/* ✅ Préférer - variables */
+:root { --color-primary: #667eea; }
+.btn-primary { background: var(--color-primary); }
+```
+</details>
+
+---
+
+### JavaScript
+
+- [ ] Pas d'erreurs dans la console
+- [ ] Scripts chargés avec `defer`
+- [ ] Event listeners nettoyés si nécessaire
+- [ ] Gestion des erreurs pour éléments manquants
+
+```javascript
+// ✅ Bon - Vérifier l'existence
+const element = document.querySelector('.element');
+if (element) {
+  element.addEventListener('click', handleClick);
+}
+```
+
+---
+
+## ♿ Checklist accessibilité
+
+### Navigation au clavier
+
+- [ ] Tab : Navigation entre éléments
+- [ ] Shift+Tab : Navigation arrière
+- [ ] Enter/Espace : Activation
+- [ ] Escape : Fermer modals/menus
+
+<details>
+<summary>Tester la navigation clavier</summary>
+
+1. Ne pas utiliser la souris
+2. Appuyer sur Tab pour naviguer
+3. Vérifier que le focus est visible
+4. Tester tous les boutons avec Enter/Espace
+5. Tester les modals/menus avec Escape
+</details>
+
+---
+
+### Focus visible
+
+- [ ] Tous les liens/boutons ont un `:focus` visible
+- [ ] Outline personnalisé si supprimé
+- [ ] Contraste suffisant pour le focus
+
+```css
+/* ✅ Bon */
+a:focus,
+button:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* ❌ Mauvais */
+*:focus {
+  outline: none; /* Rend inaccessible */
+}
+```
+
+---
+
+### Contrastes
+
+- [ ] Texte/fond : ratio minimum **4.5:1**
+- [ ] Texte large (18px+) : ratio minimum **3:1**
+- [ ] Testé avec [Contrast Checker](https://webaim.org/resources/contrastchecker/)
+
+| Combinaison | Ratio | Résultat |
+|-------------|-------|----------|
+| Noir sur blanc | 21:1 | ✅ Excellent |
+| #333 sur #FFF | 12.6:1 | ✅ Excellent |
+| #666 sur #FFF | 5.7:1 | ✅ Bon |
+| #999 sur #FFF | 2.8:1 | ❌ Insuffisant |
+
+---
+
+### Outils d'audit
+
+- [ ] [WAVE](https://wave.webaim.org/) : Scanner d'accessibilité
+- [ ] [Lighthouse](https://developers.google.com/web/tools/lighthouse) : Audit complet
+- [ ] Test au clavier manuel
+- [ ] Test avec lecteur d'écran (optionnel)
+
+---
+
+## ⚡ Optimisation
+
+### Images
+
+| Format | Usage | Compression |
+|--------|-------|-------------|
+| **JPEG** | Photos | [TinyJPG](https://tinyjpg.com/) |
+| **PNG** | Graphiques + transparence | [TinyPNG](https://tinypng.com/) |
+| **SVG** | Icônes, logos | [SVGOMG](https://jakearchibald.github.io/svgomg/) |
+| **WebP** | Navigateurs modernes | [Squoosh](https://squoosh.app/) |
+
+**Checklist images** :
+- [ ] Taille appropriée (pas de 4000px affichés à 400px)
+- [ ] Compressées
+- [ ] Attributs `width` et `height`
+- [ ] `loading="lazy"` pour images bas de page
+
+```html
+<img
+  src="image.jpg"
+  alt="Description"
+  width="800"
+  height="600"
+  loading="lazy"
+>
+```
+
+<details>
+<summary>Images responsives</summary>
+
+```html
+<picture>
+  <source srcset="image-small.jpg" media="(max-width: 600px)">
+  <source srcset="image-medium.jpg" media="(max-width: 1200px)">
+  <img src="image-large.jpg" alt="Description">
+</picture>
+```
+</details>
+
+---
+
+### Performance CSS
+
+- [ ] Supprimer le CSS inutilisé
+- [ ] Regrouper les propriétés similaires
+- [ ] Utiliser variables pour éviter répétition
+- [ ] Minimiser les sélecteurs complexes
+
+---
+
+### Performance JavaScript
+
+- [ ] Scripts avec `defer`
+- [ ] Pas de JavaScript inline excessif
+- [ ] Éviter les librairies lourdes si inutiles
+- [ ] Event delegation pour listes
+
+```javascript
+// ❌ Ajouter listener à chaque élément
+items.forEach(item => {
+  item.addEventListener('click', handleClick);
+});
+
+// ✅ Event delegation
+container.addEventListener('click', (e) => {
+  if (e.target.matches('.item')) {
+    handleClick(e);
+  }
+});
+```
+
+---
+
+## 🔍 SEO de base
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Titre unique (50-60 caractères) -->
+  <title>Les Aventures de Léo - Chapitre 1</title>
+
+  <!-- Description (150-160 caractères) -->
+  <meta name="description" content="Découvrez le premier chapitre des aventures de Léo, un garçon curieux qui part à l'aventure.">
+
+  <!-- Langue -->
+  <html lang="fr">
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico">
+</head>
+```
+
+**Checklist SEO** :
+- [ ] Titre unique par page (< 60 caractères)
+- [ ] Meta description (< 160 caractères)
+- [ ] Balise `<html lang="fr">`
+- [ ] Structure de titres logique (h1 → h2 → h3)
+- [ ] URLs descriptives (`/chapitre-1` pas `/page?id=1`)
+- [ ] Images avec `alt` descriptifs
+
+---
+
+## 📱 Responsive
+
+- [ ] Testé sur mobile, tablette, desktop
+- [ ] Meta viewport présent
+- [ ] Texte lisible (min 16px)
+- [ ] Boutons tapables (min 44x44px)
+- [ ] Navigation mobile fonctionnelle
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+
+<details>
+<summary>Tailles de breakpoints courantes</summary>
+
+```css
+/* Mobile first */
+@media (min-width: 640px) { /* Tablette */ }
+@media (min-width: 1024px) { /* Desktop */ }
+@media (min-width: 1280px) { /* Large desktop */ }
+```
+</details>
+
+---
+
+## 🎯 Checklist finale avant livraison
+
+### Contenu
+
+- [ ] Tous les liens fonctionnent
+- [ ] Pas de texte "Lorem ipsum"
+- [ ] Orthographe vérifiée
+- [ ] Images chargées correctement
+- [ ] Polices chargées correctement
+
+### Technique
+
+- [ ] HTML valide (W3C)
+- [ ] CSS valide (W3C)
+- [ ] JavaScript sans erreurs console
+- [ ] Accessibilité vérifiée (WAVE)
+- [ ] Performance testée (Lighthouse)
+
+### Cross-browser
+
+- [ ] Chrome ✓
+- [ ] Firefox ✓
+- [ ] Safari ✓
+- [ ] Edge ✓
+
+### Responsive
+
+- [ ] Mobile (< 640px) ✓
+- [ ] Tablette (640-1024px) ✓
+- [ ] Desktop (> 1024px) ✓
+
+---
+
+## 🚀 Déploiement
+
+<details>
+<summary>Options de déploiement gratuites</summary>
+
+- **[Netlify](https://www.netlify.com/)** : Drag & drop, très simple
+- **[Vercel](https://vercel.com/)** : Optimisé pour frameworks modernes
+- **[GitHub Pages](https://pages.github.com/)** : Hébergement gratuit via Git
+- **[Surge](https://surge.sh/)** : Déploiement en ligne de commande
+
+</details>
+
+---
+
+## 🎉 Félicitations !
+
+Vous avez terminé le cours MM2B ! Vous maîtrisez maintenant :
+
+✅ HTML sémantique et accessibilité
+✅ Typographie et couleurs CSS
+✅ Layouts responsive
+✅ Interactivité et animations
+
+**Prochaines étapes** : Continuez à pratiquer, explorez des frameworks modernes, et surtout : créez vos propres projets !
+
+---
+
+<CourseNavigation
+  prev={{
+    href: "/mm2b/Interactivité/6-exemples",
+    label: "Exemples pratiques"
+  }}
+  courseHome={{
+    href: "/mm2b/Interactivité",
+    label: "↑ Sommaire du cours 4"
+  }}
+  currentPage={8}
+  totalPages={8}
+/>

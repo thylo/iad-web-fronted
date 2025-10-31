@@ -1,0 +1,278 @@
+---
+title: Transforms CSS - Cheat Sheet
+description: Référence rapide des transformations CSS
+---
+
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+## 📋 Référence rapide
+
+| Transform | Fonction | Exemple |
+|-----------|----------|---------|
+| **translate** | Déplacer | `translateX(20px)` `translateY(-10px)` |
+| **scale** | Redimensionner | `scale(1.1)` `scaleX(1.2)` |
+| **rotate** | Pivoter | `rotate(45deg)` `rotate(-15deg)` |
+| **skew** | Incliner | `skewX(10deg)` `skewY(5deg)` |
+
+---
+
+## 🎯 Translate - Déplacer
+
+```css
+/* Horizontal */
+transform: translateX(20px);   /* Droite */
+transform: translateX(-20px);  /* Gauche */
+
+/* Vertical */
+transform: translateY(-10px);  /* Haut */
+transform: translateY(10px);   /* Bas */
+
+/* Les deux */
+transform: translate(20px, -10px);  /* X, Y */
+```
+
+**Usage courant** : Effet de levée au hover
+```css
+.card:hover {
+  transform: translateY(-5px);
+}
+```
+
+---
+
+## 📏 Scale - Redimensionner
+
+```css
+/* Uniforme */
+transform: scale(1.1);    /* Agrandir 110% */
+transform: scale(0.9);    /* Rétrécir 90% */
+
+/* Horizontal uniquement */
+transform: scaleX(1.2);
+
+/* Vertical uniquement */
+transform: scaleY(1.2);
+
+/* Différent X et Y */
+transform: scale(1.2, 0.8);
+```
+
+**Usage courant** : Zoom au hover
+```css
+.image:hover {
+  transform: scale(1.05);
+}
+```
+
+---
+
+## 🔄 Rotate - Pivoter
+
+```css
+/* Rotation simple */
+transform: rotate(45deg);      /* Sens horaire */
+transform: rotate(-15deg);     /* Sens antihoraire */
+
+/* Rotation complète */
+transform: rotate(360deg);
+```
+
+**Usage courant** : Icône de flèche qui tourne
+```css
+.arrow {
+  transition: transform 0.3s;
+}
+.accordion.open .arrow {
+  transform: rotate(180deg);
+}
+```
+
+---
+
+## 🔗 Combiner plusieurs transforms
+
+```css
+/* Déplacer ET agrandir */
+transform: translateY(-5px) scale(1.05);
+
+/* Déplacer ET pivoter */
+transform: translate(10px, -10px) rotate(5deg);
+
+/* Tout combiner */
+transform: translate(0, -10px) scale(1.1) rotate(2deg);
+```
+
+**⚠️ Important** : L'ordre compte !
+```css
+/* Ces deux ne donnent PAS le même résultat */
+transform: translateX(50px) rotate(45deg);
+transform: rotate(45deg) translateX(50px);
+```
+
+---
+
+## 🎯 Transform Origin
+
+Définit le point d'origine de la transformation.
+
+```css
+/* Défaut */
+transform-origin: center;        /* 50% 50% */
+
+/* Mots-clés */
+transform-origin: top left;
+transform-origin: bottom right;
+transform-origin: center bottom;
+
+/* Valeurs précises */
+transform-origin: 20px 30px;
+transform-origin: 50% 0;
+```
+
+**Exemple** : Rotation depuis le coin
+```css
+.card {
+  transform-origin: top left;
+}
+.card:hover {
+  transform: rotate(5deg);  /* Pivote depuis le coin supérieur gauche */
+}
+```
+
+---
+
+## 💡 Exemples pratiques
+
+### Carte avec effet 3D
+
+```css
+.card {
+  transition: transform 0.3s;
+}
+.card:hover {
+  transform: translateY(-10px) scale(1.02) rotate(1deg);
+}
+```
+
+### Bouton qui se rétrécit au clic
+
+```css
+.button {
+  transition: transform 0.1s;
+}
+.button:active {
+  transform: scale(0.95);
+}
+```
+
+### Image qui zoom au hover
+
+```css
+.image-wrapper {
+  overflow: hidden;
+}
+.image-wrapper img {
+  transition: transform 0.5s ease;
+}
+.image-wrapper:hover img {
+  transform: scale(1.1);
+}
+```
+
+### Icône qui pulse
+
+```css
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+.icon {
+  animation: pulse 2s infinite;
+}
+```
+
+---
+
+## ⚙️ Avec transitions
+
+Combinez avec `transition` pour des effets fluides :
+
+```css
+.element {
+  transform: translateY(0) scale(1);
+  transition: transform 0.3s ease;
+}
+
+.element:hover {
+  transform: translateY(-5px) scale(1.05);
+}
+```
+
+---
+
+## 🧪 Testez rapidement
+
+```html
+<div class="test-card">
+  Survolez-moi
+</div>
+
+<style>
+.test-card {
+  width: 200px;
+  padding: 2rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  text-align: center;
+  border-radius: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.test-card:hover {
+  transform: translateY(-10px) scale(1.05) rotate(2deg);
+}
+</style>
+```
+
+---
+
+<details>
+<summary>📚 Transforms 3D (Avancé)</summary>
+
+Pour des effets 3D plus complexes :
+
+```css
+/* Rotation 3D */
+transform: rotateX(45deg);
+transform: rotateY(45deg);
+transform: rotateZ(45deg);  /* Équivaut à rotate() */
+
+/* Translation 3D */
+transform: translateZ(50px);
+transform: translate3d(10px, 20px, 30px);
+
+/* Perspective */
+perspective: 1000px;
+```
+
+Nécessite plus de configuration, voir la documentation MDN.
+</details>
+
+---
+
+<CourseNavigation
+  prev={{
+    href: "/mm2b/Interactivité/1-transitions",
+    label: "Transitions CSS"
+  }}
+  next={{
+    href: "/mm2b/Interactivité/3-animations",
+    label: "Animations CSS"
+  }}
+  courseHome={{
+    href: "/mm2b/Interactivité",
+    label: "↑ Sommaire du cours 4"
+  }}
+  currentPage={3}
+  totalPages={8}
+/>
