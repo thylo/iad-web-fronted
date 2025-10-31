@@ -23,7 +23,7 @@ export default defineConfig({
                 ],
             },
             {
-                label: 'MM2B',
+                label: 'MM2B - Intro web',
                 collapsed: true,
                 autogenerate: { directory: 'mm2b' },
             },
