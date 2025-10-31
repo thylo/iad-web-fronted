@@ -1,0 +1,259 @@
+---
+title: Checklist & Ressources
+description: Valider vos connaissances et découvrir des ressources complémentaires
+---
+
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+## ✅ Checklist de fin de cours
+
+Avant de passer au cours suivant, assurez-vous que :
+
+- [ ] Toutes vos pages utilisent des balises sémantiques (`<header>`, `<nav>`, `<main>`, `<article>`, `<footer>`)
+- [ ] La hiérarchie des titres est correcte (un seul `<h1>`, pas de saut de niveaux)
+- [ ] Toutes les images ont un attribut `alt` approprié
+- [ ] La navigation fonctionne entre toutes les pages
+- [ ] Votre HTML est valide (testé avec W3C Validator)
+- [ ] Vous avez au moins 3 pages HTML structurées
+
+:::tip[Auto-évaluation]
+Si vous avez coché toutes les cases, félicitations ! Vous êtes prêt pour le Cours 2 sur la typographie et les couleurs.
+
+Si certains points ne sont pas validés, reprenez les sections concernées ou posez des questions.
+:::
+
+---
+
+## 📖 Ressources complémentaires
+
+### Documentation officielle
+
+- [HTML Sémantique - MDN](https://developer.mozilla.org/fr/docs/Glossary/Semantics#semantics_in_html) : Guide complet sur la sémantique HTML
+- [Guide d'accessibilité - MDN](https://developer.mozilla.org/fr/docs/Learn/Accessibility) : Tout savoir sur l'accessibilité web
+- [Éléments HTML5 - HTML5 Doctor](http://html5doctor.com/) : Explication détaillée de chaque élément HTML5
+
+### Outils de validation
+
+- [W3C HTML Validator](https://validator.w3.org/) : Valider votre HTML
+- [WAVE](https://wave.webaim.org/) : Tester l'accessibilité de votre site
+- [HeadingsMap](https://chromewebstore.google.com/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi) : Extension Chrome pour visualiser la structure des titres
+
+### Guides et tutoriels
+
+- [Web Content Accessibility Guidelines (WCAG)](https://www.w3.org/WAI/WCAG21/quickref/) : Les standards d'accessibilité web
+- [The A11Y Project](https://www.a11yproject.com/) : Ressources communautaires sur l'accessibilité
+- [HTML5 Accessibility](https://www.html5accessibility.com/) : Support de l'accessibilité par navigateur
+
+---
+
+## 💡 Inspiration
+
+Regardez comment ces sites pour enfants sont structurés :
+
+### Sites de contes en ligne
+- Observez leur structure HTML
+- Notez comment ils utilisent les images
+- Analysez leur navigation
+
+### Sites éducatifs pour enfants
+- Simplicité de la structure
+- Accessibilité du contenu
+- Hiérarchie claire des informations
+
+### Applications de lecture pour jeunes
+- Interface intuitive
+- Navigation adaptée à l'âge
+- Médias intégrés de manière accessible
+
+:::tip[Exercice bonus]
+Utilisez l'inspecteur de votre navigateur (clic droit → "Inspecter") pour analyser la structure HTML de vos sites préférés. Vous verrez quelles balises ils utilisent !
+:::
+
+---
+
+## ❓ Questions fréquentes
+
+### Quand utiliser `<section>` vs `<article>` vs `<div>` ?
+
+- **`<article>`** : contenu autonome qui pourrait être distribué indépendamment
+  - Un article de blog
+  - Un chapitre complet
+  - Une carte de produit
+  - Un post sur les réseaux sociaux
+
+- **`<section>`** : regroupement thématique à l'intérieur d'un contenu
+  - Les différentes parties d'un chapitre
+  - Les sections d'une page d'accueil
+  - Un groupe de contenu lié
+
+- **`<div>`** : conteneur sans signification sémantique
+  - Uniquement pour le style CSS
+  - Quand aucune balise sémantique ne convient
+
+**Exemple :**
+```html
+<article>  <!-- Un chapitre = contenu autonome -->
+  <h2>Chapitre 1</h2>
+
+  <section>  <!-- Une partie du chapitre -->
+    <h3>Le matin</h3>
+    <p>...</p>
+  </section>
+
+  <div class="illustration">  <!-- Juste pour le style -->
+    <img src="leo.jpg" alt="Léo">
+  </div>
+</article>
+```
+
+---
+
+### Puis-je avoir plusieurs `<main>` ?
+
+**Non**, un seul `<main>` par page.
+
+Le `<main>` désigne le contenu principal unique de la page. Si vous avez besoin de plusieurs zones de contenu, utilisez `<article>` ou `<section>` à l'intérieur du `<main>`.
+
+```html
+<!-- ✅ Correct -->
+<main>
+  <article>Chapitre 1</article>
+  <article>Chapitre 2</article>
+</main>
+
+<!-- ❌ Incorrect -->
+<main>Chapitre 1</main>
+<main>Chapitre 2</main>
+```
+
+---
+
+### Puis-je imbriquer des `<header>` et `<footer>` ?
+
+**Oui !** Vous pouvez avoir :
+- Un `<header>` et `<footer>` pour la page entière
+- D'autres `<header>` et `<footer>` dans vos `<article>`
+
+```html
+<body>
+  <header>
+    <!-- En-tête de la page -->
+    <h1>Mon site</h1>
+    <nav>...</nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <!-- En-tête de l'article -->
+        <h2>Chapitre 1</h2>
+        <p>Publié le 15 janvier 2025</p>
+      </header>
+
+      <p>Contenu du chapitre...</p>
+
+      <footer>
+        <!-- Pied de l'article -->
+        <p>Fin du chapitre</p>
+      </footer>
+    </article>
+  </main>
+
+  <footer>
+    <!-- Pied de la page -->
+    <p>&copy; 2025</p>
+  </footer>
+</body>
+```
+
+---
+
+### Dois-je mettre `alt` sur toutes les images ?
+
+**Oui**, l'attribut `alt` est obligatoire sur toutes les balises `<img>`.
+
+Mais la valeur peut être vide pour les images décoratives :
+
+```html
+<!-- Image informative -->
+<img src="leo.jpg" alt="Léo tenant une carte">
+
+<!-- Image décorative -->
+<img src="decoration.svg" alt="">
+```
+
+**Ne jamais faire :**
+```html
+<!-- ❌ Sans alt (invalide) -->
+<img src="leo.jpg">
+```
+
+---
+
+### Comment savoir si mon site est accessible ?
+
+1. **Testez avec le clavier** : Pouvez-vous naviguer avec la touche Tab ?
+2. **Utilisez WAVE** : [https://wave.webaim.org/](https://wave.webaim.org/)
+3. **Validez votre HTML** : [https://validator.w3.org/](https://validator.w3.org/)
+4. **Testez avec un lecteur d'écran** :
+   - Mac : VoiceOver (Cmd + F5)
+   - Windows : NVDA (gratuit)
+5. **Vérifiez les contrastes** : [https://webaim.org/resources/contrastchecker/](https://webaim.org/resources/contrastchecker/)
+
+---
+
+### Est-ce que je perds du temps à faire un site accessible ?
+
+**Non !** Un site accessible est :
+- ✅ Mieux référencé (SEO)
+- ✅ Plus facile à maintenir
+- ✅ Utilisable par plus de personnes
+- ✅ Conforme aux obligations légales
+- ✅ De meilleure qualité globale
+
+L'accessibilité est un investissement, pas une contrainte.
+
+---
+
+## 🎉 Félicitations !
+
+Vous avez terminé le Cours 1 sur l'HTML sémantique et l'accessibilité !
+
+Vous savez maintenant :
+- ✅ Pourquoi l'accessibilité est essentielle
+- ✅ Comment utiliser les balises sémantiques HTML5
+- ✅ Structurer vos contenus avec une hiérarchie de titres
+- ✅ Rendre vos images et médias accessibles
+- ✅ Valider votre code HTML
+
+---
+
+## Prochaine étape
+
+Dans le **Cours 2**, vous allez apprendre à donner du style à votre site avec la typographie et les couleurs CSS. Vous découvrirez :
+- Les propriétés de typographie
+- L'intégration de polices personnalisées
+- Les systèmes de couleurs
+- Les variables CSS
+- Comment créer une palette adaptée à votre public
+
+**[Cours 2 : Typographie et Couleurs →](/mm2b/css-typographie-couleurs)**
+
+---
+
+<CourseNavigation
+  prev={{
+    href: "/mm2b/cours-1/exercices",
+    label: "Exercices pratiques"
+  }}
+  next={{
+    href: "/mm2b/css-typographie-couleurs",
+    label: "Cours 2 : Typographie & Couleurs"
+  }}
+  courseHome={{
+    href: "/mm2b/cours-1",
+    label: "↑ Sommaire du cours 1"
+  }}
+  currentPage={7}
+  totalPages={7}
+/>
