@@ -4,8 +4,7 @@ description: Structurer le contenu de manière logique et accessible
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
-
-# Cours 1 : HTML Sémantique et Accessibilité
+import LiveCode from '../../../components/mdx/LiveCode.astro';
 
 ## 📚 Concepts clés
 
@@ -26,7 +25,7 @@ La sémantique HTML consiste à utiliser les bonnes balises pour le bon contenu.
 1. **Les moteurs de recherche** : ils comprennent mieux votre contenu
 2. **L'accessibilité** : les lecteurs d'écran peuvent naviguer efficacement
 3. **La maintenance** : votre code est plus lisible et compréhensible
-4. **Le SEO** : votre site est mieux référencé
+4. **Le SEO (Search engine optimization)** : votre site est mieux référencé
 
 ### Mauvais exemple (non sémantique)
 
@@ -417,124 +416,34 @@ Indiquez quand un lien ouvre un site externe ou une nouvelle fenêtre.
 
 ---
 
-## 💡 Exemple pratique : Structure d'un site d'histoire
+## 💡 Exemples pratiques interactifs
 
-Voici un exemple complet de structure pour votre projet :
+### Structure sémantique de base
 
-```html
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Les aventures de Léo - Une histoire pour les 6-8 ans">
-  <title>Les Aventures de Léo</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  
-  <!-- En-tête avec navigation -->
-  <header class="site-header">
-    <div class="container">
-      <h1 class="site-title">Les Aventures de Léo</h1>
-      <p class="site-tagline">Une histoire magique pour les 6-8 ans</p>
-      
-      <nav class="main-nav" aria-label="Navigation principale">
-        <ul>
-          <li><a href="/" aria-current="page">Accueil</a></li>
-          <li><a href="/histoire">L'histoire</a></li>
-          <li><a href="/personnages">Personnages</a></li>
-          <li><a href="/jeux">Jeux</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+Cet exemple montre une structure HTML5 sémantique simple avec tous les éléments principaux :
 
-  <!-- Contenu principal -->
-  <main class="site-main">
-    
-    <!-- Section d'introduction -->
-    <section class="intro">
-      <div class="container">
-        <h2>Bienvenue dans l'univers de Léo !</h2>
-        <p>Prêt à vivre une aventure extraordinaire ?</p>
-        
-        <figure>
-          <img 
-            src="images/leo-hero.jpg" 
-            alt="Léo avec son sac à dos, prêt pour l'aventure"
-            width="800"
-            height="600"
-          >
-          <figcaption>Léo est prêt à partir à l'aventure !</figcaption>
-        </figure>
-      </div>
-    </section>
+<LiveCode example="mm2b/cours-1-semantique/structure-complete" height="600px" />
 
-    <!-- Liste des chapitres -->
-    <section class="chapters">
-      <div class="container">
-        <h2>Les chapitres</h2>
-        
-        <article class="chapter-card">
-          <header>
-            <h3>Chapitre 1 : Le réveil magique</h3>
-            <p class="chapter-meta">Durée : 5 minutes de lecture</p>
-          </header>
-          <img 
-            src="images/chapitre1-thumbnail.jpg" 
-            alt="Léo se réveillant dans son lit"
-            width="400"
-            height="300"
-          >
-          <p>Ce matin-là, Léo se réveilla avec une étrange sensation...</p>
-          <a href="/chapitre1" class="button">Lire le chapitre 1</a>
-        </article>
+:::tip[Explorez le code]
+- Observez comment les balises `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>` et `<footer>` sont utilisées
+- Notez la hiérarchie des titres (h1 → h2 → h3)
+- Le CSS applique des couleurs différentes pour bien visualiser chaque élément sémantique
+:::
 
-        <article class="chapter-card">
-          <header>
-            <h3>Chapitre 2 : La forêt mystérieuse</h3>
-            <p class="chapter-meta">Durée : 7 minutes de lecture</p>
-          </header>
-          <img 
-            src="images/chapitre2-thumbnail.jpg" 
-            alt="Léo entrant dans une forêt sombre"
-            width="400"
-            height="300"
-          >
-          <p>Léo s'aventure dans la forêt derrière sa maison...</p>
-          <a href="/chapitre2" class="button">Lire le chapitre 2</a>
-        </article>
-      </div>
-    </section>
+### Site d'histoire complet
 
-    <!-- Section à propos -->
-    <aside class="about">
-      <div class="container">
-        <h2>À propos de cette histoire</h2>
-        <p>Les Aventures de Léo est une histoire créée spécialement pour les enfants de 6 à 8 ans qui aiment l'aventure et la magie.</p>
-      </div>
-    </aside>
+Voici un exemple complet d'un site d'histoire pour enfants avec toutes les bonnes pratiques :
 
-  </main>
+<LiveCode example="mm2b/cours-1-semantique/site-histoire" height="700px" />
 
-  <!-- Pied de page -->
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; 2025 - Les Aventures de Léo</p>
-      <p>Créé avec ❤️ par [Votre nom]</p>
-      <nav aria-label="Navigation secondaire">
-        <ul>
-          <li><a href="/mentions-legales">Mentions légales</a></li>
-          <li><a href="/contact">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </footer>
-
-</body>
-</html>
-```
+:::tip[Points à observer]
+- **Navigation accessible** avec `aria-label` et `aria-current`
+- **Images responsives** avec `width` et `height`
+- **Figures avec légendes** pour donner du contexte
+- **Structure claire** : header → main → footer
+- **Sections thématiques** : intro, chapitres, à propos
+- **Cartes d'articles** pour chaque chapitre
+:::
 
 ---
 
