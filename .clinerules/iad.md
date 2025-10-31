@@ -12,10 +12,15 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 - Établir des ponts entre concepts cinématographiques et interactions web
 - Utiliser des références de films et de réalisateurs reconnus (Kurosawa, Nolan, Wong Kar-wai, etc.)
 - Éviter le jargon technique au profit d'un vocabulaire narratif
+- Eviter les métphores et les analogies trop forcées et kitsch
 
 **Structure:**
 - MM3B: Narration interactive avancée (4 expériences narratives + guide de projet)
 - MM2B: Contenu à développer
+
+## Contenu
+
+Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master/web_frontend_introduction.md comme source du contenu.
 
 ## Guidelines techniques
 

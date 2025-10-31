@@ -5,15 +5,80 @@ description: Structurer le contenu de manière logique et accessible
 
 import LiveCode from '../../../components/mdx/LiveCode.astro';
 
-## 📚 Concepts clés
+## Comprendre l'accessibilité web
 
-Dans ce cours, vous allez apprendre à :
-- Utiliser les balises HTML5 sémantiques appropriées
-- Structurer un site de manière logique et accessible
-- Créer une navigation claire et efficace
-- Intégrer des media (images, vidéos, audio) de manière accessible
+### Qu'est-ce que l'accessibilité ?
 
-**Durée** : 4 heures (1h théorie + 2h30 pratique + 30min Q&A)
+**L'accessibilité web**, c'est rendre votre site utilisable par tout le monde, y compris les personnes en situation de handicap. 
+
+Pensez au cinéma : le sous-titrage a été conçu pour les personnes sourdes ou malentendantes, mais il profite finalement à tous (dans les bars bruyants, pour apprendre une langue, quand on ne peut pas mettre le son...).
+
+### Pourquoi c'est important ?
+
+#### 1. Une question d'éthique et de droit
+
+- **15% de la population mondiale** vit avec un handicap (OMS)
+- Le web doit être accessible à tous, sans discrimination
+- C'est souvent **une obligation légale** (lois sur l'accessibilité numérique)
+
+#### 2. Différents types d'utilisateurs
+
+Votre site peut être consulté par des personnes ayant :
+
+- **Des difficultés visuelles**
+  - Aveugles (utilisent des lecteurs d'écran qui "lisent" la page)
+  - Malvoyants (agrandissent l'écran, ont besoin de bon contraste)
+- **Des difficultés auditives**
+  - Sourds, malentendants (ont besoin de sous-titres, transcriptions)
+- **Des difficultés motrices**
+  - Difficulté à utiliser une souris (naviguent au clavier)
+- **Des difficultés cognitives**
+  - Dyslexie, autisme (ont besoin d'une structure claire, langage simple)
+- **Des handicaps temporaires**
+  - Bras cassé, fatigue oculaire, environnement bruyant
+
+#### 3. Ça profite à tout le monde
+
+Comme au cinéma :
+- Le **contraste élevé** aide quand on regarde en plein soleil
+- Les **sous-titres** aident quand on regarde sans son
+- Une **structure narrative claire** aide à suivre l'histoire
+
+Sur le web :
+- Des **textes de liens clairs** aident tout le monde à comprendre
+- Une **bonne hiérarchie de titres** aide à scanner rapidement le contenu
+- Des **images avec descriptions** enrichissent l'expérience pour tous
+
+#### 4. Meilleur référencement (SEO)
+
+Google "lit" votre site un peu comme un lecteur d'écran. **Un site accessible = un site mieux référencé**.
+
+### Le parallèle avec le cinéma
+
+En tant qu'étudiants en cinéma, vous savez que :
+
+| Au cinéma | Sur le web |
+|-----------|------------|
+| **Un bon montage** guide le spectateur | **Une bonne structure HTML** guide l'utilisateur |
+| **Le sound design** donne du contexte | **Les textes alternatifs** donnent du contexte |
+| **La typographie des sous-titres** doit être lisible | **Le contraste texte/fond** doit être suffisant |
+| **Un bon scénario** a une structure claire | **La hiérarchie des titres** structure le contenu |
+
+:::tip[Pensez "universel"]
+Comme Wong Kar-wai utilise la couleur et la musique pour créer l'émotion au-delà des dialogues, votre site doit communiquer de multiples façons : structure, texte, images, navigation...
+:::
+
+### En pratique : 5 principes de base
+
+Pour rendre votre site d'histoire accessible :
+
+1. ✅ **Textes alternatifs** (`alt`) sur toutes les images importantes
+2. ✅ **Hiérarchie de titres** logique et cohérente (h1 → h2 → h3)
+3. ✅ **Liens explicites** ("Lire le chapitre 2" plutôt que "cliquer ici")
+4. ✅ **Contrastes suffisants** entre texte et fond
+5. ✅ **Navigation au clavier** possible (touche Tab)
+
+Dans ce cours, nous allons voir concrètement comment appliquer ces principes.
 
 ---
 
@@ -331,7 +396,7 @@ L'attribut `alt` décrit l'image pour :
 
 ## Intégrer des media
 
-### Images responsive
+### Attributs width et height
 
 ```html
 <img 
@@ -342,7 +407,9 @@ L'attribut `alt` décrit l'image pour :
 >
 ```
 
-Ajoutez toujours `width` et `height` pour éviter les sauts de mise en page lors du chargement.
+:::tip[Pourquoi width et height ?]
+Ces attributs permettent au navigateur de réserver l'espace nécessaire à l'image avant son chargement, évitant ainsi les sauts de mise en page (améliore l'expérience utilisateur).
+:::
 
 ### Figures avec légendes
 
