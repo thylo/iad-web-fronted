@@ -5,23 +5,21 @@ description: Comprendre l'importance de l'accessibilité et de la sémantique HT
 
 import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
 
-## Comprendre l'accessibilité web
-
-### Qu'est-ce que l'accessibilité ?
+## Qu'est-ce que l'accessibilité ?
 
 **L'accessibilité web**, c'est rendre votre site utilisable par tout le monde, y compris les personnes en situation de handicap.
 
 Pensez au cinéma : le sous-titrage a été conçu pour les personnes sourdes ou malentendantes, mais il profite finalement à tous (dans les bars bruyants, pour apprendre une langue, quand on ne peut pas mettre le son...).
 
-### Pourquoi c'est important ?
+## Pourquoi c'est important ?
 
-#### 1. Une question d'éthique et de droit
+### 1. Une question d'éthique et de droit
 
 - **15% de la population mondiale** vit avec un handicap (OMS)
 - Le web doit être accessible à tous, sans discrimination
 - C'est souvent **une obligation légale** (lois sur l'accessibilité numérique)
 
-#### 2. Différents types d'utilisateurs
+### 2. Différents types d'utilisateurs
 
 Votre site peut être consulté par des personnes ayant :
 
@@ -37,7 +35,7 @@ Votre site peut être consulté par des personnes ayant :
 - **Des handicaps temporaires**
   - Bras cassé, fatigue oculaire, environnement bruyant
 
-#### 3. Ça profite à tout le monde
+### 3. Ça profite à tout le monde
 
 Comme au cinéma :
 - Le **contraste élevé** aide quand on regarde en plein soleil
@@ -49,11 +47,11 @@ Sur le web :
 - Une **bonne hiérarchie de titres** aide à scanner rapidement le contenu
 - Des **images avec descriptions** enrichissent l'expérience pour tous
 
-#### 4. Meilleur référencement (SEO)
+### 4. Meilleur référencement (SEO)
 
 Google "lit" votre site un peu comme un lecteur d'écran. **Un site accessible = un site mieux référencé**.
 
-### Le parallèle avec le cinéma
+## Le parallèle avec le cinéma
 
 En tant qu'étudiants en cinéma, vous savez que :
 
@@ -138,22 +136,3 @@ La sémantique HTML consiste à utiliser les bonnes balises pour le bon contenu.
 :::tip[Pourquoi c'est mieux ?]
 Avec les balises sémantiques, un lecteur d'écran peut dire à l'utilisateur : "Vous êtes maintenant dans la navigation principale" ou "Voici l'article principal". Avec des `<div>`, tout est indifférencié.
 :::
-
----
-
-<CourseNavigation
-  prev={{
-    href: "/mm2b/cours-1",
-    label: "Vue d'ensemble du cours"
-  }}
-  next={{
-    href: "/mm2b/cours-1/elements-semantiques",
-    label: "Les éléments sémantiques"
-  }}
-  courseHome={{
-    href: "/mm2b/cours-1",
-    label: "↑ Sommaire du cours 1"
-  }}
-  currentPage={2}
-  totalPages={7}
-/>

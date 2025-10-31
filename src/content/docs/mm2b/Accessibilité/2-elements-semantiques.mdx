@@ -5,13 +5,9 @@ description: Découvrir et utiliser les éléments sémantiques pour structurer 
 
 import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
 
-## Les balises HTML5 sémantiques
-
 Les balises sémantiques donnent du sens à votre contenu. Voyons les principales balises que vous utiliserez pour structurer votre site d'histoires.
 
-### Structure de page
-
-#### `<header>`
+### `<header>`
 
 Contient l'en-tête d'une page ou d'une section. Généralement utilisé pour le logo, le titre principal, la navigation.
 
@@ -26,7 +22,7 @@ Contient l'en-tête d'une page ou d'une section. Généralement utilisé pour le
 Vous pouvez avoir plusieurs `<header>` dans une page (un pour la page, un pour chaque article, etc.)
 :::
 
-#### `<nav>`
+### `<nav>`
 
 Contient les liens de navigation principaux du site.
 
@@ -45,7 +41,7 @@ Contient les liens de navigation principaux du site.
 N'utilisez `<nav>` que pour les navigations principales. Pas besoin de l'utiliser pour chaque liste de liens.
 :::
 
-#### `<main>`
+### `<main>`
 
 Contient le contenu principal de la page. **Il ne doit y en avoir qu'un seul par page**.
 
@@ -56,7 +52,7 @@ Contient le contenu principal de la page. **Il ne doit y en avoir qu'un seul par
 </main>
 ```
 
-#### `<article>`
+### `<article>`
 
 Représente un contenu autonome qui pourrait être distribué indépendamment (un article de blog, un chapitre, une histoire).
 
@@ -67,7 +63,7 @@ Représente un contenu autonome qui pourrait être distribué indépendamment (u
 </article>
 ```
 
-#### `<section>`
+### `<section>`
 
 Regroupe du contenu thématiquement lié. Utilisez-le pour diviser votre contenu en sections logiques.
 
@@ -92,7 +88,7 @@ Regroupe du contenu thématiquement lié. Utilisez-le pour diviser votre contenu
 </article>
 ```
 
-#### `<aside>`
+### `<aside>`
 
 Contenu tangentiel ou complémentaire (encadré, information connexe, publicité).
 
@@ -103,7 +99,7 @@ Contenu tangentiel ou complémentaire (encadré, information connexe, publicité
 </aside>
 ```
 
-#### `<footer>`
+### `<footer>`
 
 Pied de page d'une page ou d'une section. Contient généralement des informations de copyright, des liens légaux, etc.
 
@@ -241,22 +237,3 @@ Oui ! Vous pouvez avoir un `<header>` et `<footer>` pour la page entière, et d'
   <footer><!-- Pied de la page --></footer>
 </body>
 ```
-
----
-
-<CourseNavigation
-  prev={{
-    href: "/mm2b/cours-1/pourquoi-accessibilite",
-    label: "Pourquoi l'accessibilité ?"
-  }}
-  next={{
-    href: "/mm2b/cours-1/hierarchie-titres",
-    label: "Hiérarchie des titres"
-  }}
-  courseHome={{
-    href: "/mm2b/cours-1",
-    label: "↑ Sommaire du cours 1"
-  }}
-  currentPage={3}
-  totalPages={7}
-/>
