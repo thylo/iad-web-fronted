@@ -1,0 +1,159 @@
+---
+title: Hiérarchie des titres
+description: Structurer vos contenus avec une hiérarchie de titres logique
+---
+
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+## Hiérarchie des titres
+
+Les titres (`<h1>` à `<h6>`) structurent votre contenu. C'est crucial pour l'accessibilité et le SEO.
+
+### Règles importantes
+
+1. **Un seul `<h1>` par page** : c'est le titre principal
+2. **Ne sautez pas de niveaux** : `<h2>` après `<h1>`, `<h3>` après `<h2>`, etc.
+3. **Les titres reflètent la structure** : comme un plan de dissertation
+
+:::tip[Pensez "plan de cours"]
+Votre hiérarchie de titres doit ressembler à un plan de cours ou à un scénario de film :
+- H1 = Le titre du film
+- H2 = Les actes principaux
+- H3 = Les scènes dans chaque acte
+- H4 = Les détails dans chaque scène
+:::
+
+---
+
+## Exemples pratiques
+
+### ❌ Mauvais exemple
+
+```html
+<h1>Mon site</h1>
+<h3>Un chapitre</h3>  <!-- On a sauté h2 -->
+<h2>Une section</h2>  <!-- On revient en arrière -->
+<h5>Un détail</h5>    <!-- On saute plusieurs niveaux -->
+```
+
+**Pourquoi c'est mauvais ?**
+- Les lecteurs d'écran se perdent dans la structure
+- Les utilisateurs ne comprennent pas la hiérarchie
+- Google ne peut pas bien indexer votre contenu
+
+### ✅ Bon exemple
+
+```html
+<h1>Les Aventures de Léo</h1>
+
+<h2>Chapitre 1 : Le réveil</h2>
+  <h3>Le matin</h3>
+  <h3>La découverte</h3>
+
+<h2>Chapitre 2 : L'aventure commence</h2>
+  <h3>La forêt mystérieuse</h3>
+    <h4>Les arbres parlants</h4>
+    <h4>La rivière enchantée</h4>
+  <h3>La rencontre</h3>
+```
+
+**Pourquoi c'est bien ?**
+- Structure claire et logique
+- Chaque niveau est correctement imbriqué
+- Facile à naviguer pour tous les utilisateurs
+
+---
+
+## Visualisation de la structure
+
+Imaginez votre site comme un livre :
+
+```
+📖 Les Aventures de Léo (H1)
+├── 📑 Chapitre 1 : Le réveil (H2)
+│   ├── ☀️ Le matin (H3)
+│   └── 🔍 La découverte (H3)
+│       ├── 🌳 Dans le jardin (H4)
+│       └── 🗺️ La carte mystérieuse (H4)
+├── 📑 Chapitre 2 : L'aventure commence (H2)
+│   ├── 🌲 La forêt mystérieuse (H3)
+│   └── 🤝 La rencontre (H3)
+└── 📑 Chapitre 3 : Le retour (H2)
+    └── 🏡 À la maison (H3)
+```
+
+---
+
+## Cas d'usage pour votre site d'histoires
+
+### Page d'accueil
+
+```html
+<h1>Les Aventures de Léo</h1>
+<h2>À propos de l'histoire</h2>
+<h2>Tous les chapitres</h2>
+  <h3>Chapitre 1</h3>
+  <h3>Chapitre 2</h3>
+  <h3>Chapitre 3</h3>
+<h2>Les personnages</h2>
+  <h3>Léo</h3>
+  <h3>Le dragon</h3>
+```
+
+### Page de chapitre
+
+```html
+<h1>Chapitre 1 : Le réveil</h1>
+<h2>Le matin</h2>
+  <h3>Le réveil de Léo</h3>
+  <h3>Le petit déjeuner</h3>
+<h2>La découverte</h2>
+  <h3>Dans le jardin</h3>
+  <h3>La carte mystérieuse</h3>
+```
+
+---
+
+## Outils pour vérifier votre hiérarchie
+
+### 1. Extension HeadingsMap
+
+L'extension [HeadingsMap](https://chromewebstore.google.com/detail/headingsmap/flbjommegcjonpdmenkdiocclhjacmbi) pour Chrome permet de visualiser la structure de vos titres.
+
+### 2. Raccourcis clavier de votre lecteur d'écran
+
+Les lecteurs d'écran permettent de naviguer de titre en titre. Testez votre site avec un lecteur d'écran pour voir si la navigation est logique.
+
+### 3. Validateur W3C
+
+Le [W3C Validator](https://validator.w3.org/) vérifie également la structure de vos titres.
+
+---
+
+## Conseils pratiques
+
+### ✅ À faire
+
+- Utilisez un seul `<h1>` par page (généralement le titre principal)
+- Suivez l'ordre logique : h1 → h2 → h3 → h4
+- Utilisez les titres pour structurer, pas pour le style
+- Assurez-vous que vos titres ont du sens hors contexte
+
+### ❌ À éviter
+
+- N'utilisez pas les titres juste pour avoir du texte en gros
+- Ne sautez pas de niveaux
+- N'utilisez pas plusieurs `<h1>` sur une même page
+- Ne choisissez pas un niveau de titre en fonction de sa taille visuelle
+
+:::caution[Style vs Sémantique]
+Si vous voulez un titre `<h3>` qui ressemble visuellement à un `<h2>`, utilisez CSS pour changer son apparence. Ne changez pas la balise HTML !
+
+```html
+<!-- ✅ Bon -->
+<h3 class="looks-like-h2">Mon titre</h3>
+
+<!-- ❌ Mauvais -->
+<h2>Mon titre</h2> <!-- Alors que ça devrait être h3 -->
+```
+:::

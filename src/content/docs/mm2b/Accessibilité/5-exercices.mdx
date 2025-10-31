@@ -1,0 +1,313 @@
+---
+title: Exercices pratiques
+description: Mettre en pratique les concepts appris avec des exemples interactifs
+---
+
+import LiveCode from '../../../../components/mdx/LiveCode.astro';
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+## 💡 Exemples pratiques interactifs
+
+### Structure sémantique de base
+
+Cet exemple montre une structure HTML5 sémantique simple avec tous les éléments principaux :
+
+<LiveCode example="mm2b/cours-1-semantique/structure-complete" height="600px" />
+
+:::tip[Explorez le code]
+- Observez comment les balises `<header>`, `<nav>`, `<main>`, `<article>`, `<section>`, `<aside>` et `<footer>` sont utilisées
+- Notez la hiérarchie des titres (h1 → h2 → h3)
+- Le CSS applique des couleurs différentes pour bien visualiser chaque élément sémantique
+:::
+
+### Site d'histoire complet
+
+Voici un exemple complet d'un site d'histoire pour enfants avec toutes les bonnes pratiques :
+
+<LiveCode example="mm2b/cours-1-semantique/site-histoire" height="700px" />
+
+:::tip[Points à observer]
+- **Navigation accessible** avec `aria-label` et `aria-current`
+- **Images responsives** avec `width` et `height`
+- **Figures avec légendes** pour donner du contexte
+- **Structure claire** : header → main → footer
+- **Sections thématiques** : intro, chapitres, à propos
+- **Cartes d'articles** pour chaque chapitre
+:::
+
+---
+
+## 🎯 Objectifs du fil rouge (Cours 1)
+
+Pendant la phase pratique de ce cours, vous allez :
+
+### 1. Analyser votre contenu (30 min)
+- Listez toutes les pages de votre site
+- Identifiez les sections principales de chaque page
+- Définissez la hiérarchie de vos titres
+
+### 2. Créer la structure HTML (1h30)
+- Page d'accueil avec header, nav, main, footer
+- Au moins 2-3 pages de contenu (chapitres, personnages, etc.)
+- Navigation cohérente entre les pages
+- Hiérarchie de titres correcte
+
+### 3. Intégrer les media (30 min)
+- Images avec attributs `alt` appropriés
+- Au moins une `<figure>` avec `<figcaption>`
+- Si pertinent : audio ou vidéo
+
+### 4. Valider (30 min)
+- Testez tous vos liens
+- Validez votre HTML avec le [W3C Validator](https://validator.w3.org/)
+- Vérifiez la hiérarchie des titres
+
+---
+
+## 🔧 Exercices dirigés
+
+### Exercice 1 : Convertir du HTML non-sémantique
+
+Prenez ce code et rendez-le sémantique :
+
+```html
+<div class="header">
+  <div class="title">Mon site</div>
+  <div class="menu">
+    <div><a href="/">Accueil</a></div>
+    <div><a href="/about">À propos</a></div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="post">
+    <div class="post-title">Mon article</div>
+    <div class="post-text">Le contenu...</div>
+  </div>
+</div>
+```
+
+<details>
+<summary>Voir la solution</summary>
+
+```html
+<header>
+  <h1>Mon site</h1>
+  <nav>
+    <ul>
+      <li><a href="/">Accueil</a></li>
+      <li><a href="/about">À propos</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <h2>Mon article</h2>
+    <p>Le contenu...</p>
+  </article>
+</main>
+```
+
+**Ce qui a changé :**
+- `<div class="header">` → `<header>`
+- `<div class="title">` → `<h1>` (titre principal)
+- `<div class="menu">` → `<nav>` avec une liste `<ul>`
+- `<div class="content">` → `<main>`
+- `<div class="post">` → `<article>`
+- `<div class="post-title">` → `<h2>` (sous-titre)
+- `<div class="post-text">` → `<p>` (paragraphe)
+
+</details>
+
+---
+
+### Exercice 2 : Créer une hiérarchie de titres
+
+Organisez ces titres de manière logique :
+- Les Aventures de Léo
+- Chapitre 1
+- Le matin
+- La découverte du jardin
+- Chapitre 2
+- La forêt
+
+<details>
+<summary>Voir la solution</summary>
+
+```html
+<h1>Les Aventures de Léo</h1>
+
+<h2>Chapitre 1</h2>
+<h3>Le matin</h3>
+<h3>La découverte du jardin</h3>
+
+<h2>Chapitre 2</h2>
+<h3>La forêt</h3>
+```
+
+**Explication :**
+- `<h1>` : Le titre principal de la page (unique)
+- `<h2>` : Les chapitres (sections principales)
+- `<h3>` : Les sous-sections de chaque chapitre
+
+</details>
+
+---
+
+### Exercice 3 : Rendre les images accessibles
+
+Ajoutez des attributs `alt` appropriés à ces images :
+
+```html
+<!-- Image décorative (ligne de séparation) -->
+<img src="line.svg">
+
+<!-- Image du personnage principal -->
+<img src="leo.jpg">
+
+<!-- Bouton "Suivant" (image cliquable) -->
+<a href="/chapitre2">
+  <img src="next.png">
+</a>
+
+<!-- Illustration importante de la scène -->
+<img src="forest.jpg">
+```
+
+<details>
+<summary>Voir la solution</summary>
+
+```html
+<!-- Image décorative : alt vide -->
+<img src="line.svg" alt="">
+
+<!-- Image du personnage : description concise -->
+<img src="leo.jpg" alt="Léo avec son sac à dos rouge">
+
+<!-- Bouton image : décrit l'action -->
+<a href="/chapitre2">
+  <img src="next.png" alt="Chapitre suivant">
+</a>
+
+<!-- Illustration : décrit la scène -->
+<img src="forest.jpg" alt="Forêt mystérieuse avec des arbres géants">
+```
+
+**Explications :**
+- **Image décorative** : `alt=""` car elle n'apporte pas d'information
+- **Image informative** : Description concise de ce qu'on voit
+- **Image lien** : Description de la destination du lien
+- **Illustration** : Description de la scène représentée
+
+</details>
+
+---
+
+### Exercice 4 : Structure complète d'une page
+
+Créez la structure HTML complète d'une page de chapitre avec :
+- Un en-tête avec le titre du site et navigation
+- Le contenu principal avec le chapitre divisé en sections
+- Un encadré "Le saviez-vous ?"
+- Un pied de page
+
+<details>
+<summary>Voir la solution</summary>
+
+```html
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chapitre 1 - Les Aventures de Léo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>Les Aventures de Léo</h1>
+    <nav>
+      <ul>
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/chapitres" aria-current="page">Chapitres</a></li>
+        <li><a href="/personnages">Personnages</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <article>
+      <header>
+        <h2>Chapitre 1 : Le réveil</h2>
+        <p>Publié le 15 janvier 2025</p>
+      </header>
+
+      <section>
+        <h3>Le matin</h3>
+        <p>Léo se réveilla ce matin-là avec une étrange sensation...</p>
+
+        <figure>
+          <img src="leo-reveil.jpg" alt="Léo se réveillant dans son lit" width="600" height="400">
+          <figcaption>Léo ouvre les yeux pour une nouvelle aventure</figcaption>
+        </figure>
+      </section>
+
+      <section>
+        <h3>La découverte</h3>
+        <p>Dans le jardin, il aperçut quelque chose de brillant...</p>
+      </section>
+
+      <footer>
+        <p>Fin du chapitre 1</p>
+        <nav>
+          <a href="/chapitre2">Chapitre suivant →</a>
+        </nav>
+      </footer>
+    </article>
+
+    <aside>
+      <h3>Le saviez-vous ?</h3>
+      <p>Les dragons dans cette histoire sont inspirés de vraies légendes anciennes...</p>
+    </aside>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 - Les Aventures de Léo</p>
+    <p>Créé par [Votre nom]</p>
+  </footer>
+
+</body>
+</html>
+```
+
+**Points clés :**
+- Structure complète : `<header>` → `<main>` → `<footer>`
+- Navigation avec `aria-current="page"` pour la page active
+- Article avec son propre `<header>` et `<footer>`
+- Sections pour diviser le contenu
+- Figure avec légende et dimensions
+- Aside pour contenu complémentaire
+- Footer de page distinct du footer d'article
+
+</details>
+
+---
+
+<CourseNavigation
+  prev={{
+    href: "/mm2b/cours-1/medias-accessibles",
+    label: "Médias accessibles"
+  }}
+  next={{
+    href: "/mm2b/cours-1/checklist",
+    label: "Checklist & Ressources"
+  }}
+  courseHome={{
+    href: "/mm2b/cours-1",
+    label: "↑ Sommaire du cours 1"
+  }}
+  currentPage={6}
+  totalPages={7}
+/>

@@ -1,0 +1,136 @@
+---
+title: Pourquoi l'accessibilité web ?
+description: Comprendre l'importance de l'accessibilité et de la sémantique HTML
+---
+
+import CourseNavigation from '../../../../components/mdx/CourseNavigation.astro';
+
+**L'accessibilité web**, c'est rendre votre site utilisable par tout le monde, y compris les personnes en situation de handicap.
+
+Pensez au cinéma : le sous-titrage a été conçu pour les personnes sourdes ou malentendantes, mais il profite finalement à tous (dans les bars bruyants, pour apprendre une langue, quand on ne peut pas mettre le son...).
+
+## Pourquoi c'est important ?
+
+### 1. Une question d'éthique et de droit
+
+- **15% de la population mondiale** vit avec un handicap (OMS)
+- Le web doit être accessible à tous, sans discrimination
+- C'est souvent **une obligation légale** (lois sur l'accessibilité numérique)
+
+### 2. Différents types d'utilisateurs
+
+Votre site peut être consulté par des personnes ayant :
+
+- **Des difficultés visuelles**
+  - Aveugles (utilisent des lecteurs d'écran qui "lisent" la page)
+  - Malvoyants (agrandissent l'écran, ont besoin de bon contraste)
+- **Des difficultés auditives**
+  - Sourds, malentendants (ont besoin de sous-titres, transcriptions)
+- **Des difficultés motrices**
+  - Difficulté à utiliser une souris (naviguent au clavier)
+- **Des difficultés cognitives**
+  - Dyslexie, autisme (ont besoin d'une structure claire, langage simple)
+- **Des handicaps temporaires**
+  - Bras cassé, fatigue oculaire, environnement bruyant
+
+### 3. Ça profite à tout le monde
+
+Comme au cinéma :
+- Le **contraste élevé** aide quand on regarde en plein soleil
+- Les **sous-titres** aident quand on regarde sans son
+- Une **structure narrative claire** aide à suivre l'histoire
+
+Sur le web :
+- Des **textes de liens clairs** aident tout le monde à comprendre
+- Une **bonne hiérarchie de titres** aide à scanner rapidement le contenu
+- Des **images avec descriptions** enrichissent l'expérience pour tous
+
+### 4. Meilleur référencement (SEO)
+
+Google "lit" votre site un peu comme un lecteur d'écran. **Un site accessible = un site mieux référencé**.
+
+## Le parallèle avec le cinéma
+
+En tant qu'étudiants en cinéma, vous savez que :
+
+| Au cinéma | Sur le web |
+|-----------|------------|
+| **Un bon montage** guide le spectateur | **Une bonne structure HTML** guide l'utilisateur |
+| **Le sound design** donne du contexte | **Les textes alternatifs** donnent du contexte |
+| **La typographie des sous-titres** doit être lisible | **Le contraste texte/fond** doit être suffisant |
+| **Un bon scénario** a une structure claire | **La hiérarchie des titres** structure le contenu |
+
+:::tip[Pensez "universel"]
+Comme Wong Kar-wai utilise la couleur et la musique pour créer l'émotion au-delà des dialogues, votre site doit communiquer de multiples façons : structure, texte, images, navigation...
+:::
+
+### En pratique : 5 principes de base
+
+Pour rendre votre site d'histoire accessible :
+
+1. ✅ **Textes alternatifs** (`alt`) sur toutes les images importantes
+2. ✅ **Hiérarchie de titres** logique et cohérente (h1 → h2 → h3)
+3. ✅ **Liens explicites** ("Lire le chapitre 2" plutôt que "cliquer ici")
+4. ✅ **Contrastes suffisants** entre texte et fond
+5. ✅ **Navigation au clavier** possible (touche Tab)
+
+Dans les prochaines sections, nous allons voir concrètement comment appliquer ces principes.
+
+---
+
+## Pourquoi la sémantique HTML ?
+
+La sémantique HTML consiste à utiliser les bonnes balises pour le bon contenu. C'est important pour :
+
+1. **Les moteurs de recherche** : ils comprennent mieux votre contenu
+2. **L'accessibilité** : les lecteurs d'écran peuvent naviguer efficacement
+3. **La maintenance** : votre code est plus lisible et compréhensible
+4. **Le SEO (Search engine optimization)** : votre site est mieux référencé
+
+### Mauvais exemple (non sémantique)
+
+```html
+<div class="header">
+  <div class="nav">
+    <div class="nav-item">Accueil</div>
+    <div class="nav-item">Histoire</div>
+  </div>
+</div>
+
+<div class="content">
+  <div class="article">
+    <div class="title">Mon histoire</div>
+    <div class="text">Il était une fois...</div>
+  </div>
+</div>
+
+<div class="footer">
+  <div>© 2025</div>
+</div>
+```
+
+### Bon exemple (sémantique)
+
+```html
+<header>
+  <nav>
+    <a href="/">Accueil</a>
+    <a href="/histoire">Histoire</a>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <h1>Mon histoire</h1>
+    <p>Il était une fois...</p>
+  </article>
+</main>
+
+<footer>
+  <p>&copy; 2025</p>
+</footer>
+```
+
+:::tip[Pourquoi c'est mieux ?]
+Avec les balises sémantiques, un lecteur d'écran peut dire à l'utilisateur : "Vous êtes maintenant dans la navigation principale" ou "Voici l'article principal". Avec des `<div>`, tout est indifférencié.
+:::
