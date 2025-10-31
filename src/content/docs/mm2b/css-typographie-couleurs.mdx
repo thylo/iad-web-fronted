@@ -40,6 +40,15 @@ Le navigateur essaie d'utiliser la première police disponible. Si elle n'existe
 - `cursive` : polices manuscrites
 - `system-ui` : police système de l'appareil
 
+**Comparaison visuelle :**
+
+<div>
+  <p style={{ fontFamily: 'Georgia, serif', marginBottom: '1rem' }}><strong>serif</strong> : Les empattements donnent un aspect classique et élégant.</p>
+  <p style={{ fontFamily: 'Arial, sans-serif', marginBottom: '1rem' }}><strong>sans-serif</strong> : Design moderne et épuré, excellent pour l'écran.</p>
+  <p style={{ fontFamily: 'Courier New, monospace', marginBottom: '1rem' }}><strong>monospace</strong> : Chaque lettre prend la même largeur, idéal pour le code.</p>
+  <p style={{ fontFamily: 'cursive' }}><strong>cursive</strong> : Style manuscrit, à utiliser avec parcimonie.</p>
+</div>
+
 #### `font-size` : Taille de police
 
 ```css
@@ -62,6 +71,59 @@ p {
 - `px` : pixels absolus
 :::
 
+**Différence entre `em` et `rem` - Exemple visuel**
+
+Pour comprendre la différence, voici un exemple concret :
+
+```css
+/* Taille de base du document */
+html {
+  font-size: 16px; /* 1rem = 16px */
+}
+
+/* Conteneur avec une taille de police modifiée */
+.container {
+  font-size: 20px; /* nouvelle base pour les "em" */
+}
+
+/* Éléments utilisant em (relatif au parent) */
+.with-em {
+  font-size: 1.5em; /* 1.5 × taille du parent */
+}
+
+/* Éléments utilisant rem (relatif à html) */
+.with-rem {
+  font-size: 1.5rem; /* 1.5 × 16px = 24px toujours */
+}
+```
+
+**Démonstration visuelle :**
+
+<div style={{ border: '2px solid #e0e0e0', borderRadius: '0.5rem', padding: '1rem', marginBottom: '1rem' }}>
+  <p style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Conteneur normal (font-size: 16px par défaut)</p>
+  <p style={{ fontSize: '1.5em', marginBottom: '0.5rem', color: '#0066cc' }}>Texte avec font-size: 1.5em → 1.5 × 16px = 24px</p>
+  <p style={{ fontSize: '1.5rem', color: '#cc6600' }}>Texte avec font-size: 1.5rem → 1.5 × 16px = 24px</p>
+  <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>Dans ce cas, em et rem donnent le même résultat</p>
+</div>
+
+<div style={{ border: '2px solid #e0e0e0', borderRadius: '0.5rem', padding: '1rem', fontSize: '20px' }}>
+  <p style={{ fontWeight: 600, marginBottom: '0.5rem' }}>Conteneur avec font-size: 20px</p>
+  <p style={{ fontSize: '1.5em', marginBottom: '0.5rem', color: '#0066cc' }}>Texte avec font-size: 1.5em → 1.5 × 20px = 30px</p>
+  <p style={{ fontSize: '1.5rem', color: '#cc6600' }}>Texte avec font-size: 1.5rem → 1.5 × 16px = 24px</p>
+  <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.5rem' }}>Ici, em s'adapte au parent (20px) mais rem reste fixe (16px)</p>
+</div>
+
+**En résumé :**
+
+- **`rem`** : toujours relatif à la taille de base du `<html>` (prévisible et cohérent)
+- **`em`** : relatif à la taille du parent (peut s'accumuler dans les éléments imbriqués)
+
+:::tip[Quelle unité choisir ?]
+- **Utilisez `rem`** pour les tailles de police principales (titres, texte) → plus prévisible
+- **Utilisez `em`** pour les espacements (padding, margin) qui doivent s'adapter à la taille du texte
+- **Évitez `px`** pour les tailles de police → moins accessible
+:::
+
 #### `font-weight` : Graisse de la police
 
 ```css
@@ -80,6 +142,16 @@ p {
 
 Valeurs courantes : `300` (light), `400` (normal), `600` (semi-bold), `700` (bold), `800` (extra-bold)
 
+**Comparaison visuelle :**
+
+<div>
+  <p style={{ fontWeight: 300, marginBottom: '0.5rem' }}><strong>font-weight: 300</strong> - Texte léger et délicat</p>
+  <p style={{ fontWeight: 400, marginBottom: '0.5rem' }}><strong>font-weight: 400</strong> - Texte normal, poids standard</p>
+  <p style={{ fontWeight: 600, marginBottom: '0.5rem' }}><strong>font-weight: 600</strong> - Texte semi-gras, bon pour les sous-titres</p>
+  <p style={{ fontWeight: 700, marginBottom: '0.5rem' }}><strong>font-weight: 700</strong> - Texte gras, idéal pour les titres</p>
+  <p style={{ fontWeight: 800 }}><strong>font-weight: 800</strong> - Texte extra-gras, très impactant</p>
+</div>
+
 #### `line-height` : Hauteur de ligne
 
 ```css
@@ -91,6 +163,23 @@ p {
 **Recommandations** :
 - Corps de texte : `1.5` à `1.8`
 - Titres : `1.2` à `1.4`
+
+**Comparaison visuelle :**
+
+<div>
+  <div style={{ marginBottom: '1.5rem' }}>
+    <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>line-height: 1.2 (serré)</p>
+    <p style={{ lineHeight: 1.2, padding: '0.5rem', backgroundColor: '#f0f0f0', borderRadius: '0.25rem' }}>Les lignes sont très proches les unes des autres. Ce line-height convient aux titres mais rend la lecture difficile pour les paragraphes. L'œil a du mal à passer d'une ligne à l'autre.</p>
+  </div>
+  <div style={{ marginBottom: '1.5rem' }}>
+    <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>line-height: 1.6 (confortable)</p>
+    <p style={{ lineHeight: 1.6, padding: '0.5rem', backgroundColor: '#f0f0f0', borderRadius: '0.25rem' }}>Les lignes ont un espacement idéal pour la lecture. C'est le réglage recommandé pour les textes longs. L'œil peut facilement suivre le texte d'une ligne à l'autre.</p>
+  </div>
+  <div>
+    <p style={{ fontWeight: 600, marginBottom: '0.25rem' }}>line-height: 2.0 (aéré)</p>
+    <p style={{ lineHeight: 2, padding: '0.5rem', backgroundColor: '#f0f0f0', borderRadius: '0.25rem' }}>Les lignes sont très espacées. Cela peut convenir pour des textes courts ou poétiques, mais devient fatigant pour de longs paragraphes car l'œil doit parcourir plus de distance.</p>
+  </div>
+</div>
 
 #### `letter-spacing` : Espacement des lettres
 
@@ -105,6 +194,19 @@ h1 {
 }
 ```
 
+**Comparaison visuelle :**
+
+<div>
+  <p style={{ letterSpacing: '-0.05em', marginBottom: '0.5rem', fontSize: '1.2rem' }}><strong>letter-spacing: -0.05em</strong> - Lettres rapprochées, condensé</p>
+  <p style={{ letterSpacing: '0', marginBottom: '0.5rem', fontSize: '1.2rem' }}><strong>letter-spacing: 0</strong> - Espacement normal par défaut</p>
+  <p style={{ letterSpacing: '0.05em', marginBottom: '0.5rem', fontSize: '1.2rem' }}><strong>letter-spacing: 0.05em</strong> - Légèrement espacé, élégant</p>
+  <p style={{ letterSpacing: '0.15em', fontSize: '1.2rem' }}><strong>letter-spacing: 0.15em</strong> - Très espacé, aéré</p>
+</div>
+
+:::tip[Astuce]
+Le `letter-spacing` positif est particulièrement utile pour les MAJUSCULES, qui deviennent plus lisibles avec un peu d'espace.
+:::
+
 #### `text-transform` : Transformation du texte
 
 ```css
@@ -116,6 +218,15 @@ h1 {
   text-transform: capitalize; /* Première Lettre De Chaque Mot */
 }
 ```
+
+**Comparaison visuelle :**
+
+<div>
+  <p style={{ textTransform: 'none', marginBottom: '0.5rem' }}><strong>text-transform: none</strong> - texte normal sans transformation</p>
+  <p style={{ textTransform: 'uppercase', marginBottom: '0.5rem' }}><strong>text-transform: uppercase</strong> - texte en majuscules</p>
+  <p style={{ textTransform: 'capitalize', marginBottom: '0.5rem' }}><strong>text-transform: capitalize</strong> - première lettre de chaque mot en majuscule</p>
+  <p style={{ textTransform: 'lowercase' }}><strong>text-transform: lowercase</strong> - TOUT EN MINUSCULES</p>
+</div>
 
 ### Exemple complet de typographie
 
@@ -226,6 +337,20 @@ h1 {
 }
 ```
 
+**Aperçu du style :**
+
+<div style={{ padding: '1.5rem', backgroundColor: '#FFF9E6', borderRadius: '1rem', marginBottom: '1rem' }}>
+  <h3 style={{ fontSize: '2rem', fontWeight: 700, color: '#FF6B6B', marginBottom: '0.5rem', fontFamily: 'system-ui, -apple-system, sans-serif' }}>Les Aventures de Léo 🦁</h3>
+  <p style={{ fontSize: '18px', lineHeight: 1.8, color: '#2C3E50', fontFamily: 'system-ui, -apple-system, sans-serif' }}>Il était une fois un petit lion qui adorait explorer la savane. Chaque jour, il découvrait de nouvelles merveilles et se faisait plein d'amis. Les lettres sont grandes et arrondies pour faciliter la lecture.</p>
+</div>
+
+:::tip[Caractéristiques importantes pour les 6-8 ans]
+- **Taille de texte grande** (18px minimum) pour faciliter la lecture
+- **Line-height généreux** (1.8) pour bien espacer les lignes
+- **Formes arrondies et douces** pour un aspect accueillant
+- **Couleurs vives mais pas agressives**
+:::
+
 #### Pour les 8-12 ans
 
 Polices lisibles avec un peu de personnalité :
@@ -246,6 +371,20 @@ h1 {
   font-weight: 700;
 }
 ```
+
+**Aperçu du style :**
+
+<div style={{ padding: '1.5rem', backgroundColor: '#ECF0F1', borderRadius: '0.75rem', marginBottom: '1rem' }}>
+  <h3 style={{ fontSize: '2rem', fontWeight: 700, color: '#3498DB', marginBottom: '0.5rem', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>Le Mystère du Château Hanté</h3>
+  <p style={{ fontSize: '16px', lineHeight: 1.6, color: '#2C3E50', fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' }}>Max et ses amis ont découvert un vieux château abandonné au sommet de la colline. Des lumières étranges apparaissent la nuit dans les fenêtres. Vont-ils oser explorer ce lieu mystérieux ? Le style est équilibré entre lisibilité et caractère.</p>
+</div>
+
+:::tip[Caractéristiques importantes pour les 8-12 ans]
+- **Taille de texte standard** (16px) pour lecteurs confirmés
+- **Line-height confortable** (1.6) pour une lecture fluide
+- **Polices modernes** avec un peu de personnalité
+- **Contraste clair** entre titres et texte
+:::
 
 #### Pour les ados
 
@@ -268,6 +407,20 @@ h1 {
   letter-spacing: -0.02em;
 }
 ```
+
+**Aperçu du style :**
+
+<div style={{ padding: '1.5rem', backgroundColor: '#F8F9FA', borderRadius: '0.5rem', marginBottom: '1rem', borderLeft: '4px solid #5D5FEF' }}>
+  <h3 style={{ fontSize: '2rem', fontWeight: 700, color: '#1A1A2E', marginBottom: '0.5rem', fontFamily: 'Georgia, serif', letterSpacing: '-0.02em' }}>Échos d'un Futur Incertain</h3>
+  <p style={{ fontSize: '16px', lineHeight: 1.7, color: '#2C3E50', fontFamily: 'Georgia, serif' }}>Dans un monde où la technologie a dépassé l'humanité, une jeune hackeuse découvre un secret qui pourrait tout changer. Entre thriller psychologique et science-fiction, cette histoire explore les limites de notre identité numérique. La typographie élégante et sobre renforce l'atmosphère mature du récit.</p>
+</div>
+
+:::tip[Caractéristiques importantes pour les ados]
+- **Typographie sophistiquée** avec serif ou sans-serif moderne
+- **Contrastes subtils** et palette sobre
+- **Letter-spacing ajusté** pour un rendu professionnel
+- **Design épuré** qui respecte l'intelligence du lecteur
+:::
 
 ---
 

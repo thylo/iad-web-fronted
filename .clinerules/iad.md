@@ -30,3 +30,21 @@ Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master
 - Project goal is to be as pedagogic as possible
 - Avoid jargon
 - Project use Astro ^5.6
+
+### MDX et JSX inline styles
+
+Quand vous utilisez des balises JSX avec des styles inline dans les fichiers MDX (.mdx), **mettez tout le contenu sur une seule ligne** pour éviter les problèmes de rendu.
+
+**❌ Éviter:**
+```jsx
+<p style={{ fontFamily: 'Georgia, serif' }}>
+  Ceci est un texte exemple.
+</p>
+```
+
+**✅ Préférer:**
+```jsx
+<p style={{ fontFamily: 'Georgia, serif' }}>Ceci est un texte exemple.</p>
+```
+
+Raison: MDX peut mal interpréter les sauts de ligne dans les balises JSX, causant un rendu où le contenu apparaît en dehors des balises HTML.
