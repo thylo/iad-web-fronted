@@ -1,0 +1,323 @@
+---
+title: Séance 1 - Exploration
+description: Ouverture provocante, exploration des 5 territoires et setup technique (4h)
+---
+
+## Vue d'ensemble
+
+**Durée :** 4 heures  
+**Objectif :** Ouvrir les possibles, découvrir les territoires créatifs, installer l'environnement
+
+## Timing de la séance
+
+- **30 min** : Ouverture provocante
+- **90 min** : Les 5 territoires (exploration + tests)
+- **60 min** : Setup technique + premier composant
+- **30 min** : Mission d'exploration
+
+---
+
+## Partie 1 : Ouverture provocante (30min)
+
+### Message d'introduction
+
+> "Le web n'est pas juste pour des sites corporate. C'est un espace de création unique qui combine texte, image, son, interactivité, temporalité. Vous allez explorer ce potentiel et créer des expériences que personne n'a jamais vues."
+
+### Remise en question
+
+**Ce que ce cours N'EST PAS :**
+- Un cours de syntaxe JavaScript ligne par ligne
+- Un cours où je dicte du code au tableau
+- Un cours où l'IA est interdite
+- Un cours centré uniquement sur la technique
+
+**Ce que ce cours EST :**
+- Un laboratoire créatif avec contraintes techniques
+- Un accompagnement pour réaliser vos visions créatives
+- Une exploration du web comme medium
+- Un cours où l'IA est un outil parmi d'autres
+
+### Votre bagage créatif
+
+Vous maîtrisez déjà :
+- **VFX et compositing** (Nuke, After Effects) → vous comprenez le flux d'images
+- **3D** (Blender, Maya, Houdini) → vous comprenez la génération procédurale
+- **Motion design** → vous comprenez le timing et l'animation
+
+Le web est simplement un nouveau medium avec ses propres possibilités.
+
+### Questions ouvertes (discussion)
+
+- Qu'est-ce qu'un site web pour vous ?
+- Quelles expériences web vous ont marqué ?
+- Qu'est-ce que le web peut faire que le cinéma/la 3D ne peuvent pas ?
+
+---
+
+## Partie 2 : Les 5 territoires (90min)
+
+### Format
+
+Pour chaque territoire :
+1. **Présentation** (5 min) : concept et question centrale
+2. **Exemples concrets** (10 min) : tests d'œuvres existantes
+3. **Discussion** (3 min) : qu'est-ce qui fonctionne ? pourquoi ?
+
+### Territoire 1 : Expériences muséales/spatiales
+
+**Question centrale :** Comment le numérique enrichit le lieu ?
+
+**Exemples à explorer :**
+- Parcours audio géolocalisé dans un lieu historique
+- Collection numérique d'œuvres avec carnet personnel
+- QR codes narratifs dans un espace
+- Installation interactive qui réagit aux visiteurs
+
+**Discussion :**
+- Qu'apporte le numérique que le lieu seul ne peut pas ?
+- Comment l'interaction change-t-elle l'expérience ?
+
+### Territoire 2 : Jeux de société hybrides
+
+**Question centrale :** Comment le numérique sert l'expérience collective sans la dominer ?
+
+**Exemples à explorer :**
+- Chronicles of Crime (enquête + application)
+- One Night Ultimate Werewolf (rôles + timer)
+- Mansions of Madness (plateau + assistant numérique)
+- Alchemists (déduction + application)
+
+**Discussion :**
+- Le numérique facilite ou complique le jeu ?
+- Qu'est-ce qu'il prend en charge pour fluidifier l'expérience ?
+
+### Territoire 3 : Expériences de lecture augmentées
+
+**Question centrale :** Comment le medium porte le récit ?
+
+**Exemples à explorer :**
+- Device 6 (texte + son + exploration spatiale)
+- 80 Days (récit adaptatif)
+- S. de JJ Abrams (livre physique + éléments numériques)
+- Fiction hypertexte (embranchements narratifs)
+
+**Discussion :**
+- Comment l'interaction modifie-t-elle la lecture ?
+- Qu'est-ce qui ne serait pas possible dans un livre papier ?
+
+### Territoire 4 : Interfaces expérimentales/ludiques
+
+**Question centrale :** Comment le geste devient l'expérience ?
+
+**Exemples à explorer :**
+- Shake That Button (100 façons d'interagir)
+- Patatap (instrument visuel/sonore)
+- neal.fun (collection d'expériences)
+- QWOP (contrôles inhabituels)
+
+**Discussion :**
+- L'interaction est-elle l'histoire en elle-même ?
+- Comment le geste crée l'émotion ?
+
+### Territoire 5 : Outils créatifs et générateurs
+
+**Question centrale :** Comment l'outil devient créatif/ludique/poétique ?
+
+**Exemples à explorer :**
+- Incredibox (création musicale ludique)
+- Silk (dessin procédural)
+- Générateurs de patterns/textures
+- Calculateurs détournés en expériences
+
+**Discussion :**
+- L'outil utilitaire peut-il être poétique ?
+- Comment la génération procédurale crée la surprise ?
+
+### Synthèse des territoires (10 min)
+
+- Quel territoire vous parle le plus ?
+- Pourquoi ?
+- Premières idées qui émergent ?
+
+---
+
+## Partie 3 : Setup technique (60min)
+
+### Objectif
+
+Avoir un environnement fonctionnel et créer votre premier composant interactif.
+
+### Installation (20 min)
+
+**Prérequis :**
+- Node.js installé (vérifier : `node --version`)
+- Éditeur de code (VSCode ou PhpStorm)
+- Terminal fonctionnel
+
+**Créer le projet :**
+
+```bash
+npm create vite@latest mon-projet-rtmf -- --template svelte
+cd mon-projet-rtmf
+npm install
+npm run dev
+```
+
+**Vérifier que ça fonctionne :**
+- Ouvrir `http://localhost:5173`
+- Vous devriez voir la page d'accueil Vite + Svelte
+
+### Structure du projet (10 min)
+
+Explorer la structure ensemble :
+
+```
+mon-projet-rtmf/
+├── src/
+│   ├── App.svelte          # Composant principal
+│   ├── main.js             # Point d'entrée
+│   └── app.css             # Styles globaux
+├── public/                 # Fichiers statiques
+├── index.html              # Page HTML
+└── package.json            # Configuration
+```
+
+### Premier composant interactif (30 min)
+
+**Objectif :** Créer un bouton qui change de couleur au clic.
+
+**Créer `src/components/BoutonInteractif.svelte` :**
+
+```svelte
+<script>
+  // Variable réactive : quand elle change, l'interface se met à jour
+  let couleur = 'bleu';
+  
+  // Fonction déclenchée au clic
+  function changerCouleur() {
+    couleur = couleur === 'bleu' ? 'rouge' : 'bleu';
+  }
+</script>
+
+<!-- Bouton qui change de couleur -->
+<button 
+  class={couleur}
+  on:click={changerCouleur}
+>
+  Je suis {couleur}
+</button>
+
+<style>
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .bleu {
+    background: #3498db;
+    color: white;
+  }
+  
+  .rouge {
+    background: #e74c3c;
+    color: white;
+  }
+  
+  button:hover {
+    transform: scale(1.05);
+  }
+</style>
+```
+
+**Utiliser le composant dans `App.svelte` :**
+
+```svelte
+<script>
+  import BoutonInteractif from './components/BoutonInteractif.svelte';
+</script>
+
+<main>
+  <h1>Mon premier composant interactif</h1>
+  <BoutonInteractif />
+</main>
+```
+
+### Comprendre ce qu'on vient de faire
+
+**Questions à discuter :**
+- Que se passe-t-il quand on clique ?
+- Qu'est-ce que la "réactivité" ?
+- Comment le style change-t-il dynamiquement ?
+
+**Concepts clés introduits :**
+- Variables réactives (`let`)
+- Événements (`on:click`)
+- Classes dynamiques (`class={couleur}`)
+- Scoped CSS (styles isolés par composant)
+
+---
+
+## Partie 4 : Mission d'exploration (30min)
+
+### Consignes pour la semaine
+
+**1. Explorer les territoires (obligatoire)**
+
+Choisissez 2 territoires qui vous intéressent et trouvez **3 exemples concrets** pour chacun.
+
+Pour chaque exemple, notez dans votre carnet :
+- Nom et lien/référence
+- Description rapide de l'expérience
+- Quel territoire ça représente
+- Ce qui fonctionne / ne fonctionne pas
+- Une capture d'écran ou photo
+
+**2. Expérimenter avec le code (optionnel mais recommandé)**
+
+Modifiez le `BoutonInteractif.svelte` :
+- Ajoutez une troisième couleur
+- Changez les transitions
+- Ajoutez un compteur de clics
+- Essayez d'autres interactions (hover, double-clic)
+
+**3. Commencer le carnet de recherche**
+
+Format libre (Notion, Google Docs, carnet papier scanné...) :
+- Œuvres explorées
+- Réflexions personnelles
+- Idées qui émergent
+- Questions techniques
+
+### Ressources à explorer
+
+**Collections d'œuvres :**
+- [Awwwards](https://www.awwwards.com/) - sites créatifs primés
+- [Codrops](https://tympanus.net/codrops/) - expérimentations web
+- [neal.fun](https://neal.fun/) - expériences ludiques
+- [Incredibox](https://www.incredibox.com/) - outil créatif musical
+
+**Lectures :**
+- Documentation Svelte : [svelte.dev/tutorial](https://svelte.dev/tutorial)
+- Article : "What the Web Can Be" - Paul Ford
+
+### Questions avant de partir ?
+
+---
+
+## Checklist de fin de séance
+
+- [ ] Environnement de développement fonctionnel
+- [ ] Premier composant créé et testé
+- [ ] Projet Git initialisé (optionnel)
+- [ ] Consignes de la mission comprises
+- [ ] Carnet de recherche démarré
+
+## Navigation
+
+**[→ Séance 2 : Discussion](/rtmf1m/01-cartographie/seance-2)**
+
+**[← Retour au Module 1](/rtmf1m/01-cartographie/)**
