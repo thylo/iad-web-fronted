@@ -8,7 +8,6 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 
 **Approche pédagogique:** 
 - Privilégier la narration sur la technique
-- Présenter le code comme un "scénario interactif"
 - Établir des ponts entre concepts cinématographiques et interactions web
 - Utiliser des références de films et de réalisateurs reconnus (Kurosawa, Nolan, Wong Kar-wai, etc.)
 - Éviter le jargon technique au profit d'un vocabulaire narratif
@@ -16,11 +15,7 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 
 **Structure:**
 - MM3B: Narration interactive avancée (4 expériences narratives + guide de projet)
-- MM2B: Contenu à développer
-
-## Contenu
-
-Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master/web_frontend_introduction.md comme source du contenu.
+- MM2B: Accessibilité, interactivité, typographie Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master/web_frontend_introduction.md comme source du contenu.
 
 ## Guidelines techniques
 
@@ -30,6 +25,9 @@ Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master
 - Project goal is to be as pedagogic as possible
 - Avoid jargon
 - Project use Astro ^5.6
+- Garder le code propre
+- DRY and KISS
+- Respecter le SRP
 
 ### MDX et JSX inline styles
 

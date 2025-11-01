@@ -2,15 +2,8 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 
-import react from '@astrojs/react';
-
 // https://astro.build/config
 export default defineConfig({
-	vite: {
-		ssr: {
-			noExternal: ['@codesandbox/sandpack-react']
-		}
-	},
     integrations: [starlight({
         title: 'Narration Interactive',
         description: 'Le web comme médium narratif',
@@ -40,5 +33,5 @@ export default defineConfig({
             ],
         },
         ],
-		}), react()],
+		})],
 });
