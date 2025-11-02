@@ -1,0 +1,12 @@
+- Les interfaces point&click
+- Les interfaces scrollables
+- Les environnements ouverts
+- Les interfaces “gestuelles”
+- Les interfaces tangibles : le réel comme interface
+- Les timelines
+- Les roues temporelles
+- Les interfaces en panneaux
+- Les flux parallèles
+- Les écrans partagés (split screens)
+- Les galeries
+- Les cartes

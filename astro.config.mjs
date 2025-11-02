@@ -38,6 +38,11 @@ export default defineConfig({
                 collapsed: true,
                 autogenerate: { directory: 'rtmf1m' },
             },
+            {
+                label: 'Resources',
+                collapsed: true,
+                autogenerate: { directory: 'ressources' },
+            },
         ],
 		})],
 });
