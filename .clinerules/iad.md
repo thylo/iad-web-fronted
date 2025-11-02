@@ -28,6 +28,7 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 - Garder le code propre
 - DRY and KISS
 - Respecter le SRP
+- La navigation est gerée par le theme Starlight de Astro
 
 ### MDX et JSX inline styles
 
