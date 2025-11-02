@@ -7,6 +7,10 @@ export default defineConfig({
     integrations: [starlight({
         title: 'Narration Interactive',
         description: 'Le web comme médium narratif',
+        logo: {
+            light: './public/img/iad-logo-dark.svg',
+            dark: './public/img/iad-logo-light.svg',
+        },
         social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
         sidebar: [
             {
