@@ -13,10 +13,6 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 - Éviter le jargon technique au profit d'un vocabulaire narratif
 - Eviter les métphores et les analogies trop forcées et kitsch
 
-**Structure:**
-- MM3B: Narration interactive avancée (4 expériences narratives + guide de projet)
-- MM2B: Accessibilité, interactivité, typographie Utilise https://github.com/jeromecoupe/iad_web_frontend_introduction/blob/master/web_frontend_introduction.md comme source du contenu.
-
 ## Guidelines techniques
 
 - Use clean readable css. Do not use tailwind.
@@ -28,7 +24,8 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 - Garder le code propre
 - DRY and KISS
 - Respecter le SRP
-- La navigation est gerée par le theme Starlight de Astro
+- Ne pas créer de navigation en bas de page
+- La navigation est gerée par le theme Starlight de Astro.
 
 ### MDX et JSX inline styles
 
