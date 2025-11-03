@@ -1,0 +1,256 @@
+---
+title: Template - Storyboard interactif
+description: Représenter visuellement une interaction narrative
+---
+
+## Storyboard interactif
+
+Ce template vous aide à représenter visuellement comment fonctionne une interaction narrative, sans code.
+
+---
+
+## Symboles visuels disponibles
+
+Utilisez ces symboles pour annoter vos storyboards :
+
+| Symbole | Interaction | Signification |
+|---------|-------------|---------------|
+| ![Clic](/img/mm3b-interactivite/symboles/clic.svg) | **Clic** | L'utilisateur clique sur un élément |
+| ![Survol](/img/mm3b-interactivite/symboles/survol.svg) | **Survol** | L'utilisateur passe la souris sur un élément |
+| ![Scroll](/img/mm3b-interactivite/symboles/scroll.svg) | **Scroll** | L'utilisateur défile la page |
+| ![Drag](/img/mm3b-interactivite/symboles/drag.svg) | **Drag** | L'utilisateur déplace un élément |
+| ![Clavier](/img/mm3b-interactivite/symboles/clavier.svg) | **Clavier** | L'utilisateur tape au clavier |
+| ![Temps](/img/mm3b-interactivite/symboles/temps.svg) | **Temps** | Événement temporel (délai, durée) |
+
+---
+
+## Structure du storyboard
+
+### 1. État initial
+
+**Titre de la scène :**  
+[Nom de la scène ou de l'interaction]
+
+**Description :**  
+[Que voit l'utilisateur au départ ?]
+
+**Sketch visuel :**  
+```
+┌────────────────────────────────┐
+│                                │
+│  [Dessinez l'écran initial]    │
+│                                │
+│                                │
+└────────────────────────────────┘
+```
+
+---
+
+### 2. Interaction déclenchée
+
+**Type d'interaction :**  
+- [ ] Clic
+- [ ] Survol
+- [ ] Scroll
+- [ ] Drag
+- [ ] Clavier
+- [ ] Temps
+
+**Élément interactif :**  
+[Sur quoi l'utilisateur agit-il ?]
+
+**Flèche de causalité :**
+```
+[État initial] --[ACTION]--> [Résultat]
+```
+
+---
+
+### 3. Résultat de l'interaction
+
+**Changement visuel :**  
+[Qu'est-ce qui change à l'écran ?]
+
+**Changement narratif :**  
+[Comment l'histoire avance-t-elle ?]
+
+**Sketch visuel :**  
+```
+┌────────────────────────────────┐
+│                                │
+│  [Dessinez le nouvel état]     │
+│                                │
+│                                │
+└────────────────────────────────┘
+```
+
+---
+
+### 4. Embranchements (optionnel)
+
+**SI l'utilisateur fait A :**  
+→ Il se passe X
+
+**SI l'utilisateur fait B :**  
+→ Il se passe Y
+
+**Schéma d'embranchement :**
+```
+        ┌─────────────┐
+        │ Situation   │
+        └──────┬──────┘
+               │
+       ┌───────┴────────┐
+       │                │
+    [Choix A]        [Choix B]
+       │                │
+       ▼                ▼
+   [Résultat A]    [Résultat B]
+```
+
+---
+
+## Exemple complet : "Le personnage qui réagit"
+
+### État initial
+
+**Description :**  
+Un personnage est au centre de l'écran, neutre. Texte : "Approchez-vous..."
+
+```
+┌────────────────────────────────┐
+│                                │
+│           😐                   │
+│     (personnage neutre)        │
+│                                │
+│    "Approchez-vous..."         │
+└────────────────────────────────┘
+```
+
+---
+
+### Interaction
+
+**Type :** Survol ![Survol](/img/mm3b-interactivite/symboles/survol.svg)
+
+**Élément interactif :** Le personnage
+
+**Causalité :**
+```
+[Souris loin] --[SURVOL PROCHE]--> [Personnage change]
+```
+
+---
+
+### Résultat
+
+**Changement visuel :**  
+- Le personnage sourit
+- Sa taille augmente (effet de zoom)
+- Texte change
+
+**Changement narratif :**  
+La proximité crée de l'intimité. L'utilisateur ressent une connexion.
+
+```
+┌────────────────────────────────┐
+│                                │
+│          😊 (plus grand)       │
+│                                │
+│   "Vous êtes si proche..."     │
+│                                │
+└────────────────────────────────┘
+```
+
+---
+
+### Embranchements
+
+**SI souris très proche (< 100px) :**  
+→ Personnage heureux 😊 + texte chaleureux
+
+**SI souris éloignée (> 300px) :**  
+→ Personnage triste 😢 + texte nostalgique
+
+```
+        ┌──────────────┐
+        │   Survol     │
+        └───────┬──────┘
+                │
+        ┌───────┴────────┐
+        │                │
+   [Distance < 100]  [Distance > 300]
+        │                │
+        ▼                ▼
+      😊               😢
+   "Merci..."      "Vous partez?"
+```
+
+---
+
+## Format papier vs numérique
+
+### Version papier
+
+- Dessinez à la main dans des cases
+- Utilisez des flèches pour montrer les causalités
+- Annotez avec les symboles d'interaction
+- Scannez ou photographiez pour partager
+
+### Version numérique
+
+Outils recommandés :
+- **Figma** (gratuit) : prototypage interactif
+- **Excalidraw** (gratuit, web) : dessins schématiques
+- **Miro** (gratuit jusqu'à 3 boards) : collaboration visuelle
+- **Papier + scan** : parfois le plus rapide !
+
+---
+
+## Conseils de storyboarding
+
+### Privilégier la clarté
+
+- Un storyboard n'est pas un dessin d'art : des schémas suffisent
+- Utilisez des formes simples (rectangles, cercles, bonshommes bâton)
+- Annotez abondamment
+
+### Montrer la causalité
+
+- Toujours utiliser des flèches : CECI provoque CELA
+- Indiquer les conditions : "SI... ALORS..."
+- Numéroter les étapes si séquence complexe
+
+### Capturer l'émotion
+
+- Notez l'émotion visée à chaque étape
+- Utilisez des adjectifs : "inquiétant", "apaisant", "surprenant"
+- Le storyboard raconte l'expérience émotionnelle, pas juste la mécanique
+
+---
+
+## Checklist avant de finaliser
+
+- [ ] L'état initial est clair
+- [ ] Les interactions sont annotées avec les symboles
+- [ ] Les résultats sont visibles (sketch)
+- [ ] Les embranchements narratifs sont identifiés
+- [ ] L'émotion de chaque étape est notée
+- [ ] Un observateur extérieur peut comprendre le fonctionnement
+
+---
+
+## Ressources complémentaires
+
+**Inspiration de storyboards interactifs :**
+- [Cooper Hewitt - Interactive Storyboarding](https://www.cooperhewitt.org)
+- [UX Storyboarding examples](https://uxplanet.org)
+
+**Outils gratuits :**
+- [Excalidraw](https://excalidraw.com) - Dessins schématiques
+- [Figma](https://figma.com) - Prototypage
+- [Miro](https://miro.com) - Tableau collaboratif
+
+---
+
+**[← Retour aux ressources](/mm3b-interactivite/ressources)**
