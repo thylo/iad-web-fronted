@@ -178,14 +178,20 @@ Les variables permettent de suivre les décisions du joueur.
 ```ink
 VAR argent = 0
 
-=== debut ===
+-> start
+
+=== start ===
 Vous trouvez 10€.
 
+* Vous ne faites rien
+ -> start
+* Ne pas garder l'argent
+  -> suite
 * Garder l'argent
   ~ argent = argent + 10
   Vous avez maintenant {argent}€.
   -> suite
-  
+
 === suite ===
 {argent > 0:
   Avec cet argent, vous pourriez acheter un café.
