@@ -1,9 +1,9 @@
 ---
-title: Séance 1 - Les 5 formes d'interactivité
-description: Découvrir et analyser les formes fondamentales de l'interactivité narrative
+title: Séance 1 - Les 5 modalités d'interaction
+description: Découvrir et analyser les modalités fondamentales de l'interaction narrative
 ---
 
-## Séance 1 : Les 5 formes d'interactivité narrative
+## Séance 1 : Les 5 modalités d'interaction narrative
 
 **Durée :** 4h  
 **Format :** Discussion collective + exploration guidée  
@@ -14,7 +14,7 @@ description: Découvrir et analyser les formes fondamentales de l'interactivité
 ## Objectifs
 
 À la fin de cette séance, vous saurez :
-- Identifier les 5 formes fondamentales d'interactivité
+- Identifier les 5 modalités fondamentales d'interaction
 - Analyser comment l'interaction sert (ou pas) l'intention narrative
 - Distinguer interaction fonctionnelle et interaction narrative
 - Utiliser la fiche d'analyse pour structurer votre regard critique
@@ -23,52 +23,277 @@ description: Découvrir et analyser les formes fondamentales de l'interactivité
 
 ## Déroulé de la séance
 
-### 1. Introduction provocante (15 min)
+### 1. Introduction provocante
 
 #### Qu'est-ce que l'interactivité ?
 
-L'interactivité transforme le spectateur en acteur. Vos actions changent ce que vous voyez, entendez, ressentez. Ce n'est pas un bouton "play/pause", c'est votre présence qui devient constitutive de l'œuvre.
+**Définition à partir de plusieurs sources :**
+
+**Janet Murray (chercheuse MIT, 1997) identifie 3 propriétés :**
+- **Immersion** : être "dans" l'expérience, pas devant
+- **Agentivité** : vos actions ont des conséquences visibles
+- **Transformation** : le récit se reconfigure selon vos choix
+
+**Chris Crawford (game designer) la résume ainsi :**
+> "L'interactivité, c'est une conversation. Si vous êtes le seul à parler, ce n'est pas une conversation."
+
+Chaque action = un verbe : regarder, choisir, explorer, créer, manipuler.
+
+**En pratique :**  
+L'interactivité transforme le spectateur en acteur. Vos actions changent l'œuvre. Ce n'est pas un bouton play/pause, c'est votre présence qui devient constitutive de l'expérience.
+
+---
+
+#### Activité d'ouverture
+
+**Exercice éclair : "Racontez votre dernier film en 30 secondes"**
+
+Choisir un film que tout le monde connaît (ex: *Inception*, *Interstellar*, *Pulp Fiction*)
+
+**Consigne :**
+- 3-4 volontaires racontent le film en 30 secondes
+- Observer : est-ce que tout le monde raconte la même histoire ?
+- Chacun retient des détails différents, des émotions différentes
+
+**Révélation :**  
+Même dans un film linéaire, chacun construit SA version du récit.
+
+**Question de transition :**  
+"Et si le film s'adaptait à ce qui vous intéresse vraiment ? Et si VOUS décidiez quelle scène voir en premier ?"
+
+**Variante alternative :**  
+Montrer 2 minutes de *Rashomon* (Kurosawa) : même événement, 4 versions différentes.  
+→ "Et si c'était vous qui choisissiez quelle version voir en premier ?"
+
+---
+
+#### Les limites de la narration linéaire
+
+La narration linéaire impose un parcours unique à tous les spectateurs. Parfois, c'est frustrant.
+
+**Exemple 1 : La mort que vous ne pouvez pas empêcher**
+- *Game of Thrones* : Ned Stark meurt épisode 9
+- Vous criez "Non !", mais l'histoire continue sans vous
+- En interactif : vous pourriez peut-être le sauver (ou échouer, mais au moins vous essayez)
+
+**Exemple 2 : Le rythme imposé**
+- *2001: A Space Odyssey* (Kubrick) : 10 minutes sans dialogue
+- Certains trouvent ça méditatif, d'autres s'ennuient
+- Le rythme est dicté par Kubrick. Vous subissez.
+- En interactif : vous contrôlez le tempo
+
+**Exemple 3 : L'exploration interdite**
+- *Blade Runner 2049* (Villeneuve) : Los Angeles futuriste magnifique
+- Vous ne voyez QUE ce que la caméra montre
+- Frustration : "J'aimerais voir cette rue, cet immeuble..."
+- En interactif : vous pourriez explorer librement
+
+**Exemple 4 : Le choix moral impossible**
+- *No Country for Old Men* (Coen Brothers) : fin ouverte
+- Vous ne saurez jamais ce qui arrive à certains personnages
+- En interactif : vous pourriez choisir de suivre un personnage plutôt qu'un autre
+
+**Constat :**
+- La narration linéaire = UN parcours pour TOUS
+- Le spectateur subit le rythme, le point de vue, les choix
+- L'émotion est dictée, pas vécue
+
+---
+
+#### La narration interactive : une constellation de possibilités
+
+L'interactivité n'est pas UN médium mais plusieurs territoires créatifs :
+
+**Récits à embranchements**
+- *Bandersnatch* (Netflix) : 5h de contenu, vous en voyez 90 min selon vos choix
+- *Life is Strange* (jeu) : vos décisions changent les relations et la fin
+- *80 Days* (Inkle) : adaptation du roman de Jules Verne avec des milliers d'embranchements narratifs
+
+**Note sur Inkle :** Le studio britannique Inkle a créé son propre langage de programmation, **Ink**, spécialement conçu pour écrire des narrations à embranchements. Ce langage permet aux scénaristes d'écrire des histoires complexes avec des milliers de variations sans se perdre dans le code. Ink est aujourd'hui open-source et utilisé par de nombreux créateurs. C'est un exemple de comment la technique peut s'adapter à la narration, pas l'inverse.
+
+---
+
+#### Atelier Ink : Créer votre premier récit interactif (30 min)
+
+**Format :** Exercice pratique collectif
+
+**Objectif :** Tester l'écriture interactive avec un outil simple (pas de JavaScript, syntaxe proche du scénario)
+
+---
+
+**Démonstration live (5 min)**
+
+L'enseignant ouvre Inky et écrit en direct une micro-histoire :
+
+```ink
+Vous trouvez 10€ par terre.
+
+* Les garder
+  Vous glissez le billet dans votre poche.
+  Personne ne vous a vu.
+  -> END
+  
+* Les donner à un SDF
+  L'homme vous remercie chaleureusement.
+  -> END
+  
+* Les déposer au commissariat
+  L'agent hausse les épaules.
+  "On verra si quelqu'un le réclame."
+  -> END
+```
+
+**Montrer comment ça fonctionne :**
+- Écrire le texte
+- Tester en direct (panneau de droite)
+- Modifier et re-tester
+
+**Message aux étudiants :**
+> "Ink, ce n'est pas du code. C'est écrire un scénario avec des embranchements. Vous allez créer une micro-histoire en 15 minutes."
+
+---
+
+**Exercice individuel (15 min)**
+
+**Brief :**
+- Créez une micro-histoire interactive
+- 1 situation de départ
+- 3 choix minimum
+- 3 issues différentes
+- Durée de lecture : 30 secondes par branche
+
+**Situations proposées :**
+- Vous recevez un message d'un numéro inconnu
+- Vous trouvez une clé par terre
+- Vous entendez du bruit dans votre cave
+- Vous ratez votre bus
+- Vous croisez quelqu'un qui pleure dans la rue
+- Votre téléphone sonne, numéro inconnu
+- Vous trouvez un portefeuille dans la rue
+
+**Consigne technique :**
+- Si Inky n'est pas installé : utilisez un éditeur de texte simple
+- Pas besoin de tester techniquement, l'important est la structure narrative
+
+---
+
+**Présentations croisées (10 min)**
+
+**Format :**
+- Par binômes, échangez vos histoires
+- L'autre lit et "joue" votre histoire
+- Discussion : quels choix il a faits ? Pourquoi ?
+
+**Restitution collective (5 min) :**
+- 3-4 volontaires présentent leur situation + les 3 issues
+- Classe vote : quelle issue choisir ?
+- Discussion rapide
+
+**Questions de débat :**
+- Écrire des embranchements change-t-il votre façon de raconter ?
+- Est-ce plus facile ou plus difficile que d'écrire linéairement ?
+- Quels types d'histoires se prêtent bien aux choix ?
+
+---
+
+**Ressource complète :**  
+[→ Tutoriel Ink complet](/mm3b-interactivite/ressources/tutoriel-ink) (syntaxe, exemples, exercices)
+
+---
+
+**Expériences spatiales**
+- *Journey* (jeu) : traversée d'un désert, à votre rythme
+- Installations VR : vous choisissez où regarder
+
+**Narrations temporelles**
+- *Her Story* : vidéos dans l'ordre que VOUS décidez
+- *The Boat* : votre vitesse de scroll = tempo du récit
+
+**Créations participatives**
+- *Patatap* : vous créez la musique en tapant
+- *Silk* : dessin génératif collaboratif
+
+**Documentaires interactifs**
+- *Do Not Track* : exploration de la surveillance web
+- *Fort McMoney* : documentaire-jeu sur l'industrie pétrolière
+
+**Observation importante :**  
+Chaque forme pose des questions narratives différentes. Il n'y a pas de "bonne" manière. Tout est à inventer.
+
+---
+
+#### Pourquoi c'est une terre d'exploration créative
+
+**Le web comme médium natif**
+- Le cinéma a été inventé pour la projection linéaire
+- Le web a été inventé pour la navigation et l'interaction
+- L'interactivité est dans son ADN, pas une adaptation
+
+**Pas de règles établies**
+- Hitchcock a inventé le langage du suspense
+- Eisenstein a inventé le montage
+- Vous pouvez inventer les conventions de l'interactivité narrative
+
+**Liberté totale**
+- Mélanger cinéma + jeu + installation + littérature
+- Créer des expériences impossibles ailleurs
+- L'échec est autorisé : on expérimente, on tâtonne
+
+Hartmut Koenitz (chercheur en narration interactive) :
+> "L'interactivité narrative n'est pas du cinéma cassé. C'est un médium différent."
+
+---
 
 #### La narration linéaire est morte. Vive la narration linéaire.
 
-La narration passive devient un choix esthétique, pas la norme :
+L'interactivité est désormais mainstream :
 
-- **Netflix** : Bandersnatch, You vs. Wild, Unbreakable Kimmy Schmidt offrent des choix multiples
-- **Jeux vidéo** : budgets et audiences dépassent Hollywood (The Last of Us : 220M$, Red Dead Redemption 2 : 540M$)
-- **Réseaux sociaux** : narrations fragmentées, non-linéaires, personnalisées
+- **Netflix** : Bandersnatch, You vs. Wild, choix multiples
+- **Jeux vidéo** : budgets dépassent Hollywood (The Last of Us: 220M$, Red Dead Redemption 2: 540M$)
 - **TikTok** : algorithme qui crée un récit unique pour chacun
 - **Podcasts interactifs** : choix d'enquêtes, embranchements narratifs
 
-Le cinéma a toujours rêvé d'être interactif. Le web l'est par nature.
+**Paradoxe :**  
+La narration linéaire persiste, mais comme **choix esthétique conscient**, pas comme norme imposée.
 
-**Question d'ouverture :**  
-"Pourquoi la narration linéaire persiste-t-elle alors ?"
+Christopher Nolan choisit la linéarité pour *Oppenheimer*. C'est une décision créative, pas une obligation technique.
+
+**Question d'ouverture pour la discussion :**  
+"Alors pourquoi faire de l'interactif ? Quand l'interaction sert-elle vraiment l'histoire ?"
 
 **Discussion :**
-- Exemples de "fausse interactivité" au cinéma
-- Qu'est-ce qui différencie vraiment l'interaction web du cinéma ?
+- Exemples de "fausse interactivité" (boutons qui ne font rien)
+- Qu'est-ce que le web peut faire que le cinéma ne peut pas ?
 - Le spectateur passif vs le spectateur actif
-- Quand l'interaction sert-elle vraiment l'histoire ?
+- Quand l'interaction devient-elle un gadget ?
 
 ---
 
-### 2. Les 5 formes fondamentales (90 min)
+### 2. Les 5 modalités fondamentales
 
 #### D'où vient cette classification ?
 
-Ces 5 formes viennent de l'observation d'œuvres interactives créées entre 2010 et 2023. Ce n'est pas une théorie académique figée mais un outil d'analyse pratique.
+Ces 5 modalités viennent de l'observation d'œuvres interactives créées entre 2010 et 2023. Ce n'est pas une théorie académique figée mais un outil d'analyse pratique.
 
 La classification s'inspire des travaux de Janet Murray (*Hamlet on the Holodeck*, 1997) et Chris Crawford sur l'interaction, mais reste volontairement simple et opérationnelle.
 
-Utilisez-la comme grille de lecture, pas comme dogme. Une œuvre peut mélanger plusieurs formes. Ce qui compte : identifier comment l'interaction sert (ou dessert) l'intention narrative.
+Utilisez-la comme grille de lecture, pas comme dogme. Une œuvre peut mélanger plusieurs modalités. Ce qui compte : identifier comment l'interaction sert (ou dessert) l'intention narrative.
+
+:::note[Vocabulaire]
+Ces **5 modalités** décrivent **ce que fait l'utilisateur** pendant l'expérience interactive.
+
+Elles sont complémentaires aux **3 formes d'interactivité** de Benjamin Hoguet (machine, sociale, contributive) qui décrivent **avec qui/quoi** l'utilisateur interagit.
+
+[→ En savoir plus sur les 3 formes](/ressources/formes-interactivite) (optionnel)
+:::
 
 ---
 
-Pour chaque forme : présentation (10 min) + exploration (8 min)
+Pour chaque modalité : présentation (10 min) + exploration (8 min)
 
-#### 👁️ Forme 1 : Le regard
+#### 👁️ Modalité 1 : L'attention
 
-**Principe :** Où je regarde influence ce que je vois
+**Principe :** Où je porte mon attention influence ce que je vois
 
 **Œuvres à tester :**
 - [Do Not Touch](http://donottouch.org) - Votre curseur devient un personnage
@@ -79,11 +304,11 @@ Pour chaque forme : présentation (10 min) + exploration (8 min)
 **Questions de discussion :**
 - Comment votre mouvement de souris a-t-il influencé votre ressenti ?
 - Qu'est-ce qui serait perdu si c'était une vidéo passive ?
-- Le regard comme outil narratif vs décoratif ?
+- L'attention comme outil narratif vs décoratif ?
 
 ---
 
-#### 🎯 Forme 2 : Le choix
+#### 🎯 Modalité 2 : Le choix
 
 **Principe :** Mes décisions changent le récit
 
@@ -100,7 +325,7 @@ Pour chaque forme : présentation (10 min) + exploration (8 min)
 
 ---
 
-#### 🗺️ Forme 3 : L'exploration
+#### 🗺️ Modalité 3 : L'exploration
 
 **Principe :** L'espace contient la narration
 
@@ -117,7 +342,7 @@ Pour chaque forme : présentation (10 min) + exploration (8 min)
 
 ---
 
-#### ⏱️ Forme 4 : Le rythme
+#### ⏱️ Modalité 4 : Le rythme
 
 **Principe :** Ma vitesse influence l'émotion
 
@@ -134,7 +359,7 @@ Pour chaque forme : présentation (10 min) + exploration (8 min)
 
 ---
 
-#### 🎭 Forme 5 : La participation
+#### 🎭 Modalité 5 : La participation
 
 **Principe :** Ma présence/action modifie l'œuvre
 
@@ -151,23 +376,74 @@ Pour chaque forme : présentation (10 min) + exploration (8 min)
 
 ---
 
-### 3. Discussion collective (30 min)
+### 3. Galerie de favoris + Débat guidé (30 min)
 
-**Questions transversales :**
+À ce stade, vous avez testé ~20 œuvres interactives. Au lieu de discuter de concepts abstraits, on va partir de vos expériences concrètes.
 
-**Interaction évidente vs subtile**
-- Quelles œuvres expliquaient leur fonctionnement ?
-- Lesquelles vous laissaient découvrir ?
-- Quel est le bon équilibre ?
+---
 
-**Émotion et interaction**
-- Quelle œuvre vous a le plus marqué émotionnellement ?
-- Pourquoi cette interaction créait-elle cette émotion ?
-- Peut-on raconter n'importe quelle histoire avec n'importe quelle interaction ?
+#### Phase 1 : Vote et classement (10 min)
 
-**Le web vs le cinéma**
-- Qu'est-ce que ces œuvres font que le cinéma ne peut pas ?
-- Y a-t-il des histoires qui ne peuvent exister QUE de façon interactive ?
+**Consigne :**  
+"Sur les œuvres testées aujourd'hui, quelle est votre préférée ?"
+
+**Méthode :**
+- Chacun note sur un papier/post-it son œuvre favorite
+- Décompte collectif au tableau
+- Identification du Top 3-5
+
+**Résultat :**  
+Une liste concrète d'œuvres à discuter ensemble.
+
+---
+
+#### Phase 2 : Discussion ancrée sur les œuvres (15 min)
+
+**Pour chaque œuvre du Top 3-5, poser ces questions :**
+
+**Question 1 : "Qu'est-ce qui vous a marqué ?"**
+- Laissez les étudiants parler librement
+- Notez les mots-clés au tableau (surprise, frustration, compréhension, émotion...)
+- Observez les patterns dans les réponses
+
+**Question 2 : "Décrivez-la à quelqu'un qui ne l'a jamais vue"**
+- Force à verbaliser l'expérience
+- Révèle ce qui est central dans l'œuvre
+- Montre la difficulté de décrire l'interactivité (il faut la vivre)
+
+**Question 3 : "Si c'était un film passif, ça changerait quoi ?"**
+- Comparaison concrète, pas théorique
+- Basée sur une œuvre précise
+- Révèle ce que l'interaction apporte
+
+**Timing :** ~3-5 minutes par œuvre (Top 3-5)
+
+---
+
+#### Phase 3 : Comparaison directe (5 min)
+
+**Mini-débat :**  
+Prenez 2 œuvres du Top 5 qui utilisent des formes différentes.
+
+**Exemple :**
+- *Do Not Touch* (regard) vs *Patatap* (participation)
+- *Her Story* (choix) vs *Typedrummer* (rythme)
+
+**Question :**  
+"Laquelle vous fait le plus sentir actif/acteur de l'expérience ?"
+
+**Discussion guidée :**
+- Pourquoi ?
+- Dans laquelle vous sentez-vous le plus créatif ?
+- Laquelle pourrait fonctionner sans vous ?
+
+**Objectif pédagogique :**  
+Introduire subtilement le concept d'agentivité par la comparaison, sans utiliser le terme académique.
+
+---
+
+**Note pour l'enseignant :**  
+Cette discussion part du vécu immédiat des étudiants, pas de concepts théoriques. Vous récupérez leur vocabulaire spontané pour le raffiner progressivement. Les mots "agentivité", "immersion", "transformation" viendront plus tard, une fois qu'ils auront le ressenti.
 
 ---
 
@@ -183,7 +459,7 @@ Choisissez UNE œuvre testée aujourd'hui et remplissez une fiche d'analyse comp
 - Restitution collective (15 min) : 3-4 volontaires présentent leur analyse
 
 **Ce que vous devez identifier :**
-- Forme(s) d'interactivité utilisée(s)
+- Modalité(s) d'interaction utilisée(s)
 - Intention narrative perçue
 - Ce qui fonctionne / ne fonctionne pas
 - Pourquoi
@@ -196,7 +472,7 @@ Choisissez UNE œuvre testée aujourd'hui et remplissez une fiche d'analyse comp
 
 **Consignes :**
 - Choisissez 3 œuvres du [catalogue](/mm3b-interactivite/ressources/oeuvres)
-- Les 3 doivent utiliser des **formes différentes**
+- Les 3 doivent utiliser des **modalités différentes**
 - Utilisez le [template de fiche d'analyse](/mm3b-interactivite/ressources/templates/fiche-analyse)
 - Environ 200-300 mots par œuvre
 - Incluez une capture d'écran ou un sketch pour chaque
@@ -204,7 +480,7 @@ Choisissez UNE œuvre testée aujourd'hui et remplissez une fiche d'analyse comp
 **Critères d'évaluation :**
 - Diversité des œuvres choisies
 - Qualité de l'analyse (pas juste descriptif)
-- Identification correcte des formes d'interactivité
+- Identification correcte des modalités d'interaction
 - Réflexion sur "ce que l'interaction apporte que le cinéma ne peut pas"
 
 **Deadline :** Avant la séance 2
@@ -218,5 +494,15 @@ Choisissez UNE œuvre testée aujourd'hui et remplissez une fiche d'analyse comp
 
 ### Catalogue d'œuvres
 - [Liste complète](/mm3b-interactivite/ressources/oeuvres)
+
+---
+
+## Pour aller plus loin (optionnel)
+
+Ces ressources théoriques approfondissent les concepts vus aujourd'hui. Elles ne sont **pas au programme** de l'évaluation.
+
+- **[Les 3 formes d'interactivité](/ressources/formes-interactivite)** - Machine, Sociale, Contributive (Hoguet)
+- **[Le rôle du public](/ressources/role-du-public)** - Fantôme, Personnage, Divinité, Lui-même
+- **[Les types de choix](/ressources/types-de-choix)** - Exploratoire vs Rationnel
 
 ---
