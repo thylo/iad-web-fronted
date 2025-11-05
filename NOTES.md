@@ -1,0 +1,3 @@
+- No, I'm not an human
+- - Regarder pour streaming Dan Shiffman
+- Revoir pour exemples modalités
