@@ -4,7 +4,9 @@ description: Créer des mises en page adaptatives
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
-import LiveCodeEditor from '../../../components/mdx/LiveCodeEditor/LiveCodeEditor.astro';
+import LiveCodeEditor from '../../../../components/mdx/LiveCodeEditor/LiveCodeEditor.astro';
+
+Créer une mise en page responsive, c’est s’assurer que votre contenu reste lisible, clair et esthétique sur tous les écrans — du smartphone à l’écran géant.
 
 ## 📚 Concepts clés
 
@@ -54,6 +56,8 @@ Par défaut, `width` ne compte pas le padding et border. C'est souvent déroutan
 :::tip[Bonne pratique]
 Ajoutez `* { box-sizing: border-box; }` au début de votre CSS. Cela facilite grandement le calcul des dimensions.
 :::
+
+![box-model](./box-model.jpg)
 
 ---
 
@@ -186,6 +190,14 @@ footer {
   flex: 0 0 auto;
 }
 ```
+
+### 🎮 Exercice pratique : Flexbox Froggy
+
+Pour vous entraîner avec Flexbox de manière ludique, essayez [Flexbox Froggy](https://flexboxfroggy.com/#fr). Ce jeu vous permet de pratiquer les propriétés Flexbox en aidant une grenouille à atteindre son nénuphar.
+
+:::tip[Recommandé]
+Complétez au moins les 12 premiers niveaux pour maîtriser les bases de Flexbox.
+:::
 
 ---
 
@@ -374,6 +386,14 @@ Commencez par designer pour mobile, puis ajoutez des styles pour écrans plus gr
 
 ### Breakpoints recommandés
 
+
+| Appareil      | Min-width | Exemple          |
+| ------------- | --------- | ---------------- |
+| Mobile        | < 768 px  | iPhone, Android  |
+| Tablette      | ≥ 768 px  | iPad, Galaxy Tab |
+| Desktop       | ≥ 1024 px | Laptop           |
+| Large desktop | ≥ 1440 px | Écran large      |
+
 ```css
 /* Mobile par défaut (< 768px) */
 
@@ -392,6 +412,8 @@ Commencez par designer pour mobile, puis ajoutez des styles pour écrans plus gr
   /* Styles pour grands écrans */
 }
 ```
+
+
 
 ### Exemple interactif : Navigation responsive avec Flexbox
 
@@ -523,7 +545,93 @@ Voici un exemple complet combinant Flexbox, CSS Grid et responsive design :
 
 ---
 
-## 🎯 Objectifs du fil rouge (Cours 3)
+## 🔧 Exercices dirigés
+
+### Exercice 1 : Créer une grille responsive
+
+Créez une grille qui affiche :
+- 1 colonne sur mobile
+- 2 colonnes sur tablette
+- 4 colonnes sur desktop
+
+<details>
+    <summary>Voir la solution</summary>
+
+    ```css
+    .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+    @media (min-width: 768px) {
+    .grid {
+    grid-template-columns: repeat(2, 1fr);
+}
+}
+
+    @media (min-width: 1024px) {
+    .grid {
+    grid-template-columns: repeat(4, 1fr);
+}
+}
+    ```
+
+    Ou version automatique :
+    ```css
+    .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+}
+    ```
+</details>
+
+### Exercice 2 : Layout sidebar + contenu
+
+Créez un layout avec :
+- Sur mobile : sidebar en haut, puis contenu
+- Sur desktop : sidebar à gauche (250px fixe), contenu flexible
+
+<details>
+    <summary>Voir la solution</summary>
+
+    ```css
+    /* Mobile */
+    .page-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+    .sidebar {
+    /* Prend toute la largeur sur mobile */
+}
+
+    .content {
+    /* Prend toute la largeur sur mobile */
+}
+
+    /* Desktop */
+    @media (min-width: 1024px) {
+    .page-layout {
+    flex-direction: row;
+}
+
+    .sidebar {
+    flex: 0 0 250px; /* Largeur fixe */
+}
+
+    .content {
+    flex: 1; /* Prend l'espace restant */
+}
+}
+    ```
+</details>
+
+---
+
+## 🎯 Objectifs du fil rouge
 
 Pendant la phase pratique, vous allez :
 
@@ -548,92 +656,6 @@ Pendant la phase pratique, vous allez :
 - Testez mobile (375px), tablette (768px), desktop (1024px+)
 - Ajustez les breakpoints si nécessaire
 - Vérifiez que tout est lisible et cliquable
-
----
-
-## 🔧 Exercices dirigés
-
-### Exercice 1 : Créer une grille responsive
-
-Créez une grille qui affiche :
-- 1 colonne sur mobile
-- 2 colonnes sur tablette
-- 4 colonnes sur desktop
-
-<details>
-<summary>Voir la solution</summary>
-
-```css
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-}
-
-@media (min-width: 768px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-```
-
-Ou version automatique :
-```css
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 1rem;
-}
-```
-</details>
-
-### Exercice 2 : Layout sidebar + contenu
-
-Créez un layout avec :
-- Sur mobile : sidebar en haut, puis contenu
-- Sur desktop : sidebar à gauche (250px fixe), contenu flexible
-
-<details>
-<summary>Voir la solution</summary>
-
-```css
-/* Mobile */
-.page-layout {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.sidebar {
-  /* Prend toute la largeur sur mobile */
-}
-
-.content {
-  /* Prend toute la largeur sur mobile */
-}
-
-/* Desktop */
-@media (min-width: 1024px) {
-  .page-layout {
-    flex-direction: row;
-  }
-  
-  .sidebar {
-    flex: 0 0 250px; /* Largeur fixe */
-  }
-  
-  .content {
-    flex: 1; /* Prend l'espace restant */
-  }
-}
-```
-</details>
 
 ---
 
