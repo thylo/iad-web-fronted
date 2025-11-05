@@ -1,0 +1,203 @@
+---
+// Theme Toggle - Démonstration de variables CSS et thèmes
+---
+
+<div class="theme-toggle-demo" x-data="{ isDark: false }">
+  <div class="demo-header">
+    <h3>Démo : Thème clair / sombre</h3>
+    <button 
+      class="theme-switch" 
+      @click="isDark = !isDark"
+      :class="{ 'is-dark': isDark }"
+      :aria-label="isDark ? 'Passer au thème clair' : 'Passer au thème sombre'"
+    >
+      <span class="switch-icon" x-text="isDark ? '🌙' : '☀️'"></span>
+    </button>
+  </div>
+
+  <div class="demo-card" :class="{ 'dark-theme': isDark }">
+    <h4>Titre de la carte</h4>
+    <p>Ceci est un exemple de texte qui s'adapte automatiquement au thème choisi grâce aux variables CSS.</p>
+    <div class="demo-buttons">
+      <button class="btn-primary">Bouton principal</button>
+      <button class="btn-secondary">Bouton secondaire</button>
+    </div>
+  </div>
+
+  <div class="demo-code">
+    <h4>Variables CSS utilisées</h4>
+    <pre><code>:root &#123;
+  --color-background: #FFFFFF;
+  --color-text: #333333;
+  --color-primary: #FF6B6B;
+&#125;
+
+.dark-theme &#123;
+  --color-background: #1A1A2E;
+  --color-text: #FFFFFF;
+  --color-primary: #4ECDC4;
+&#125;
+
+/* Les éléments utilisent les variables */
+.card &#123;
+  background: var(--color-background);
+  color: var(--color-text);
+&#125;</code></pre>
+  </div>
+</div>
+
+<style>
+  .theme-toggle-demo {
+    padding: 1.5rem;
+    background: var(--sl-color-gray-6);
+    border-radius: 12px;
+    border: 1px solid var(--sl-color-gray-5);
+  }
+
+  .demo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .demo-header h3 {
+    margin: 0;
+    color: var(--sl-color-white);
+    font-size: 1.1rem;
+  }
+
+  .theme-switch {
+    width: 60px;
+    height: 32px;
+    border-radius: 16px;
+    border: none;
+    background: var(--sl-color-gray-5);
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+  }
+
+  .theme-switch.is-dark {
+    background: var(--sl-color-gray-4);
+  }
+
+  .switch-icon {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: 24px;
+    height: 24px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .theme-switch.is-dark .switch-icon {
+    transform: translateX(28px);
+  }
+
+  .demo-card {
+    padding: 1.5rem;
+    background: #FFFFFF;
+    color: #333333;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .demo-card.dark-theme {
+    background: #1A1A2E;
+    color: #FFFFFF;
+  }
+
+  .demo-card h4 {
+    margin: 0 0 1rem 0;
+    color: inherit;
+  }
+
+  .demo-card p {
+    margin: 0 0 1.5rem 0;
+    line-height: 1.6;
+    color: inherit;
+  }
+
+  .demo-buttons {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .demo-card button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .demo-card .btn-primary {
+    background: #FF6B6B;
+    color: white;
+  }
+
+  .demo-card.dark-theme .btn-primary {
+    background: #4ECDC4;
+    color: #1A1A2E;
+  }
+
+  .demo-card .btn-primary:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  .demo-card .btn-secondary {
+    background: transparent;
+    color: #FF6B6B;
+    border: 1px solid #FF6B6B;
+  }
+
+  .demo-card.dark-theme .btn-secondary {
+    color: #4ECDC4;
+    border-color: #4ECDC4;
+  }
+
+  .demo-card .btn-secondary:hover {
+    background: rgba(255, 107, 107, 0.1);
+  }
+
+  .demo-card.dark-theme .btn-secondary:hover {
+    background: rgba(78, 205, 196, 0.1);
+  }
+
+  .demo-code {
+    padding: 1rem;
+    background: var(--sl-color-gray-5);
+    border-radius: 8px;
+  }
+
+  .demo-code h4 {
+    margin: 0 0 0.75rem 0;
+    color: var(--sl-color-white);
+    font-size: 0.9rem;
+  }
+
+  .demo-code pre {
+    margin: 0;
+    padding: 0;
+    overflow-x: auto;
+  }
+
+  .demo-code code {
+    font-family: monospace;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--sl-color-gray-2);
+  }
+</style>

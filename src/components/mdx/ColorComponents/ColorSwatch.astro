@@ -1,0 +1,86 @@
+---
+interface Props {
+  color: string;
+  label?: string;
+  notation?: string;
+}
+
+const { color, label, notation = 'hex' } = Astro.props;
+---
+
+<div class="color-swatch" x-data="{ copied: false }">
+  <div class="swatch-preview" style={`background-color: ${color};`}></div>
+  <div class="swatch-info">
+    {label && <div class="swatch-label">{label}</div>}
+    <code class="swatch-code">{color}</code>
+    <button 
+      class="swatch-copy" 
+      @click="navigator.clipboard.writeText($el.previousElementSibling.textContent); copied = true; setTimeout(() => copied = false, 2000)"
+      x-text="copied ? '✓' : '📋'"
+      :title="copied ? 'Copié !' : 'Copier'"
+    ></button>
+  </div>
+</div>
+
+<style>
+  .color-swatch {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem;
+    background: var(--sl-color-gray-6);
+    border-radius: 12px;
+    border: 1px solid var(--sl-color-gray-5);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .color-swatch:hover {
+    border-color: var(--sl-color-gray-4);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .swatch-preview {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+  }
+
+  .swatch-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .swatch-label {
+    font-weight: 600;
+    color: var(--sl-color-white);
+    margin-right: 0.5rem;
+  }
+
+  .swatch-code {
+    font-family: monospace;
+    font-size: 0.95rem;
+    padding: 0.25rem 0.5rem;
+    background: var(--sl-color-gray-5);
+    border-radius: 6px;
+    color: var(--sl-color-white);
+  }
+
+  .swatch-copy {
+    margin-left: auto;
+    background: transparent;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 6px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.2s;
+  }
+
+  .swatch-copy:hover {
+    background: var(--sl-color-gray-5);
+  }
+</style>

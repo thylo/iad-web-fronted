@@ -5,6 +5,12 @@ description: Créer des mises en page adaptatives
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 import LiveCodeEditor from '../../../../components/mdx/LiveCodeEditor/LiveCodeEditor.astro';
+import AlpineInit from '../../../../components/AlpineInit.astro';
+import BoxModelDemo from '../../../../components/mdx/LayoutComponents/BoxModelDemo.astro';
+import FlexboxPlayground from '../../../../components/mdx/LayoutComponents/FlexboxPlayground.astro';
+import ObjectFitDemo from '../../../../components/mdx/LayoutComponents/ObjectFitDemo.astro';
+
+<AlpineInit />
 
 Créer une mise en page responsive, c’est s’assurer que votre contenu reste lisible, clair et esthétique sur tous les écrans — du smartphone à l’écran géant.
 
@@ -58,6 +64,10 @@ Ajoutez `* { box-sizing: border-box; }` au début de votre CSS. Cela facilite gr
 :::
 
 ![box-model](./box-model.jpg)
+
+**Démonstration interactive :**
+
+<BoxModelDemo />
 
 ---
 
@@ -197,6 +207,16 @@ Pour vous entraîner avec Flexbox de manière ludique, essayez [Flexbox Froggy](
 
 :::tip[Recommandé]
 Complétez au moins les 12 premiers niveaux pour maîtriser les bases de Flexbox.
+:::
+
+**Démonstration interactive : Flexbox Playground**
+
+<FlexboxPlayground />
+
+:::tip[Expérimentez avec les propriétés]
+- Changez `flex-direction`, `justify-content` et `align-items` pour voir leur effet
+- Cliquez sur un item pour modifier ses propriétés `flex-grow`, `flex-shrink` et `flex-basis`
+- Le code CSS généré s'affiche en bas
 :::
 
 ---
@@ -493,6 +513,16 @@ Valeurs de `object-fit` :
 - `contain` : contient l'image entière (peut laisser des espaces)
 - `fill` : étire l'image (peut déformer)
 
+**Démonstration interactive :**
+
+<ObjectFitDemo />
+
+:::tip[Expérimentez avec object-fit]
+- Changez la valeur de `object-fit` pour voir son effet sur l'image
+- Ajustez les dimensions du conteneur avec les sliders
+- La grille en bas compare toutes les valeurs simultanément
+:::
+
 ### Vidéo responsive
 
 ```css
@@ -555,36 +585,36 @@ Créez une grille qui affiche :
 - 4 colonnes sur desktop
 
 <details>
-    <summary>Voir la solution</summary>
+<summary>Voir la solution</summary>
 
-    ```css
-    .grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
+```css
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-    @media (min-width: 768px) {
-    .grid {
+@media (min-width: 768px) {
+  .grid {
     grid-template-columns: repeat(2, 1fr);
-}
+  }
 }
 
-    @media (min-width: 1024px) {
-    .grid {
+@media (min-width: 1024px) {
+  .grid {
     grid-template-columns: repeat(4, 1fr);
+  }
 }
-}
-    ```
+```
 
-    Ou version automatique :
-    ```css
-    .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
+Ou version automatique :
+```css
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
 }
-    ```
+```
 </details>
 
 ### Exercice 2 : Layout sidebar + contenu
@@ -594,39 +624,39 @@ Créez un layout avec :
 - Sur desktop : sidebar à gauche (250px fixe), contenu flexible
 
 <details>
-    <summary>Voir la solution</summary>
+<summary>Voir la solution</summary>
 
-    ```css
-    /* Mobile */
-    .page-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+```css
+/* Mobile */
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
-    .sidebar {
-    /* Prend toute la largeur sur mobile */
+.sidebar {
+  /* Prend toute la largeur sur mobile */
 }
 
-    .content {
-    /* Prend toute la largeur sur mobile */
+.content {
+  /* Prend toute la largeur sur mobile */
 }
 
-    /* Desktop */
-    @media (min-width: 1024px) {
-    .page-layout {
+/* Desktop */
+@media (min-width: 1024px) {
+  .page-layout {
     flex-direction: row;
-}
+  }
 
-    .sidebar {
+  .sidebar {
     flex: 0 0 250px; /* Largeur fixe */
-}
+  }
 
-    .content {
+  .content {
     flex: 1; /* Prend l'espace restant */
+  }
 }
-}
-    ```
+```
 </details>
 
 ---
@@ -724,11 +754,3 @@ Non, mais c'est recommandé car :
 - Vous forcez à prioriser le contenu essentiel
 - C'est plus facile d'ajouter que de retirer
 - Meilleure performance mobile
-
----
-
-## Prochaine étape
-
-Dans le dernier cours, vous allez ajouter de l'interactivité avec CSS et JavaScript, et finaliser votre projet.
-
-**[Cours 4 : Interactivité et Finalisation →](/mm2b/interactivite-finalisation)**

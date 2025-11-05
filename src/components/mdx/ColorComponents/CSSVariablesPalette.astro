@@ -1,0 +1,242 @@
+---
+// CSS Variables Palette - Visualisation d'un système de design complet
+---
+
+<div class="css-variables-palette">
+  <h3>Exemple de système de variables CSS</h3>
+  
+  <div class="palette-section">
+    <h4>Couleurs principales</h4>
+    <div class="variable-grid">
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #FF6B6B;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-primary</code>
+          <code class="variable-value">#FF6B6B</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-primary'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #E85555;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-primary-dark</code>
+          <code class="variable-value">#E85555</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-primary-dark'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #FF9B9B;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-primary-light</code>
+          <code class="variable-value">#FF9B9B</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-primary-light'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <h4>Couleurs secondaires</h4>
+    <div class="variable-grid">
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #4ECDC4;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-secondary</code>
+          <code class="variable-value">#4ECDC4</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-secondary'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #FFE66D;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-accent</code>
+          <code class="variable-value">#FFE66D</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-accent'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="palette-section">
+    <h4>Couleurs neutres</h4>
+    <div class="variable-grid">
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #2C3E50;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-text</code>
+          <code class="variable-value">#2C3E50</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-text'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #7F8C8D;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-text-light</code>
+          <code class="variable-value">#7F8C8D</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-text-light'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #FFFFFF; border: 1px solid #E1E8ED;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-background</code>
+          <code class="variable-value">#FFFFFF</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-background'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+
+      <div class="variable-item" x-data="{ copied: false }">
+        <div class="variable-swatch" style="background: #E1E8ED;"></div>
+        <div class="variable-info">
+          <code class="variable-name">--color-border</code>
+          <code class="variable-value">#E1E8ED</code>
+          <button 
+            @click="navigator.clipboard.writeText('--color-border'); copied = true; setTimeout(() => copied = false, 2000)"
+            x-text="copied ? '✓' : '📋'"
+            :title="copied ? 'Copié !' : 'Copier'"
+            class="copy-btn"
+          ></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .css-variables-palette {
+    padding: 1.5rem;
+    background: var(--sl-color-gray-6);
+    border-radius: 12px;
+    border: 1px solid var(--sl-color-gray-5);
+  }
+
+  .css-variables-palette > h3 {
+    margin: 0 0 1.5rem 0;
+    color: var(--sl-color-white);
+    font-size: 1.1rem;
+  }
+
+  .palette-section {
+    margin-bottom: 1.5rem;
+  }
+
+  .palette-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .palette-section h4 {
+    margin: 0 0 1rem 0;
+    color: var(--sl-color-gray-2);
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+
+  .variable-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .variable-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--sl-color-gray-5);
+    border-radius: 8px;
+    transition: all 0.2s;
+  }
+
+  .variable-item:hover {
+    background: var(--sl-color-gray-4);
+  }
+
+  .variable-swatch {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+  }
+
+  .variable-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    min-width: 0;
+  }
+
+  .variable-name {
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: var(--sl-color-white);
+    font-weight: 600;
+  }
+
+  .variable-value {
+    font-family: monospace;
+    font-size: 0.8rem;
+    color: var(--sl-color-gray-3);
+  }
+
+  .copy-btn {
+    background: transparent;
+    border: 1px solid var(--sl-color-gray-4);
+    border-radius: 4px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+    margin-left: auto;
+  }
+
+  .copy-btn:hover {
+    background: var(--sl-color-gray-4);
+  }
+</style>
