@@ -67,6 +67,7 @@
   padding: var(--iad-gap-sm);
   background: var(--iad-control-bg);
   border-radius: var(--iad-control-border-radius);
+  margin: 0;
 }
 
 .iad-output-item code {
