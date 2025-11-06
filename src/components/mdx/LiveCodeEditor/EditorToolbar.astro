@@ -17,11 +17,11 @@ const { files } = Astro.props;
 
 <div class="editor-toolbar">
   <div class="editor-tabs">
-    {files.html && <button class="tab-btn active" data-tab="html">HTML</button>}
-    {files.css && <button class="tab-btn" data-tab="css">CSS</button>}
-    {files.js && <button class="tab-btn" data-tab="js">JavaScript</button>}
+    {files.html && <button class="iad-button tab-btn active" data-tab="html">HTML</button>}
+    {files.css && <button class="iad-button tab-btn" data-tab="css">CSS</button>}
+    {files.js && <button class="iad-button tab-btn" data-tab="js">JavaScript</button>}
   </div>
-  <button class="reset-btn" title="Réinitialiser le code">
+  <button class="iad-button reset-btn" title="Réinitialiser le code">
     <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
       <path d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"/>
       <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z"/>
@@ -46,15 +46,7 @@ const { files } = Astro.props;
   }
 
   .tab-btn {
-    padding: 0.375rem 0.75rem;
-    border: none;
-    background: transparent;
-    color: var(--sl-color-gray-2);
-    font-size: 0.875rem;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    transition: background 0.2s, color 0.2s;
+    margin-top: 0;
   }
 
   .tab-btn:hover {
@@ -67,17 +59,9 @@ const { files } = Astro.props;
   }
 
   .reset-btn {
+    margin-top: 0;
     display: flex;
-    align-items: center;
-    gap: 0.375rem;
-    padding: 0.375rem 0.75rem;
-    border: 1px solid var(--sl-color-gray-5);
-    background: var(--sl-color-bg);
-    color: var(--sl-color-gray-2);
-    font-size: 0.875rem;
-    cursor: pointer;
-    border-radius: 0.25rem;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    gap: var(--iad-button-padding)
   }
 
   .reset-btn:hover {
