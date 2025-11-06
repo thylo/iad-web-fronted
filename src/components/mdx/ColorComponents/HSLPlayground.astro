@@ -2,7 +2,7 @@
 // HSL Playground - Interactive HSL color manipulation
 ---
 
-<div class="hsl-playground" x-data="{ 
+<div class="iad-demo" x-data="{
   hue: 176, 
   saturation: 53, 
   lightness: 56,
@@ -78,42 +78,42 @@
 }">
   <div class="playground-preview" :style="`background-color: ${hslColor}`"></div>
   
-  <div class="playground-controls">
-    <div class="control-group">
-      <label>
+  <div class="iad-controls">
+    <div class="iad-slider-group">
+      <label class="iad-label-inline">
         <span>Hue (Teinte)</span>
-        <span class="value" x-text="hue + '°'"></span>
+        <span class="iad-label-value" x-text="hue + '°'"></span>
       </label>
-      <input type="range" x-model.number="hue" min="0" max="360" class="slider hue-slider">
+      <input type="range" x-model.number="hue" min="0" max="360" class="iad-slider hue-slider">
     </div>
 
-    <div class="control-group">
-      <label>
+    <div class="iad-slider-group">
+      <label class="iad-label-inline">
         <span>Saturation</span>
-        <span class="value" x-text="saturation + '%'"></span>
+        <span class="iad-label-value" x-text="saturation + '%'"></span>
       </label>
-      <input type="range" x-model.number="saturation" min="0" max="100" class="slider saturation-slider">
+      <input type="range" x-model.number="saturation" min="0" max="100" class="iad-slider saturation-slider">
     </div>
 
-    <div class="control-group">
-      <label>
+    <div class="iad-slider-group">
+      <label class="iad-label-inline">
         <span>Lightness (Luminosité)</span>
-        <span class="value" x-text="lightness + '%'"></span>
+        <span class="iad-label-value" x-text="lightness + '%'"></span>
       </label>
-      <input type="range" x-model.number="lightness" min="0" max="100" class="slider lightness-slider">
+      <input type="range" x-model.number="lightness" min="0" max="100" class="iad-slider lightness-slider">
     </div>
   </div>
 
-  <div class="playground-output">
-    <div class="output-item">
+  <div class="iad-output-list">
+    <div class="iad-output-item">
       <code x-text="hslColor"></code>
       <button @click="copyColor('hsl')" title="Copier HSL">📋</button>
     </div>
-    <div class="output-item">
+    <div class="iad-output-item">
       <code x-text="rgbColor"></code>
       <button @click="copyColor('rgb')" title="Copier RGB">📋</button>
     </div>
-    <div class="output-item">
+    <div class="iad-output-item">
       <code x-text="hexColor"></code>
       <button @click="copyColor('hex')" title="Copier HEX">📋</button>
     </div>
@@ -121,13 +121,7 @@
 </div>
 
 <style>
-  .hsl-playground {
-    padding: 1.5rem;
-    background: var(--sl-color-gray-6);
-    border-radius: 12px;
-    border: 1px solid var(--sl-color-gray-5);
-  }
-
+  /* Styles spécifiques à HSLPlayground */
   .playground-preview {
     width: 100%;
     height: 200px;
@@ -137,37 +131,7 @@
     transition: background-color 0.1s ease;
   }
 
-  .playground-controls {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .control-group label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5rem;
-    color: var(--sl-color-white);
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .control-group .value {
-    font-family: monospace;
-    color: var(--sl-color-gray-3);
-  }
-
-  .slider {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    outline: none;
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
+  /* Gradients spécifiques aux sliders HSL */
   .hue-slider {
     background: linear-gradient(to right, 
       hsl(0, 100%, 50%), 
@@ -193,72 +157,5 @@
       hsl(0, 0%, 50%), 
       hsl(0, 0%, 100%)
     );
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s;
-  }
-
-  .slider::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
-  }
-
-  .slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s;
-  }
-
-  .slider::-moz-range-thumb:hover {
-    transform: scale(1.1);
-  }
-
-  .playground-output {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.75rem;
-  }
-
-  .output-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem;
-    background: var(--sl-color-gray-5);
-    border-radius: 6px;
-  }
-
-  .output-item code {
-    flex: 1;
-    font-family: monospace;
-    font-size: 0.9rem;
-    color: var(--sl-color-white);
-  }
-
-  .output-item button {
-    background: transparent;
-    border: 1px solid var(--sl-color-gray-4);
-    border-radius: 4px;
-    padding: 0.25rem 0.5rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    transition: all 0.2s;
-  }
-
-  .output-item button:hover {
-    background: var(--sl-color-gray-4);
   }
 </style>

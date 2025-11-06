@@ -2,16 +2,16 @@
 // Theme Toggle - Démonstration de variables CSS et thèmes
 ---
 
-<div class="theme-toggle-demo" x-data="{ isDark: false }">
-  <div class="demo-header">
+<div class="iad-demo" x-data="{ isDark: false }">
+  <div class="iad-demo-header">
     <h3>Démo : Thème clair / sombre</h3>
     <button 
-      class="theme-switch" 
+      class="iad-switch" 
       @click="isDark = !isDark"
-      :class="{ 'is-dark': isDark }"
+      :class="{ 'active': isDark }"
       :aria-label="isDark ? 'Passer au thème clair' : 'Passer au thème sombre'"
     >
-      <span class="switch-icon" x-text="isDark ? '🌙' : '☀️'"></span>
+      <span class="iad-switch-icon" x-text="isDark ? '🌙' : '☀️'"></span>
     </button>
   </div>
 
@@ -24,83 +24,30 @@
     </div>
   </div>
 
-  <div class="demo-code">
+  <div class="iad-code-output">
     <h4>Variables CSS utilisées</h4>
-    <pre><code>:root &#123;
-  --color-background: #FFFFFF;
-  --color-text: #333333;
-  --color-primary: #FF6B6B;
-&#125;
-
-.dark-theme &#123;
-  --color-background: #1A1A2E;
-  --color-text: #FFFFFF;
-  --color-primary: #4ECDC4;
-&#125;
-
-/* Les éléments utilisent les variables */
-.card &#123;
-  background: var(--color-background);
-  color: var(--color-text);
-&#125;</code></pre>
+    <div class="iad-code-block"><div>:root &#123;</div>
+<div>  --color-background: #FFFFFF;</div>
+<div>  --color-text: #333333;</div>
+<div>  --color-primary: #FF6B6B;</div>
+<div>&#125;</div>
+<div></div>
+<div>.dark-theme &#123;</div>
+<div>  --color-background: #1A1A2E;</div>
+<div>  --color-text: #FFFFFF;</div>
+<div>  --color-primary: #4ECDC4;</div>
+<div>&#125;</div>
+<div></div>
+<div>/* Les éléments utilisent les variables */</div>
+<div>.card &#123;</div>
+<div>  background: var(--color-background);</div>
+<div>  color: var(--color-text);</div>
+<div>&#125;</div></div>
   </div>
 </div>
 
 <style>
-  .theme-toggle-demo {
-    padding: 1.5rem;
-    background: var(--sl-color-gray-6);
-    border-radius: 12px;
-    border: 1px solid var(--sl-color-gray-5);
-  }
-
-  .demo-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
-  }
-
-  .demo-header h3 {
-    margin: 0;
-    color: var(--sl-color-white);
-    font-size: 1.1rem;
-  }
-
-  .theme-switch {
-    width: 60px;
-    height: 32px;
-    border-radius: 16px;
-    border: none;
-    background: var(--sl-color-gray-5);
-    cursor: pointer;
-    position: relative;
-    transition: background 0.3s;
-  }
-
-  .theme-switch.is-dark {
-    background: var(--sl-color-gray-4);
-  }
-
-  .switch-icon {
-    position: absolute;
-    top: 4px;
-    left: 4px;
-    width: 24px;
-    height: 24px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .theme-switch.is-dark .switch-icon {
-    transform: translateX(28px);
-  }
-
+  /* Styles spécifiques à ThemeToggle */
   .demo-card {
     padding: 1.5rem;
     background: #FFFFFF;
@@ -133,9 +80,9 @@
     flex-wrap: wrap;
   }
 
-  .demo-card button {
+  .demo-card .btn-primary,
+  .demo-card .btn-secondary {
     padding: 0.5rem 1rem;
-    border: none;
     border-radius: 6px;
     font-size: 0.9rem;
     cursor: pointer;
@@ -143,6 +90,7 @@
   }
 
   .demo-card .btn-primary {
+    border: none;
     background: #FF6B6B;
     color: white;
   }
@@ -159,8 +107,8 @@
 
   .demo-card .btn-secondary {
     background: transparent;
-    color: #FF6B6B;
     border: 1px solid #FF6B6B;
+    color: #FF6B6B;
   }
 
   .demo-card.dark-theme .btn-secondary {
@@ -174,30 +122,5 @@
 
   .demo-card.dark-theme .btn-secondary:hover {
     background: rgba(78, 205, 196, 0.1);
-  }
-
-  .demo-code {
-    padding: 1rem;
-    background: var(--sl-color-gray-5);
-    border-radius: 8px;
-  }
-
-  .demo-code h4 {
-    margin: 0 0 0.75rem 0;
-    color: var(--sl-color-white);
-    font-size: 0.9rem;
-  }
-
-  .demo-code pre {
-    margin: 0;
-    padding: 0;
-    overflow-x: auto;
-  }
-
-  .demo-code code {
-    font-family: monospace;
-    font-size: 0.85rem;
-    line-height: 1.6;
-    color: var(--sl-color-gray-2);
   }
 </style>

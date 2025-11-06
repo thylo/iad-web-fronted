@@ -30,6 +30,15 @@
   line-height: 1.6;
 }
 
+.iad-code-block__line{
+  margin: 0;
+}
+
+.iad-code-block__indent{
+  display: inline-block;
+  width: 2em;
+}
+
 .iad-code-block div {
   color: var(--iad-code-text);
 }

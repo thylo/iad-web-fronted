@@ -82,6 +82,7 @@ select.iad-select {
   cursor: pointer;
   font-size: 0.9rem;
   transition: all var(--iad-transition-normal);
+  margin: 0;
 }
 
 select.iad-select:hover {
@@ -111,13 +112,20 @@ input[type="radio"].iad-radio {
   gap: var(--iad-gap-sm);
   cursor: pointer;
   color: var(--iad-text-primary);
+
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
 }
 
 /* === CONTROL GROUP === */
 .iad-control-group {
   display: flex;
   flex-direction: column;
-  gap: var(--iad-gap-sm);
+  gap: var(--iad-gap-xs);
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
 }
 
 /* === SLIDER GROUP (label + slider combiné) === */
@@ -125,4 +133,7 @@ input[type="radio"].iad-radio {
   display: flex;
   flex-direction: column;
   gap: var(--iad-gap-sm);
+  @media (min-width: 768px) {
+    margin-top: 0;
+  }
 }

@@ -3,7 +3,7 @@
 // Permet d'expérimenter avec les propriétés flexbox
 ---
 
-<div class="flexbox-playground" x-data="{
+<div class="iad-demo" x-data="{
   flexDirection: 'row',
   justifyContent: 'flex-start',
   alignItems: 'stretch',
@@ -20,14 +20,16 @@
     return this.items[this.selectedItem - 1];
   }
 }">
-  
-  <div class="controls-section">
-    <h4>Propriétés du conteneur</h4>
+  <div class="iad-demo-header">
+    <h3>Flexbox</h3>
+  </div>
+
+  <div class="iad-controls">
     
-    <div class="controls-grid">
-      <div class="control-group">
+    <div class="iad-controls-grid">
+      <div class="iad-control-group">
         <label>flex-direction</label>
-        <select x-model="flexDirection">
+        <select class="iad-select" x-model="flexDirection">
           <option value="row">row</option>
           <option value="row-reverse">row-reverse</option>
           <option value="column">column</option>
@@ -35,9 +37,9 @@
         </select>
       </div>
 
-      <div class="control-group">
+      <div class="iad-control-group">
         <label>justify-content</label>
-        <select x-model="justifyContent">
+        <select class="iad-select" x-model="justifyContent">
           <option value="flex-start">flex-start</option>
           <option value="flex-end">flex-end</option>
           <option value="center">center</option>
@@ -47,9 +49,9 @@
         </select>
       </div>
 
-      <div class="control-group">
+      <div class="iad-control-group">
         <label>align-items</label>
-        <select x-model="alignItems">
+        <select class="iad-select" x-model="alignItems">
           <option value="stretch">stretch</option>
           <option value="flex-start">flex-start</option>
           <option value="flex-end">flex-end</option>
@@ -58,51 +60,51 @@
         </select>
       </div>
 
-      <div class="control-group">
-        <label>flex-wrap</label>
-        <select x-model="flexWrap">
+      <div class="iad-control-group">
+        <label for="flex-wrap">flex-wrap</label>
+        <select class="iad-select" id="flex-wrap" x-model="flexWrap">
           <option value="nowrap">nowrap</option>
           <option value="wrap">wrap</option>
           <option value="wrap-reverse">wrap-reverse</option>
         </select>
       </div>
 
-      <div class="control-group">
+      <div class="iad-control-group">
         <label>gap: <strong x-text="gap + 'rem'"></strong></label>
         <input type="range" x-model="gap" min="0" max="3" step="0.25">
       </div>
     </div>
   </div>
 
-  <div class="controls-section">
+  <div class="iad-controls">
     <h4>Propriétés de l'item sélectionné</h4>
     
-    <div class="item-selector">
+    <div class="iad-item-selector">
       <template x-for="i in 3" :key="i">
         <button 
           @click="selectedItem = i"
           :class="{ active: selectedItem === i }"
-          class="item-selector-btn"
+          class="iad-button"
         >
           Item <span x-text="i"></span>
         </button>
       </template>
     </div>
 
-    <div class="controls-grid">
-      <div class="control-group">
+    <div class="iad-controls-grid">
+      <div class="iad-control-group">
         <label>flex-grow: <strong x-text="currentItem.grow"></strong></label>
         <input type="range" x-model="currentItem.grow" min="0" max="5" step="1">
       </div>
 
-      <div class="control-group">
+      <div class="iad-control-group">
         <label>flex-shrink: <strong x-text="currentItem.shrink"></strong></label>
         <input type="range" x-model="currentItem.shrink" min="0" max="3" step="1">
       </div>
 
-      <div class="control-group">
+      <div class="iad-control-group">
         <label>flex-basis</label>
-        <select x-model="currentItem.basis">
+        <select class="iad-select" x-model="currentItem.basis">
           <option value="auto">auto</option>
           <option value="100px">100px</option>
           <option value="150px">150px</option>
@@ -113,7 +115,7 @@
     </div>
   </div>
 
-  <div class="visualization-area">
+  <div class="iad-visualization-area">
     <div 
       class="flex-container"
       :style="`display: flex; flex-direction: ${flexDirection}; justify-content: ${justifyContent}; align-items: ${alignItems}; flex-wrap: ${flexWrap}; gap: ${gap}rem; min-height: 300px;`"
@@ -157,11 +159,6 @@
 
 <style>
   .flexbox-playground {
-    background: #f8f9fa;
-    border: 2px solid #e1e8ed;
-    border-radius: 0.75rem;
-    padding: 1.5rem;
-    margin: 2rem 0;
   }
 
   .controls-section {
@@ -178,12 +175,6 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1rem;
-  }
-
-  .control-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
   }
 
   .control-group label {

@@ -82,9 +82,6 @@
 /* === ÉLÉMENTS DE MESURE === */
 .iad-measurements {
   margin-top: var(--iad-gap-lg);
-  padding: var(--iad-gap-md);
-  background: var(--iad-control-bg);
-  border-radius: var(--iad-control-border-radius);
 }
 
 .iad-measurement-item {
@@ -100,10 +97,8 @@
 }
 
 .iad-measurement-label {
-  color: var(--iad-text-secondary);
 }
 
 .iad-measurement-value {
   font-weight: 600;
-  color: var(--iad-text-primary);
 }

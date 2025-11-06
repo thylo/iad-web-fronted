@@ -2,7 +2,7 @@
 // RGBA Demo - Démonstration de l'opacité
 ---
 
-<div class="rgba-demo" x-data="{ 
+<div class="iad-demo" x-data="{
   alpha: 0.8,
   baseColor: { r: 255, g: 107, b: 107 },
   get rgbaColor() {
@@ -12,7 +12,7 @@
     return `rgb(${this.baseColor.r}, ${this.baseColor.g}, ${this.baseColor.b})`;
   }
 }">
-  <div class="demo-header">
+  <div class="iad-demo-header">
     <h3>Démonstration RGBA (opacité)</h3>
   </div>
 
@@ -29,10 +29,10 @@
       </div>
     </div>
 
-    <div class="demo-control">
-      <label>
+    <div class="iad-slider-group">
+      <label class="iad-label-inline">
         <span>Alpha (Opacité)</span>
-        <span class="value" x-text="alpha.toFixed(2)"></span>
+        <span class="iad-label-value" x-text="alpha.toFixed(2)"></span>
       </label>
       <input 
         type="range" 
@@ -40,11 +40,11 @@
         min="0" 
         max="1" 
         step="0.01" 
-        class="slider"
+        class="iad-slider alpha-slider"
       >
     </div>
 
-    <div class="comparison">
+    <div class="iad-grid">
       <div class="comparison-item">
         <div class="comparison-swatch solid" :style="`background-color: ${rgbColor}`"></div>
         <code x-text="rgbColor"></code>
@@ -60,19 +60,7 @@
 </div>
 
 <style>
-  .rgba-demo {
-    padding: 1.5rem;
-    background: var(--sl-color-gray-6);
-    border-radius: 12px;
-    border: 1px solid var(--sl-color-gray-5);
-  }
-
-  .demo-header h3 {
-    margin: 0 0 1.5rem 0;
-    color: var(--sl-color-white);
-    font-size: 1.1rem;
-  }
-
+  /* Styles spécifiques à RGBADemo */
   .demo-content {
     display: flex;
     flex-direction: column;
@@ -126,74 +114,12 @@
     backdrop-filter: blur(4px);
   }
 
-  .demo-control {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .demo-control label {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: var(--sl-color-white);
-    font-size: 0.9rem;
-    font-weight: 500;
-  }
-
-  .demo-control .value {
-    font-family: monospace;
-    color: var(--sl-color-gray-3);
-  }
-
-  .slider {
-    width: 100%;
-    height: 8px;
-    border-radius: 4px;
-    outline: none;
+  /* Gradient spécifique au slider alpha */
+  .alpha-slider {
     background: linear-gradient(to right, 
       rgba(255, 107, 107, 0), 
       rgba(255, 107, 107, 1)
     );
-    -webkit-appearance: none;
-    appearance: none;
-  }
-
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s;
-  }
-
-  .slider::-webkit-slider-thumb:hover {
-    transform: scale(1.1);
-  }
-
-  .slider::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: white;
-    cursor: pointer;
-    border: none;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    transition: transform 0.1s;
-  }
-
-  .slider::-moz-range-thumb:hover {
-    transform: scale(1.1);
-  }
-
-  .comparison {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 1rem;
   }
 
   .comparison-item {
@@ -201,7 +127,7 @@
     flex-direction: column;
     gap: 0.5rem;
     padding: 1rem;
-    background: var(--sl-color-gray-5);
+    background: var(--iad-control-bg);
     border-radius: 8px;
   }
 
@@ -230,12 +156,12 @@
   .comparison-item code {
     font-family: monospace;
     font-size: 0.85rem;
-    color: var(--sl-color-white);
+    color: var(--iad-text-primary);
   }
 
   .comparison-label {
     font-size: 0.85rem;
-    color: var(--sl-color-gray-3);
+    color: var(--iad-text-secondary);
     font-weight: 500;
   }
 </style>
