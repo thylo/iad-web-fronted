@@ -11,6 +11,10 @@ export default defineConfig({
             light: './public/img/iad-logo-dark.svg',
             dark: './public/img/iad-logo-light.svg',
         },
+        customCss: [
+            // Styles unifiés pour les composants interactifs
+            './src/styles/iad-interactive.css',
+        ],
         social: [{ icon: 'github', label: 'GitHub', href: 'https://github.com/withastro/starlight' }],
         sidebar: [
             {
