@@ -8,13 +8,16 @@
  * 3. Components - Composants réutilisables
  */
 
+@layer starlight, overrides;
+
 /* === 1. SETTINGS === */
-@import './1-settings/iad-tokens.css';
+@import './1-settings/iad-tokens.css' layer(overrides);
 
 /* === 2. ELEMENTS === */
-@import './2-elements/iad-forms.css';
+@import './2-elements/iad-forms.css' layer(overrides);
 
 /* === 3. COMPONENTS === */
-@import './3-components/iad-demo-container.css';
-@import './3-components/iad-button.css';
-@import './3-components/iad-code-output.css';
+@import './3-components/iad-demo-container.css' layer(overrides);
+@import './3-components/iad-button.css' layer(overrides);
+@import './3-components/iad-code-output.css' layer(overrides);
+
