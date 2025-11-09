@@ -56,7 +56,7 @@
 - Éviter les références japonaises trop fréquentes (Manga, anime, etc.)
 
 ### Autres références
-- Musique : Dylan, Pink Floyd pour illustrer des concepts
+- Musique : Dylan, Pink Floyd, Artic Monkeys pour illustrer des concepts
 - Littérature : citations pertinentes
 - Design : Rams, minimalisme, Bauhaus
 - Philosophie : wabi-sabi (imperfection, simplicité)
@@ -73,6 +73,8 @@
 - Phrases courtes, scannables
 - Structure hiérarchisée
 - Questions pour engager la réflexion
+- Ecrire le cours à destination des étudiants pas comme notes du professeur
+- Ecrire un cours instructif, pas un programme (10minutes pour ça, 20 minutes pour ça...)
 
 ### Bannir
 - "Certainement", "Super", "Génial", "Fantastique"

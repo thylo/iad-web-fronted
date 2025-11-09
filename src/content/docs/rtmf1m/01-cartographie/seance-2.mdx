@@ -1,240 +1,868 @@
 ---
-title: Séance 2 - Discussion
-description: Partage des découvertes et début de réflexion personnelle (2h)
+title: Séance 2 - Exploration et fondamentaux Svelte
+description: Découverte d'œuvres marquantes et apprentissage par la pratique avec un cookie clicker (4h)
 ---
 
 ## Vue d'ensemble
 
-**Durée :** 2 heures  
-**Objectif :** Partager les découvertes, analyser collectivement, commencer à identifier son territoire
+**Durée :** 4 heures  
+**Objectif :** Explorer des œuvres inspirantes et maîtriser les fondamentaux Svelte en construisant un cookie clicker
+
+**Format :** Avec 2-3 étudiants, cette séance est un atelier pratique où vous codez ensemble.
 
 ## Timing de la séance
 
-- **60 min** : Partage des découvertes
-- **60 min** : Début de réflexion personnelle
+- **45 min** : Exploration d'œuvres marquantes
+- **15 min** : Pause
+- **60 min** : Cookie Clicker - Niveau 1 (réactivité, événements, conditions)
+- **15 min** : Pause
+- **90 min** : Cookie Clicker - Niveau 2 (props, listes, état complexe)
+- **30 min** : Mission et prochaines étapes
 
 ---
 
-## Partie 1 : Partage des découvertes (60min)
+## Partie 1 : Exploration d'œuvres marquantes (45 min)
 
-### Format de présentation
+### Format
 
-Chaque étudiant présente **1 œuvre** qu'il a trouvée pendant la semaine.
+Contrairement à la séance initialement prévue, les étudiants n'ont pas exploré d'œuvres. On va donc le faire **ensemble**.
 
-**Structure de présentation (5 min par étudiant) :**
+**Approche :** 5-6 exemples concrets, testés en direct, discussion ouverte.
 
-:::tip[Pour l'enseignant]
-Si certains étudiants sont timides lors du partage, vous pouvez :
-- Commencer par montrer une œuvre vous-même
-- Faire des petits groupes de 2-3 pour discuter avant partage collectif
-- Permettre le partage écrit (ajouter à un document partagé)
-:::
+### Exemples à montrer (8 min chacun)
 
-1. **Nom et contexte** (30 sec)
-   - Quel est le projet ?
-   - Qui l'a créé et quand ?
+Pour chaque exemple :
+1. **Tester ensemble** (5 min)
+2. **Discussion** : Qu'est-ce qui fonctionne ? Quel territoire ? (3 min)
 
-2. **Description de l'expérience** (2 min)
-   - Que fait l'utilisateur ?
-   - Comment ça fonctionne ?
-   - Montrer l'œuvre si possible (vidéo, démo, captures)
+#### 1. Patatap - Interface expérimentale
 
-3. **Analyse** (2 min)
-   - Quel territoire ça représente ?
-   - Qu'est-ce qui fonctionne bien ?
-   - Qu'est-ce qui pourrait être amélioré ?
-   - Qu'est-ce qui vous a surpris/marqué ?
+**Lien :** [patatap.com](https://patatap.com/)
 
-4. **Questions du groupe** (30 sec)
-
-### Grille d'analyse collective
-
-Pour chaque œuvre présentée, le groupe discute :
-
-**Interaction :**
-- Quel geste fait l'utilisateur ?
-- Est-ce intuitif ou déroutant ?
-- Le geste sert-il le propos ?
-
-**Narration :**
-- Y a-t-il une histoire racontée ?
-- Comment l'interaction influence-t-elle le récit ?
-- L'expérience est-elle linéaire ou non-linéaire ?
-
-**Technique :**
-- Quelles technologies sont utilisées (si visible) ?
-- Est-ce complexe ou simple ?
-- Le résultat justifie-t-il la complexité ?
-
-**Émotion :**
-- Quelle émotion l'expérience provoque-t-elle ?
-- Pourquoi ça fonctionne (ou pas) ?
-
-### Cartographie collective
-
-**Outil suggéré :** Tableau blanc, Miro, ou Figma en projection
-
-Au tableau ou sur un grand écran, placer les œuvres présentées dans une carte :
-
-```
-                    Contemplatif
-                         |
-                         |
-    Muséal/Spatial ------+------ Lecture augmentée
-                         |
-                         |
-Jeux hybrides -----------+----------- Interfaces expérimentales
-                         |
-                         |
-                    Ludique/Actif
-                         |
-                    Outils créatifs
-```
+**Test :** Tapez sur le clavier, testez différentes touches.
 
 **Discussion :**
-- Quels territoires sont les plus représentés ?
-- Lesquels sont les moins explorés ?
-- Y a-t-il des œuvres à la frontière de plusieurs territoires ?
+- Geste simple → effet audiovisuel complexe
+- Pas de tutoriel, découverte par expérimentation
+- Territoire : **Interfaces expérimentales** + **Outils créatifs**
 
 ---
 
-## Partie 2 : Début de réflexion personnelle (60min)
+#### 2. neal.fun - Petites expériences ludiques
 
-**Timing détaillé :**
-- **20 min** : Atelier d'auto-réflexion individuelle
-- **30 min** : Brainstorming par territoire
-- **10 min** : Partage des premières idées
+**Lien :** [neal.fun](https://neal.fun/)
 
-### Atelier d'auto-réflexion (20 min)
+**Exemples à tester :**
+- **The Deep Sea** : scroll infini dans l'océan
+- **The Size of Space** : échelle de l'univers
+- **Infinite Craft** : combinaison d'éléments
 
-**Individuellement, répondez dans votre carnet :**
-
-1. **Quel territoire vous attire le plus ?** (pourquoi ?)
-
-2. **Qu'est-ce que vous voulez faire ressentir ?**
-   - Une émotion : surprise, contemplation, tension, joie...
-   - Une découverte : révéler quelque chose de caché
-   - Une réflexion : faire réfléchir sur un sujet
-
-3. **Quel geste imaginez-vous ?**
-   - Toucher, cliquer, dessiner, parler, secouer...
-   - Explorer, résoudre, créer, découvrir...
-   - Seul ou collectif ?
-
-4. **Qu'est-ce que le web permet ici que rien d'autre ne peut ?**
-   - Interactivité en temps réel
-   - Non-linéarité narrative
-   - Génération procédurale
-   - Connexion physique/numérique
-
-### Brainstorming par territoire (30 min)
-
-**Format :**
-- Se regrouper par territoire d'intérêt (2-4 étudiants par groupe)
-- Brainstorming libre : quelles idées émergent ?
-- Pas de jugement, juste noter toutes les idées
-
-**Questions pour stimuler les idées :**
-
-**Territoire 1 : Muséal/Spatial**
-- Quel lieu réel pourrait être augmenté ?
-- Qu'est-ce qu'on pourrait révéler sur ce lieu ?
-- Comment le numérique change le rapport à l'espace ?
-
-**Territoire 2 : Jeux hybrides**
-- Quel type de jeu (enquête, narration, déduction, coopération) ?
-- Qu'est-ce que le numérique prend en charge ?
-- Comment garder l'interaction humaine au centre ?
-
-**Territoire 3 : Lecture augmentée**
-- Quel type de récit (fiction, poésie, essai, témoignage) ?
-- Comment l'interaction sert-elle le récit ?
-- Qu'est-ce qui ne pourrait pas exister sur papier ?
-
-**Territoire 4 : Interfaces expérimentales**
-- Quel geste inhabituel explorer ?
-- Le geste EST-il l'histoire ?
-- Comment créer de la surprise ?
-
-**Territoire 5 : Outils créatifs**
-- Quel outil détourner ou créer ?
-- Comment rendre l'utilitaire poétique ?
-- Qu'est-ce qui est généré/procédural ?
-
-### Partage des premières idées (10 min)
-
-Chaque groupe partage **2-3 idées** qui ont émergé.
-
-**Pas besoin que ce soit abouti !** C'est juste des pistes.
-
-Retours du groupe :
-- Ce qui semble prometteur
-- Questions à creuser
-- Connexions avec d'autres idées
+**Discussion :**
+- Simplicité de l'interaction
+- Scroll ou clic comme seul geste
+- Territoire : **Interfaces expérimentales** + **Lecture augmentée**
 
 ---
 
-## Mission pour la prochaine séance
+#### 3. Incredibox - Outil créatif musical
 
-**D'ici le Module 2, vous devez :**
+**Lien :** [incredibox.com](https://www.incredibox.com/)
 
-### 1. Confirmer votre territoire
+**Test :** Drag and drop de personnages pour créer de la musique.
 
-Choisissez UN des 5 territoires. Vous pouvez encore changer d'avis, mais commencez à vous positionner.
+**Discussion :**
+- Interface tactile intuitive
+- Création sans compétence musicale
+- Territoire : **Outils créatifs**
 
-### 2. Enrichir votre carnet de recherche
+---
 
-Ajoutez au minimum :
-- **3 nouvelles œuvres** dans votre territoire choisi
-- **1 analyse détaillée** d'une œuvre (ce qui fonctionne, ce qui ne fonctionne pas)
-- **Des croquis/wireframes** de premières idées (même très brouillons)
+#### 4. The Pudding - Data storytelling
 
-### 3. Commencer à définir votre concept
+**Lien :** [pudding.cool](https://pudding.cool/)
 
-Essayez de répondre à ces 3 questions :
+**Exemples à voir :**
+- **The Office** dialogue analysis
+- **Hip Hop vocabulary**
+
+**Discussion :**
+- Données rendues narratives
+- Scroll + interactivité
+- Territoire : **Lecture augmentée**
+
+---
+
+#### 5. Small Bang Cinemacity - Expérience muséale
+
+**Lien :** [small-bang.com/cinemacity](https://www.small-bang.com/cinemacity/)
+
+**Montrer :** Balade cinéma dans Paris via QR codes.
+
+**Discussion :**
+- Lien physique/numérique
+- QR codes narratifs
+- Territoire : **Expériences muséales**
+
+---
+
+#### 6. Chronicles of Crime - Jeu de société hybride
+
+**Montrer :** Vidéo ou screenshots du jeu.
+
+**Discussion :**
+- Application compagnon pour jeu de société
+- Numérique assiste mais ne domine pas
+- Territoire : **Jeux de société hybrides**
+
+---
+
+### Synthèse collective (5 min)
+
+**Questions :**
+- Quel exemple vous a le plus marqué ?
+- Quel territoire vous attire spontanément ?
+- Premières idées qui émergent ?
+
+**Transition :**
+> "Vous avez vu ce que le web permet. Maintenant, on va apprendre à construire des interactions. On va créer un cookie clicker pour comprendre Svelte."
+
+---
+
+## Pause (15 min)
+
+---
+
+## Partie 2 : Cookie Clicker - Niveau 1 (60 min)
+
+### Objectif
+
+Créer un cookie clicker basique pour comprendre :
+- Réactivité automatique
+- Événements
+- Conditions d'affichage
+
+### Étape 1 : Setup du projet (10 min)
+
+**Vérifier que tous les étudiants ont :**
+- Terminal ouvert
+- Serveur Vite qui tourne (`npm run dev`)
+- Projet dans VSCode/PhpStorm
+
+**Si besoin de créer un nouveau composant :**
+
+**macOS/Linux :**
+```bash
+mkdir -p src/lib
+touch src/lib/CookieClicker.svelte
+```
+
+**Windows PowerShell :**
+```powershell
+mkdir src\lib -Force
+New-Item src\lib\CookieClicker.svelte
+```
+
+**Alternative :** Créer le fichier directement dans l'éditeur.
+
+---
+
+### Étape 2 : Cookie Clicker basique (30 min)
+
+**Créer `src/lib/CookieClicker.svelte` :**
+
+```svelte
+<script>
+  // État réactif : nombre de cookies
+  let cookies = 0;
+  
+  // Fonction pour cliquer sur le cookie
+  function cliquerCookie() {
+    cookies += 1; // Incrémentation simple
+  }
+</script>
+
+<!-- Interface -->
+<div class="container">
+  <h1>Cookie Clicker</h1>
+  
+  <!-- Affichage du score -->
+  <p class="score">🍪 {cookies} cookies</p>
+  
+  <!-- Le cookie cliquable -->
+  <button class="cookie" on:click={cliquerCookie}>
+    🍪
+  </button>
+  
+  <!-- Messages conditionnels selon le score -->
+  {#if cookies < 10}
+    <p class="message">Cliquez sur le cookie !</p>
+  {:else if cookies < 50}
+    <p class="message">Bien ! Continuez !</p>
+  {:else if cookies < 100}
+    <p class="message">Impressionnant !</p>
+  {:else}
+    <p class="message">🎉 Vous êtes un maître du cookie !</p>
+  {/if}
+</div>
+
+<style>
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e67e22;
+    margin: 1rem 0;
+  }
+  
+  .cookie {
+    font-size: 8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .cookie:hover {
+    transform: scale(1.1);
+  }
+  
+  .cookie:active {
+    transform: scale(0.95);
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+  }
+</style>
+```
+
+**Utiliser le composant dans `src/App.svelte` :**
+
+```svelte
+<script>
+  import CookieClicker from './lib/CookieClicker.svelte';
+</script>
+
+<main>
+  <CookieClicker />
+</main>
+
+<style>
+  main {
+    padding: 2rem;
+  }
+</style>
+```
+
+---
+
+### Étape 3 : Explication des concepts (20 min)
+
+**1. Réactivité automatique**
+
+```javascript
+let cookies = 0; // Variable réactive
+
+function cliquerCookie() {
+  cookies += 1; // Simple assignation → interface mise à jour automatiquement
+}
+```
+
+**Pas besoin de** `setState`, `this.$set`, ou autre. Une simple assignation suffit.
+
+---
+
+**2. Événements**
+
+```svelte
+<button on:click={cliquerCookie}>
+```
+
+**Syntax :** `on:nomEvenement={fonction}`
+
+**Autres événements utiles :**
+- `on:click` : clic
+- `on:dblclick` : double-clic
+- `on:mouseover` : survol
+- `on:input` : saisie de texte
+- `on:keydown` : touche clavier
+
+---
+
+**3. Conditions avec `{#if}`**
+
+```svelte
+{#if cookies < 10}
+  <p>Message pour débutant</p>
+{:else if cookies < 50}
+  <p>Message intermédiaire</p>
+{:else}
+  <p>Message expert</p>
+{/if}
+```
+
+**Syntax :**
+- `{#if condition}` : ouvre le bloc conditionnel
+- `{:else if condition}` : condition alternative
+- `{:else}` : sinon
+- `{/if}` : ferme le bloc
+
+---
+
+## Pause (15 min)
+
+---
+
+## Partie 3 : Cookie Clicker - Niveau 2 (90 min)
+
+### Objectif
+
+Ajouter de la complexité pour comprendre :
+- Props (passer des données à un composant)
+- Listes avec `{#each}`
+- État complexe (cookies par seconde)
+
+### Étape 1 : Créer le composant Upgrade (30 min)
+
+**Créer `src/lib/Upgrade.svelte` :**
+
+```svelte
+<script>
+  // Props : données passées par le composant parent
+  export let nom; // Nom de l'upgrade
+  export let prix; // Prix en cookies
+  export let gain; // Cookies par seconde gagnés
+  export let quantite; // Nombre possédé
+  export let cookiesActuels; // Pour savoir si on peut acheter
+  
+  // Événement custom pour notifier le parent de l'achat
+  import { createEventDispatcher } from 'svelte';
+  const dispatch = createEventDispatcher();
+  
+  function acheter() {
+    // Envoyer l'événement au parent
+    dispatch('acheter');
+  }
+  
+  // Peut-on acheter cet upgrade ?
+  $: peutAcheter = cookiesActuels >= prix;
+</script>
+
+<div class="upgrade" class:disabled={!peutAcheter}>
+  <div class="info">
+    <h3>{nom}</h3>
+    <p class="description">+{gain} 🍪/sec</p>
+    <p class="quantite">Possédé : {quantite}</p>
+  </div>
+  
+  <button 
+    class="acheter" 
+    on:click={acheter}
+    disabled={!peutAcheter}
+  >
+    {prix} 🍪
+  </button>
+</div>
+
+<style>
+  .upgrade {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.5rem 0;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 2px solid #dee2e6;
+    transition: all 0.2s ease;
+  }
+  
+  .upgrade:hover {
+    background: #e9ecef;
+  }
+  
+  .upgrade.disabled {
+    opacity: 0.5;
+  }
+  
+  .info {
+    text-align: left;
+  }
+  
+  h3 {
+    margin: 0 0 0.25rem 0;
+    color: #333;
+    font-size: 1.1rem;
+  }
+  
+  .description {
+    margin: 0.25rem 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .quantite {
+    margin: 0.25rem 0;
+    color: #999;
+    font-size: 0.85rem;
+  }
+  
+  .acheter {
+    padding: 0.5rem 1rem;
+    background: #e67e22;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .acheter:hover:not(:disabled) {
+    background: #d35400;
+  }
+  
+  .acheter:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+</style>
+```
+
+---
+
+### Étape 2 : Mettre à jour CookieClicker (40 min)
+
+**Modifier `src/lib/CookieClicker.svelte` :**
+
+```svelte
+<script>
+  import { onMount, onDestroy } from 'svelte';
+  import Upgrade from './Upgrade.svelte';
+  
+  // État du jeu
+  let cookies = 0;
+  let cookiesParSeconde = 0;
+  
+  // Liste des upgrades disponibles
+  let upgrades = [
+    { id: 1, nom: 'Curseur', prix: 10, gain: 1, quantite: 0 },
+    { id: 2, nom: 'Grand-mère', prix: 50, gain: 5, quantite: 0 },
+    { id: 3, nom: 'Ferme à cookies', prix: 200, gain: 20, quantite: 0 },
+    { id: 4, nom: 'Usine', prix: 500, gain: 50, quantite: 0 },
+  ];
+  
+  // Timer pour les cookies automatiques
+  let interval;
+  
+  // Fonction pour cliquer sur le cookie
+  function cliquerCookie() {
+    cookies += 1;
+  }
+  
+  // Fonction pour acheter un upgrade
+  function acheterUpgrade(id) {
+    // Trouver l'upgrade dans la liste
+    const upgrade = upgrades.find(u => u.id === id);
+    
+    // Vérifier si on a assez de cookies
+    if (cookies >= upgrade.prix) {
+      cookies -= upgrade.prix; // Déduire le prix
+      upgrade.quantite += 1; // Incrémenter la quantité
+      upgrade.prix = Math.floor(upgrade.prix * 1.5); // Augmenter le prix pour le prochain achat
+      
+      // Recalculer les cookies par seconde
+      calculerCookiesParSeconde();
+    }
+  }
+  
+  // Calculer le total de cookies par seconde
+  function calculerCookiesParSeconde() {
+    cookiesParSeconde = upgrades.reduce((total, upgrade) => {
+      return total + (upgrade.gain * upgrade.quantite);
+    }, 0);
+  }
+  
+  // Au montage du composant : démarrer le timer
+  onMount(() => {
+    interval = setInterval(() => {
+      cookies += cookiesParSeconde;
+    }, 1000); // Chaque seconde
+  });
+  
+  // Au démontage : nettoyer le timer
+  onDestroy(() => {
+    if (interval) clearInterval(interval);
+  });
+</script>
+
+<div class="container">
+  <div class="game">
+    <!-- Colonne gauche : le cookie -->
+    <div class="cookie-zone">
+      <h1>Cookie Clicker</h1>
+      
+      <p class="score">🍪 {Math.floor(cookies)} cookies</p>
+      <p class="rate">+{cookiesParSeconde} cookies/sec</p>
+      
+      <button class="cookie" on:click={cliquerCookie}>
+        🍪
+      </button>
+      
+      {#if cookies < 10}
+        <p class="message">Cliquez sur le cookie !</p>
+      {:else if cookiesParSeconde === 0}
+        <p class="message">Achetez votre premier upgrade →</p>
+      {:else}
+        <p class="message">🎉 Votre empire grandit !</p>
+      {/if}
+    </div>
+    
+    <!-- Colonne droite : les upgrades -->
+    <div class="upgrades-zone">
+      <h2>Upgrades</h2>
+      
+      {#each upgrades as upgrade (upgrade.id)}
+        <Upgrade 
+          nom={upgrade.nom}
+          prix={upgrade.prix}
+          gain={upgrade.gain}
+          quantite={upgrade.quantite}
+          cookiesActuels={cookies}
+          on:acheter={() => acheterUpgrade(upgrade.id)}
+        />
+      {/each}
+    </div>
+  </div>
+</div>
+
+<style>
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  .game {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  
+  .cookie-zone {
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e67e22;
+    margin: 1rem 0 0.5rem 0;
+  }
+  
+  .rate {
+    font-size: 1.2rem;
+    color: #27ae60;
+    margin: 0 0 1rem 0;
+  }
+  
+  .cookie {
+    font-size: 8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .cookie:hover {
+    transform: scale(1.1);
+  }
+  
+  .cookie:active {
+    transform: scale(0.95);
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+  }
+  
+  .upgrades-zone {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  h2 {
+    margin-top: 0;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .game {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+```
+
+---
+
+### Étape 3 : Explication des nouveaux concepts (20 min)
+
+**1. Props : passer des données à un composant enfant**
+
+**Dans le composant enfant (Upgrade.svelte) :**
+```javascript
+export let nom;
+export let prix;
+```
+
+**Le mot-clé `export`** rend la variable accessible depuis le parent.
+
+**Dans le composant parent (CookieClicker.svelte) :**
+```svelte
+<Upgrade 
+  nom={upgrade.nom}
+  prix={upgrade.prix}
+/>
+```
+
+---
+
+**2. Listes avec `{#each}`**
+
+```svelte
+{#each upgrades as upgrade (upgrade.id)}
+  <Upgrade ... />
+{/each}
+```
+
+**Syntax :**
+- `{#each liste as element (clé unique)}` : boucle
+- `(upgrade.id)` : clé unique pour optimiser le rendu
+- `{/each}` : ferme la boucle
+
+---
+
+**3. Événements custom**
+
+**Dans le composant enfant (Upgrade.svelte) :**
+```javascript
+import { createEventDispatcher } from 'svelte';
+const dispatch = createEventDispatcher();
+
+function acheter() {
+  dispatch('acheter'); // Envoyer un événement au parent
+}
+```
+
+**Dans le composant parent (CookieClicker.svelte) :**
+```svelte
+<Upgrade on:acheter={() => acheterUpgrade(upgrade.id)} />
+```
+
+---
+
+**4. Réactivité avancée avec `$:`**
+
+```javascript
+$: peutAcheter = cookiesActuels >= prix;
+```
+
+**Le `$:`** signifie : "Recalcule cette valeur chaque fois qu'une de ses dépendances change".
+
+---
+
+**5. Lifecycle avec `onMount` et `onDestroy`**
+
+```javascript
+import { onMount, onDestroy } from 'svelte';
+
+let interval;
+
+onMount(() => {
+  // Code exécuté quand le composant est créé
+  interval = setInterval(() => {
+    cookies += cookiesParSeconde;
+  }, 1000);
+});
+
+onDestroy(() => {
+  // Code exécuté quand le composant est détruit
+  if (interval) clearInterval(interval);
+});
+```
+
+**Pourquoi ?** Nettoyer les timers évite les fuites mémoire.
+
+---
+
+## Partie 4 : Mission et prochaines étapes (30 min)
+
+### Synthèse de ce qu'on a appris
+
+**Concepts Svelte maîtrisés :**
+- ✅ Réactivité automatique
+- ✅ Événements (`on:click`, événements custom)
+- ✅ Conditions (`{#if}`)
+- ✅ Listes (`{#each}`)
+- ✅ Props (communication parent → enfant)
+- ✅ Événements custom (communication enfant → parent)
+- ✅ Lifecycle (`onMount`, `onDestroy`)
+- ✅ Réactivité avancée (`$:`)
+
+**Ce qu'on peut construire avec ça :**
+- Interfaces interactives
+- Jeux simples
+- Expériences narratives
+- Outils créatifs
+
+---
+
+### Recap des 5 territoires
+
+**[→ Voir la page complète des territoires](/rtmf1m/territoires/)**
+
+1. **[Expériences muséales/spatiales](/rtmf1m/territoires/01-museales)**
+2. **[Jeux de société hybrides](/rtmf1m/territoires/02-jeux-societe)**
+3. **[Expériences de lecture augmentées](/rtmf1m/territoires/03-lecture)**
+4. **[Interfaces expérimentales/ludiques](/rtmf1m/territoires/04-interfaces)**
+5. **[Outils créatifs et générateurs](/rtmf1m/territoires/05-outils-creatifs)**
+
+---
+
+### Mission pour la prochaine séance
+
+#### 1. Explorer des œuvres (obligatoire)
+
+**Trouvez 3 à 5 œuvres** qui vous inspirent dans votre territoire préféré.
+
+**Pour chaque œuvre, notez dans votre carnet :**
+- Nom et lien
+- Description de l'expérience
+- Ce qui fonctionne / ne fonctionne pas
+- Pourquoi ça vous inspire
+
+**Où chercher :**
+- [Galerie complète](/ressources/galerie/)
+- [Awwwards](https://www.awwwards.com/)
+- [neal.fun](https://neal.fun/)
+- [The Pudding](https://pudding.cool/)
+- [Incredibox](https://www.incredibox.com/)
+
+#### 2. Enrichir votre cookie clicker (optionnel mais recommandé)
+
+**Idées d'améliorations :**
+
+**Facile :**
+- Ajouter plus d'upgrades
+- Changer les emojis et le thème visuel
+- Ajouter des sons au clic
+- Sauvegarder le score dans LocalStorage
+
+**Moyen :**
+- Ajouter des achievements (badges)
+- Créer des combos de clics
+- Animations de particules au clic
+- Thème jour/nuit
+
+**Avancé :**
+- Mini-jeux bonus
+- Système de prestige (reset avec bonus)
+- Graphique de progression
+- Mode multiplayer (partage de score)
+
+#### 3. Commencer à réfléchir à votre projet
+
+**Répondez à ces 3 questions :**
 
 **Intention :** Que voulez-vous faire ressentir/découvrir ?  
 **Geste :** Quelle action fait l'utilisateur ?  
 **Synergie :** Comment le geste et l'intention se renforcent ?
 
-**Exemple 1 :**
-- **Intention :** Faire ressentir la nostalgie d'un lieu
-- **Geste :** Explorer une carte interactive avec des objets cliquables
-- **Synergie :** Chaque objet révèle un souvenir audio/visuel du lieu
+**Exemple :**
+- **Intention :** Faire ressentir la solitude d'un personnage
+- **Geste :** Cliquer pour interagir, mais le personnage s'éloigne
+- **Synergie :** Plus on essaie de se rapprocher, plus il fuit → frustration = émotion
 
-**Exemple 2 :**
-- **Intention :** Faire comprendre la complexité d'un événement historique
-- **Geste :** Choisir quelle perspective écouter
-- **Synergie :** Chaque perspective révèle une vérité différente, créant un Rashomon numérique
+---
 
-### 4. Expérimenter techniquement (optionnel)
+### Ressources
 
-Si vous êtes à l'aise, essayez de modifier le composant `BoutonInteractif` :
-- Ajoutez plus d'états
-- Testez des animations
-- Essayez d'autres événements (`on:mouseover`, `on:dblclick`)
+**Documentation Svelte :**
+- [Tutorial interactif](https://svelte.dev/tutorial)
+- [Documentation API](https://svelte.dev/docs)
+- [REPL (tester en ligne)](https://svelte.dev/repl)
+
+**Aide technique :**
+- [Guide terminal Windows/macOS](/rtmf1m/ressources/terminal-guide)
+- [Utilisation de l'IA](/rtmf1m/ressources/utilisation-ia)
+
+**Si bloqué :**
+- Demandez à l'enseignant
+- Utilisez ChatGPT/Claude (mais comprenez le code généré)
+- Consultez la documentation Svelte
 
 ---
 
 ## Checklist de fin de séance
 
-- [ ] Toutes les œuvres du groupe ont été présentées
-- [ ] Cartographie collective réalisée
-- [ ] Territoire d'intérêt identifié (même provisoire)
-- [ ] Premières idées notées dans le carnet
-- [ ] Mission pour le Module 2 comprise
+- [ ] Vous avez exploré 5-6 œuvres web marquantes
+- [ ] Vous avez identifié un territoire qui vous attire
+- [ ] Votre cookie clicker fonctionne (niveau 1 ou 2)
+- [ ] Vous comprenez les concepts Svelte vus aujourd'hui
+- [ ] Vous savez où chercher des œuvres inspirantes
+- [ ] Vous avez la mission pour la prochaine séance
+
+---
+
+## Prochaines séances
+
+**Module 2 : Fondamentaux techniques**
+- Interactions avancées (drag, gestes, clavier)
+- Animations et transitions
+- Sons et effets visuels
+- Recettes de code
+
+**Module 3 : Idéation et prototypage**
+- Workshop d'idéation
+- Définition du projet personnel
+- Prototypage et validation technique
 
 ---
 
 ## Ce qu'on a accompli ensemble
 
-À ce stade du cours, vous avez :
+- ✅ Exploration d'œuvres inspirantes dans les 5 territoires
+- ✅ Cookie clicker fonctionnel avec réactivité Svelte
+- ✅ Compréhension des props et événements
+- ✅ Gestion de listes avec `{#each}`
+- ✅ État complexe avec cookies par seconde
+- ✅ Premières idées de territoire de projet
 
-- ✅ Exploré les 5 territoires de projets
-- ✅ Découvert des dizaines d'œuvres inspirantes
-- ✅ Un environnement de développement fonctionnel
-- ✅ Créé votre premier composant interactif
-- ✅ Commencé votre carnet de recherche
-- ✅ Des premières pistes de territoire et d'idées
-
-**La prochaine étape ?** Acquérir les fondamentaux techniques pour réaliser vos visions.
+**La prochaine étape ?** Approfondir les interactions et commencer à concevoir votre projet personnel.
