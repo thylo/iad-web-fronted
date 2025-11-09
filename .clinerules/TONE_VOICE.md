@@ -73,8 +73,6 @@
 - Phrases courtes, scannables
 - Structure hiérarchisée
 - Questions pour engager la réflexion
-- Ecrire le cours à destination des étudiants pas comme notes du professeur
-- Ecrire un cours instructif, pas un programme (10minutes pour ça, 20 minutes pour ça...)
 
 ### Bannir
 - "Certainement", "Super", "Génial", "Fantastique"

@@ -9,9 +9,11 @@ Ce cours enseigne la narration interactive web à des étudiants en cinéma (MM3
 **Approche pédagogique:** 
 - Privilégier la narration sur la technique
 - Établir des ponts entre concepts cinématographiques et interactions web
-- Utiliser des références de films et de réalisateurs reconnus (Kurosawa, Nolan, Wong Kar-wai, etc.)
+- Utiliser des références de films et de réalisateurs reconnus
 - Éviter le jargon technique au profit d'un vocabulaire narratif
 - Eviter les métphores et les analogies trop forcées et kitsch
+- Ecrire le cours à destination des étudiants pas comme notes du professeur
+- Ecrire un cours instructif, pas un timing (10minutes pour ça, 20 minutes pour ça...)
 
 ## Guidelines techniques
 
