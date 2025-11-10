@@ -21,9 +21,9 @@ Glisser-déposer est essentiel pour manipuler des objets virtuels : trier des ca
 
 ```svelte
 <script>
-  let position = { x: 100, y: 100 };
-  let isDragging = false;
-  let offset = { x: 0, y: 0 };
+  let position = $state({ x: 100, y: 100 });
+  let isDragging = $state(false);
+  let offset = $state({ x: 0, y: 0 });
   
   function handleMouseDown(event) {
     isDragging = true;
@@ -137,7 +137,7 @@ Les gestes ajoutent une couche d'interactivité physique. Secouer pour réinitia
 <script>
   import { onMount } from 'svelte';
   
-  let shakeCount = 0;
+  let shakeCount = $state(0);
   let lastX = 0, lastY = 0, lastZ = 0;
   const SHAKE_THRESHOLD = 15; // Sensibilité
   
@@ -182,7 +182,7 @@ Les gestes ajoutent une couche d'interactivité physique. Secouer pour réinitia
 ```svelte
 <script>
   let pressTimer;
-  let isLongPressed = false;
+  let isLongPressed = $state(false);
   const LONG_PRESS_DURATION = 800; // ms
   
   function handlePressStart() {
@@ -221,8 +221,8 @@ Les gestes ajoutent une couche d'interactivité physique. Secouer pour réinitia
 
 ```svelte
 <script>
-  let touchStartX = 0;
-  let touchStartY = 0;
+  let touchStartX = $state(0);
+  let touchStartY = $state(0);
   const SWIPE_THRESHOLD = 50; // Pixels minimum
   
   function handleTouchStart(event) {
@@ -292,7 +292,7 @@ Le clavier offre des interactions rapides et précises. Utile pour des jeux, des
 <script>
   import { onMount } from 'svelte';
   
-  let lastKey = '';
+  let lastKey = $state('');
   
   onMount(() => {
     function handleKeyPress(event) {
@@ -368,11 +368,13 @@ Les formulaires ne sont pas que pour des sites corporate. Utilisés créativemen
 
 ```svelte
 <script>
-  let userInput = '';
+  let userInput = $state('');
   
-  $: wordCount = userInput.trim().split(/\s+/).filter(Boolean).length;
-  $: mood = userInput.includes('!') ? 'excité' : 
-            userInput.includes('?') ? 'interrogatif' : 'neutre';
+  let wordCount = $derived(userInput.trim().split(/\s+/).filter(Boolean).length);
+  let mood = $derived(
+    userInput.includes('!') ? 'excité' : 
+    userInput.includes('?') ? 'interrogatif' : 'neutre'
+  );
 </script>
 
 <textarea bind:value={userInput} placeholder="Écrivez quelque chose..."></textarea>
@@ -387,13 +389,15 @@ Les formulaires ne sont pas que pour des sites corporate. Utilisés créativemen
 
 ```svelte
 <script>
-  let timeOfDay = 12; // 0-24
+  let timeOfDay = $state(12); // 0-24
   
-  $: skyColor = `hsl(${210 + timeOfDay * 3}, 70%, ${80 - timeOfDay * 2}%)`;
-  $: period = timeOfDay < 6 ? 'nuit' :
-              timeOfDay < 12 ? 'matin' :
-              timeOfDay < 18 ? 'après-midi' :
-              'soirée';
+  let skyColor = $derived(`hsl(${210 + timeOfDay * 3}, 70%, ${80 - timeOfDay * 2}%)`);
+  let period = $derived(
+    timeOfDay < 6 ? 'nuit' :
+    timeOfDay < 12 ? 'matin' :
+    timeOfDay < 18 ? 'après-midi' :
+    'soirée'
+  );
 </script>
 
 <div class="scene" style="background: {skyColor};">
@@ -433,7 +437,7 @@ Les formulaires ne sont pas que pour des sites corporate. Utilisés créativemen
 
 ```svelte
 <script>
-  let selectedMood = null;
+  let selectedMood = $state(null);
   
   const moods = [
     { id: 'happy', emoji: '😊', label: 'Joyeux' },

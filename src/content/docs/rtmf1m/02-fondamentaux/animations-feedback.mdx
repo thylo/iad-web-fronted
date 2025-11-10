@@ -30,7 +30,7 @@ Svelte fournit des transitions prêtes à l'emploi pour animer l'apparition/disp
 <script>
   import { fade } from 'svelte/transition';
   
-  let visible = false;
+  let visible = $state(false);
 </script>
 
 <button on:click={() => visible = !visible}>
@@ -50,7 +50,7 @@ Svelte fournit des transitions prêtes à l'emploi pour animer l'apparition/disp
 <script>
   import { slide } from 'svelte/transition';
   
-  let expanded = false;
+  let expanded = $state(false);
 </script>
 
 <button on:click={() => expanded = !expanded}>
@@ -70,7 +70,7 @@ Svelte fournit des transitions prêtes à l'emploi pour animer l'apparition/disp
 <script>
   import { fly } from 'svelte/transition';
   
-  let notifications = [];
+  let notifications = $state([]);
   
   function addNotification() {
     const id = Date.now();
@@ -262,7 +262,7 @@ Pour des animations continues ou plus complexes, CSS offre un contrôle précis.
 <script>
   import { onMount } from 'svelte';
   
-  let offsetY = 0;
+  let offsetY = $state(0);
   
   onMount(() => {
     function handleScroll() {
@@ -524,7 +524,7 @@ Les particules ajoutent du dynamisme et de la magie à une expérience.
 
 ```svelte
 <script>
-  let highlighted = false;
+  let highlighted = $state(false);
   
   function highlight() {
     highlighted = true;
@@ -589,7 +589,14 @@ Respecter `prefers-reduced-motion` :
 <script>
   import { onMount } from 'svelte';
   
-  let prefersReducedMotion = false;
+  let scrollProgress = $state(0);
+  
+  onMount(() => {
+```svelte
+<script>
+  import { onMount } from 'svelte';
+  
+  let prefersReducedMotion = $state(false);
   
   onMount(() => {
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');

@@ -221,6 +221,7 @@ Navigateurs/devices supportés
 
 ## 🔧 Le code
 [Code minimal fonctionnel]
+Utilise Svelte 5 avec les runes
 
 ## 🎨 Personnaliser
 Comment adapter (paramètres à changer)

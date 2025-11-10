@@ -183,7 +183,7 @@ Créez `src/lib/components/Choice.svelte` :
 <script>
   import { storyStore } from '../stores/storyStore';
   
-  export let choice; // { text: "...", next: "..." }
+  let { choice } = $props(); // { text: "...", next: "..." }
   
   function handleClick() {
     storyStore.goToScene(choice.next);
@@ -225,7 +225,7 @@ Créez `src/lib/components/Scene.svelte` :
 <script>
   import Choice from './Choice.svelte';
   
-  export let scene; // Objet scène complet
+  let { scene } = $props(); // Objet scène complet
 </script>
 
 <article class="scene" class:ending={scene.isEnding}>
@@ -278,7 +278,7 @@ Créez `src/routes/+page.svelte` :
   import { scenes } from '$lib/data/storyData';
   
   // Réactivité Svelte : se met à jour automatiquement
-  $: currentScene = scenes[$storyStore.currentSceneId];
+  let currentScene = $derived(scenes[$storyStore.currentSceneId]);
 </script>
 
 <main>

@@ -160,8 +160,8 @@ New-Item src\lib\CookieClicker.svelte
 
 ```svelte
 <script>
-  // État réactif : nombre de cookies
-  let cookies = 0;
+  // État réactif : nombre de cookies (Svelte 5 rune)
+  let cookies = $state(0);
   
   // Fonction pour cliquer sur le cookie
   function cliquerCookie() {
@@ -261,17 +261,17 @@ New-Item src\lib\CookieClicker.svelte
 
 ### Étape 3 : Explication des concepts
 
-**1. Réactivité automatique**
+**1. Réactivité automatique avec `$state()`**
 
 ```javascript
-let cookies = 0; // Variable réactive
+let cookies = $state(0); // Variable réactive avec la rune $state()
 
 function cliquerCookie() {
   cookies += 1; // Simple assignation → interface mise à jour automatiquement
 }
 ```
 
-**Pas besoin de** `setState`, `this.$set`, ou autre. Une simple assignation suffit.
+**La rune `$state()`** rend la variable réactive. Pas besoin de `setState`, `this.$set`, ou autre. Une simple assignation suffit.
 
 ---
 
@@ -292,7 +292,7 @@ function cliquerCookie() {
 
 ---
 
-**3. Conditions avec `{#if}`**
+**3. Conditions avec `{#if}` (inchangé)**
 
 ```svelte
 {#if cookies < 10}
@@ -329,24 +329,18 @@ Ajouter de la complexité pour comprendre :
 
 ```svelte
 <script>
-  // Props : données passées par le composant parent
-  export let nom; // Nom de l'upgrade
-  export let prix; // Prix en cookies
-  export let gain; // Cookies par seconde gagnés
-  export let quantite; // Nombre possédé
-  export let cookiesActuels; // Pour savoir si on peut acheter
+  // Props : données passées par le composant parent (Svelte 5 rune)
+  let { 
+    nom,              // Nom de l'upgrade
+    prix,             // Prix en cookies
+    gain,             // Cookies par seconde gagnés
+    quantite,         // Nombre possédé
+    cookiesActuels,   // Pour savoir si on peut acheter
+    onacheter         // Callback au lieu d'événement custom
+  } = $props();
   
-  // Événement custom pour notifier le parent de l'achat
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
-  
-  function acheter() {
-    // Envoyer l'événement au parent
-    dispatch('acheter');
-  }
-  
-  // Peut-on acheter cet upgrade ?
-  $: peutAcheter = cookiesActuels >= prix;
+  // Réactivité dérivée avec $derived() (Svelte 5)
+  let peutAcheter = $derived(cookiesActuels >= prix);
 </script>
 
 <div class="upgrade" class:disabled={!peutAcheter}>
@@ -358,7 +352,7 @@ Ajouter de la complexité pour comprendre :
   
   <button 
     class="acheter" 
-    on:click={acheter}
+    on:click={onacheter}
     disabled={!peutAcheter}
   >
     {prix} 🍪
@@ -438,23 +432,20 @@ Ajouter de la complexité pour comprendre :
 
 ```svelte
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   import Upgrade from './Upgrade.svelte';
   
-  // État du jeu
-  let cookies = 0;
-  let cookiesParSeconde = 0;
+  // État du jeu (Svelte 5 runes)
+  let cookies = $state(0);
+  let cookiesParSeconde = $state(0);
   
   // Liste des upgrades disponibles
-  let upgrades = [
+  let upgrades = $state([
     { id: 1, nom: 'Curseur', prix: 10, gain: 1, quantite: 0 },
     { id: 2, nom: 'Grand-mère', prix: 50, gain: 5, quantite: 0 },
     { id: 3, nom: 'Ferme à cookies', prix: 200, gain: 20, quantite: 0 },
     { id: 4, nom: 'Usine', prix: 500, gain: 50, quantite: 0 },
-  ];
-  
-  // Timer pour les cookies automatiques
-  let interval;
+  ]);
   
   // Fonction pour cliquer sur le cookie
   function cliquerCookie() {
@@ -485,15 +476,14 @@ Ajouter de la complexité pour comprendre :
   }
   
   // Au montage du composant : démarrer le timer
+  // En Svelte 5, onMount peut retourner une fonction de cleanup
   onMount(() => {
-    interval = setInterval(() => {
+    const interval = setInterval(() => {
       cookies += cookiesParSeconde;
     }, 1000); // Chaque seconde
-  });
-  
-  // Au démontage : nettoyer le timer
-  onDestroy(() => {
-    if (interval) clearInterval(interval);
+    
+    // Fonction de cleanup automatique
+    return () => clearInterval(interval);
   });
 </script>
 
@@ -530,7 +520,7 @@ Ajouter de la complexité pour comprendre :
           gain={upgrade.gain}
           quantite={upgrade.quantite}
           cookiesActuels={cookies}
-          on:acheter={() => acheterUpgrade(upgrade.id)}
+          onacheter={() => acheterUpgrade(upgrade.id)}
         />
       {/each}
     </div>
@@ -620,15 +610,14 @@ Ajouter de la complexité pour comprendre :
 
 ### Étape 3 : Explication des nouveaux concepts
 
-**1. Props : passer des données à un composant enfant**
+**1. Props : passer des données à un composant enfant (Svelte 5)**
 
 **Dans le composant enfant (Upgrade.svelte) :**
 ```javascript
-export let nom;
-export let prix;
+let { nom, prix } = $props();
 ```
 
-**Le mot-clé `export`** rend la variable accessible depuis le parent.
+**La rune `$props()`** récupère les props passées par le parent. Plus besoin de `export let`.
 
 **Dans le composant parent (CookieClicker.svelte) :**
 ```svelte
@@ -637,6 +626,8 @@ export let prix;
   prix={upgrade.prix}
 />
 ```
+
+Le passage des props reste identique.
 
 ---
 
@@ -655,56 +646,54 @@ export let prix;
 
 ---
 
-**3. Événements custom**
+**3. Événements custom → Callbacks (Svelte 5)**
+
+**En Svelte 5, les événements custom sont remplacés par des props callback.**
 
 **Dans le composant enfant (Upgrade.svelte) :**
 ```javascript
-import { createEventDispatcher } from 'svelte';
-const dispatch = createEventDispatcher();
+let { onacheter } = $props();
 
-function acheter() {
-  dispatch('acheter'); // Envoyer un événement au parent
-}
+// Appeler directement la fonction
+<button on:click={onacheter}>
 ```
 
 **Dans le composant parent (CookieClicker.svelte) :**
 ```svelte
-<Upgrade on:acheter={() => acheterUpgrade(upgrade.id)} />
+<Upgrade onacheter={() => acheterUpgrade(upgrade.id)} />
 ```
+
+Notez le changement : `on:acheter` devient `onacheter` (une prop fonction).
 
 ---
 
-**4. Réactivité avancée avec `$:`**
+**4. Réactivité dérivée avec `$derived()` (Svelte 5)**
 
 ```javascript
-$: peutAcheter = cookiesActuels >= prix;
+let peutAcheter = $derived(cookiesActuels >= prix);
 ```
 
-**Le `$:`** signifie : "Recalcule cette valeur chaque fois qu'une de ses dépendances change".
+**La rune `$derived()`** recalcule automatiquement la valeur quand ses dépendances changent. C'est le remplacement de `$:` pour les valeurs dérivées.
 
 ---
 
-**5. Lifecycle avec `onMount` et `onDestroy`**
+**5. Lifecycle avec `onMount` (Svelte 5 simplifié)**
 
 ```javascript
-import { onMount, onDestroy } from 'svelte';
-
-let interval;
+import { onMount } from 'svelte';
 
 onMount(() => {
   // Code exécuté quand le composant est créé
-  interval = setInterval(() => {
+  const interval = setInterval(() => {
     cookies += cookiesParSeconde;
   }, 1000);
-});
-
-onDestroy(() => {
-  // Code exécuté quand le composant est détruit
-  if (interval) clearInterval(interval);
+  
+  // En Svelte 5, retourner une fonction la rend automatiquement fonction de cleanup
+  return () => clearInterval(interval);
 });
 ```
 
-**Pourquoi ?** Nettoyer les timers évite les fuites mémoire.
+**Svelte 5 simplifie** : plus besoin de `onDestroy`, juste retourner la fonction de nettoyage depuis `onMount`.
 
 ---
 
@@ -712,15 +701,16 @@ onDestroy(() => {
 
 ### Synthèse de ce qu'on a appris
 
-**Concepts Svelte maîtrisés :**
-- ✅ Réactivité automatique
-- ✅ Événements (`on:click`, événements custom)
+**Concepts Svelte 5 maîtrisés :**
+- ✅ Réactivité avec `$state()`
+- ✅ Événements DOM (`on:click`)
+- ✅ Callbacks (remplacement des événements custom)
 - ✅ Conditions (`{#if}`)
 - ✅ Listes (`{#each}`)
-- ✅ Props (communication parent → enfant)
-- ✅ Événements custom (communication enfant → parent)
-- ✅ Lifecycle (`onMount`, `onDestroy`)
-- ✅ Réactivité avancée (`$:`)
+- ✅ Props avec `$props()` (communication parent → enfant)
+- ✅ Callbacks (communication enfant → parent)
+- ✅ Lifecycle (`onMount` avec cleanup)
+- ✅ Réactivité dérivée avec `$derived()`
 
 **Ce qu'on peut construire avec ça :**
 - Interfaces interactives
