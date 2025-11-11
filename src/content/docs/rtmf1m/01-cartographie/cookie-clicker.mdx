@@ -3,6 +3,87 @@ title: Cookie Clicker - Apprendre Svelte par la pratique
 description: Découverte d'œuvres marquantes et apprentissage des fondamentaux Svelte en construisant un cookie clicker
 ---
 
+import StackBlitzButton from '../../../../components/mdx/StackBlitzButton.astro';
+
+export const cookieClickerNiveau1 = `<script>
+  // État réactif : nombre de cookies
+  let cookies = 0;
+  
+  // Fonction pour cliquer sur le cookie
+  function cliquerCookie() {
+    cookies += 1; // Incrémentation simple
+  }
+</script>
+
+<!-- Interface -->
+<div class="container">
+  <h1>Cookie Clicker</h1>
+  
+  <!-- Affichage du score -->
+  <p class="score">🍪 {cookies} cookies</p>
+  
+  <!-- Le cookie cliquable -->
+  <button class="cookie" on:click={cliquerCookie}>
+    🍪
+  </button>
+  
+  <!-- Messages conditionnels selon le score -->
+  {#if cookies < 10}
+    <p class="message">Cliquez sur le cookie !</p>
+  {:else if cookies < 50}
+    <p class="message">Bien ! Continuez !</p>
+  {:else if cookies < 100}
+    <p class="message">Impressionnant !</p>
+  {:else}
+    <p class="message">🎉 Vous êtes un maître du cookie !</p>
+  {/if}
+</div>
+
+<style>
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  h1 {
+    color: #333;
+    margin-bottom: 1rem;
+  }
+  
+  .score {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #e67e22;
+    margin: 1rem 0;
+  }
+  
+  .cookie {
+    font-size: 8rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .cookie:hover {
+    transform: scale(1.1);
+  }
+  
+  .cookie:active {
+    transform: scale(0.95);
+  }
+  
+  .message {
+    font-size: 1.2rem;
+    color: #666;
+    font-style: italic;
+  }
+</style>`;
+
 ## Vue d'ensemble
 
 **Objectif :** Explorer des œuvres inspirantes et maîtriser les fondamentaux Svelte en construisant un cookie clicker
@@ -159,85 +240,12 @@ New-Item src\lib\CookieClicker.svelte
 **Créer `src/lib/CookieClicker.svelte` :**
 
 ```svelte
-<script>
-  // État réactif : nombre de cookies (Svelte 5 rune)
-  let cookies = $state(0);
-  
-  // Fonction pour cliquer sur le cookie
-  function cliquerCookie() {
-    cookies += 1; // Incrémentation simple
-  }
-</script>
-
-<!-- Interface -->
-<div class="container">
-  <h1>Cookie Clicker</h1>
-  
-  <!-- Affichage du score -->
-  <p class="score">🍪 {cookies} cookies</p>
-  
-  <!-- Le cookie cliquable -->
-  <button class="cookie" on:click={cliquerCookie}>
-    🍪
-  </button>
-  
-  <!-- Messages conditionnels selon le score -->
-  {#if cookies < 10}
-    <p class="message">Cliquez sur le cookie !</p>
-  {:else if cookies < 50}
-    <p class="message">Bien ! Continuez !</p>
-  {:else if cookies < 100}
-    <p class="message">Impressionnant !</p>
-  {:else}
-    <p class="message">🎉 Vous êtes un maître du cookie !</p>
-  {/if}
-</div>
-
-<style>
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  h1 {
-    color: #333;
-    margin-bottom: 1rem;
-  }
-  
-  .score {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #e67e22;
-    margin: 1rem 0;
-  }
-  
-  .cookie {
-    font-size: 8rem;
-    background: none;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.1s ease;
-    padding: 0;
-    margin: 2rem 0;
-  }
-  
-  .cookie:hover {
-    transform: scale(1.1);
-  }
-  
-  .cookie:active {
-    transform: scale(0.95);
-  }
-  
-  .message {
-    font-size: 1.2rem;
-    color: #666;
-    font-style: italic;
-  }
-</style>
+{cookieClickerNiveau1}
 ```
+
+<StackBlitzButton title="Cookie Clicker Niveau 1">
+{cookieClickerNiveau1}
+</StackBlitzButton>
 
 **Utiliser le composant dans `src/App.svelte` :**
 
