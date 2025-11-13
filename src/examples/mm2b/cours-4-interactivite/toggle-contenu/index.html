@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Toggle de Contenu avec JavaScript</title>
+  <title>Toggle de Contenu avec AlpineJS</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
 
@@ -21,15 +21,15 @@
         <h2>Les Chapitres</h2>
         <div class="chapters">
 
-          <article class="chapter">
+          <article class="chapter" x-data="{ open: false }">
             <div class="chapter-header">
               <h3>Chapitre 1 : Le réveil magique</h3>
-              <button class="toggle-btn" data-target="ch1-details" aria-expanded="false">
-                <span class="btn-text">Voir plus</span>
-                <span class="btn-icon">+</span>
+              <button class="toggle-btn" @click="open = !open" :aria-expanded="open">
+                <span class="btn-text" x-text="open ? 'Voir moins' : 'Voir plus'"></span>
+                <span class="btn-icon" x-text="open ? '−' : '+'"></span>
               </button>
             </div>
-            <div id="ch1-details" class="chapter-details hidden">
+            <div class="chapter-details" :class="{ 'hidden': !open }">
               <p>Ce matin-là, Léo se réveilla avec une étrange sensation. Quelque chose de magique flottait dans l'air. En ouvrant les yeux, il découvrit que sa chambre brillait d'une lumière dorée mystérieuse.</p>
               <p><strong>Durée de lecture :</strong> 5 minutes</p>
               <p><strong>Âge recommandé :</strong> 6-8 ans</p>
@@ -37,15 +37,15 @@
             </div>
           </article>
 
-          <article class="chapter">
+          <article class="chapter" x-data="{ open: false }">
             <div class="chapter-header">
               <h3>Chapitre 2 : La forêt mystérieuse</h3>
-              <button class="toggle-btn" data-target="ch2-details" aria-expanded="false">
-                <span class="btn-text">Voir plus</span>
-                <span class="btn-icon">+</span>
+              <button class="toggle-btn" @click="open = !open" :aria-expanded="open">
+                <span class="btn-text" x-text="open ? 'Voir moins' : 'Voir plus'"></span>
+                <span class="btn-icon" x-text="open ? '−' : '+'"></span>
               </button>
             </div>
-            <div id="ch2-details" class="chapter-details hidden">
+            <div class="chapter-details" :class="{ 'hidden': !open }">
               <p>En suivant la lumière, Léo se retrouva devant une immense forêt qu'il n'avait jamais vue auparavant. Les arbres semblaient lui murmurer des secrets, et des papillons lumineux dansaient autour de lui.</p>
               <p><strong>Durée de lecture :</strong> 7 minutes</p>
               <p><strong>Âge recommandé :</strong> 6-8 ans</p>
@@ -53,15 +53,15 @@
             </div>
           </article>
 
-          <article class="chapter">
+          <article class="chapter" x-data="{ open: false }">
             <div class="chapter-header">
               <h3>Chapitre 3 : Le trésor caché</h3>
-              <button class="toggle-btn" data-target="ch3-details" aria-expanded="false">
-                <span class="btn-text">Voir plus</span>
-                <span class="btn-icon">+</span>
+              <button class="toggle-btn" @click="open = !open" :aria-expanded="open">
+                <span class="btn-text" x-text="open ? 'Voir moins' : 'Voir plus'"></span>
+                <span class="btn-icon" x-text="open ? '−' : '+'"></span>
               </button>
             </div>
-            <div id="ch3-details" class="chapter-details hidden">
+            <div class="chapter-details" :class="{ 'hidden': !open }">
               <p>Au cœur de la forêt, Léo découvrit une carte ancienne qui menait à un trésor. Mais ce trésor n'était pas celui qu'il imaginait... c'était quelque chose de bien plus précieux.</p>
               <p><strong>Durée de lecture :</strong> 6 minutes</p>
               <p><strong>Âge recommandé :</strong> 6-8 ans</p>
@@ -77,32 +77,32 @@
         <h2>Questions fréquentes</h2>
         <div class="faq">
 
-          <div class="faq-item">
-            <button class="faq-question" data-target="faq1" aria-expanded="false">
+          <div class="faq-item" x-data="{ open: false }">
+            <button class="faq-question" @click="open = !open" :aria-expanded="open">
               <span>Comment lire les chapitres ?</span>
-              <span class="faq-icon">▼</span>
+              <span class="faq-icon" x-text="open ? '▲' : '▼'"></span>
             </button>
-            <div id="faq1" class="faq-answer hidden">
+            <div class="faq-answer" :class="{ 'hidden': !open }">
               <p>Cliquez simplement sur le bouton "Lire le chapitre" pour accéder au contenu complet. Vous pouvez lire à votre rythme et reprendre là où vous vous êtes arrêté.</p>
             </div>
           </div>
 
-          <div class="faq-item">
-            <button class="faq-question" data-target="faq2" aria-expanded="false">
+          <div class="faq-item" x-data="{ open: false }">
+            <button class="faq-question" @click="open = !open" :aria-expanded="open">
               <span>Les histoires sont-elles adaptées aux enfants ?</span>
-              <span class="faq-icon">▼</span>
+              <span class="faq-icon" x-text="open ? '▲' : '▼'"></span>
             </button>
-            <div id="faq2" class="faq-answer hidden">
+            <div class="faq-answer" :class="{ 'hidden': !open }">
               <p>Oui ! Toutes nos histoires sont spécialement conçues pour les enfants de 6 à 8 ans, avec un vocabulaire adapté et des thèmes appropriés à leur âge.</p>
             </div>
           </div>
 
-          <div class="faq-item">
-            <button class="faq-question" data-target="faq3" aria-expanded="false">
+          <div class="faq-item" x-data="{ open: false }">
+            <button class="faq-question" @click="open = !open" :aria-expanded="open">
               <span>Peut-on écouter les histoires ?</span>
-              <span class="faq-icon">▼</span>
+              <span class="faq-icon" x-text="open ? '▲' : '▼'"></span>
             </button>
-            <div id="faq3" class="faq-answer hidden">
+            <div class="faq-answer" :class="{ 'hidden': !open }">
               <p>Certains chapitres proposent une version audio lue par des conteurs professionnels. Recherchez l'icône 🎧 à côté du titre du chapitre.</p>
             </div>
           </div>

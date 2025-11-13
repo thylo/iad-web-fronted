@@ -3,6 +3,16 @@ title: JavaScript
 description: Référence rapide JavaScript pour l'interactivité
 ---
 
+import LiveCodeEditor from "../../../../components/mdx/LiveCodeEditor/LiveCodeEditor.astro";
+
+## 💡 Exemple interactif complet
+
+Toggle de contenu avec chapitres et FAQ :
+
+<LiveCodeEditor example="mm2b/cours-4-interactivite/toggle-contenu" height="750px" />
+
+---
+
 ## 📋 Inclure JavaScript
 
 ```html
@@ -74,6 +84,10 @@ element.addEventListener('submit', () => {});      // Formulaire soumis
 ## 💡 Exemples essentiels
 
 ### Toggle menu mobile
+
+Voir l'exemple complet du menu burger :
+
+<LiveCodeEditor example="mm2b/cours-4-interactivite/menu-burger" previewHeight="700px" />
 
 ```javascript
 const menuButton = document.querySelector('.menu-toggle');

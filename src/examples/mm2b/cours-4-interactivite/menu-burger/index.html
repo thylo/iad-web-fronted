@@ -5,21 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Menu Burger Mobile</title>
   <link rel="stylesheet" href="styles.css">
-  <script src="script.js" defer></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
 
-  <header class="site-header">
+  <header class="site-header" x-data="{ menuOpen: false }">
     <div class="container">
       <h1 class="logo">Les Aventures de Léo</h1>
 
       <!-- Bouton menu burger -->
-      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <button 
+        class="menu-toggle" 
+        :class="{ 'is-open': menuOpen }"
+        @click="menuOpen = !menuOpen"
+        aria-label="Toggle menu" 
+        :aria-expanded="menuOpen"
+      >
         <span class="hamburger"></span>
       </button>
 
       <!-- Navigation -->
-      <nav class="main-nav">
+      <nav class="main-nav" :class="{ 'is-open': menuOpen }">
         <ul>
           <li><a href="#" class="active">🏠 Accueil</a></li>
           <li><a href="#">📖 Chapitres</a></li>
@@ -58,8 +64,8 @@
             <p>Classe <code>.is-open</code> pour afficher/masquer le menu</p>
           </div>
           <div class="explanation-card">
-            <h4>3️⃣ JavaScript</h4>
-            <p><code>classList.toggle()</code> pour alterner la classe</p>
+            <h4>3️⃣ AlpineJS</h4>
+            <p><code>x-data</code> pour l'état et <code>@click</code> pour l'interaction</p>
           </div>
         </div>
       </div>
