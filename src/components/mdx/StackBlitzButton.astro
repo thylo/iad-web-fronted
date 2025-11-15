@@ -2,21 +2,23 @@
 /**
  * Composant StackBlitzButton
  * Crée un bouton qui ouvre un projet Svelte dans StackBlitz
- * Le code est passé via slot pour rester éditable dans le MDX
+ * Le code est passé via prop pour éviter les problèmes d'interpolation MDX
  */
 
 interface Props {
+  code: string;
   title?: string;
   label?: string;
 }
 
 const { 
+  code,
   title = 'Svelte Example', 
   label = 'Ouvrir dans StackBlitz' 
 } = Astro.props;
 
-// Récupérer le code Svelte depuis le slot
-const svelteCode = await Astro.slots.render('default');
+// Le code Svelte est passé comme prop
+const svelteCode = code;
 
 // Configuration du projet StackBlitz
 const project = {

@@ -86,136 +86,49 @@ export const cookieClickerNiveau1 = `<script>
 
 ## Vue d'ensemble
 
-**Objectif :** Explorer des œuvres inspirantes et maîtriser les fondamentaux Svelte en construisant un cookie clicker
+**Objectif :** Maîtriser les fondamentaux de Svelte 5 en construisant un cookie clicker interactif
 
-**Format :** Avec 2-3 étudiants, cette séance est un atelier pratique où vous codez ensemble.
+**Pourquoi un cookie clicker ?**
+- Concept simple mais extensible
+- Démontre les principes clés : réactivité, événements, état, boucles
+- Permet de progresser du basique au complexe
+- Chaque niveau apporte de nouveaux concepts
 
----
-
-## Partie 1 : Exploration d'œuvres marquantes
-
-### Format
-
-Contrairement à la séance initialement prévue, les étudiants n'ont pas exploré d'œuvres. On va donc le faire **ensemble**.
-
-**Approche :** 5-6 exemples concrets, testés en direct, discussion ouverte.
-
-### Exemples à montrer
-
-Pour chaque exemple :
-1. **Tester ensemble**
-2. **Discussion** : Qu'est-ce qui fonctionne ? Quel territoire ?
-
-#### 1. Patatap - Interface expérimentale
-
-**Lien :** [patatap.com](https://patatap.com/)
-
-**Test :** Tapez sur le clavier, testez différentes touches.
-
-**Discussion :**
-- Geste simple → effet audiovisuel complexe
-- Pas de tutoriel, découverte par expérimentation
-- Territoire : **Interfaces expérimentales** + **Outils créatifs**
+**Format :** Atelier progressif avec deux niveaux de complexité
 
 ---
 
-#### 2. neal.fun - Petites expériences ludiques
-
-**Lien :** [neal.fun](https://neal.fun/)
-
-**Exemples à tester :**
-- **The Deep Sea** : scroll infini dans l'océan
-- **The Size of Space** : échelle de l'univers
-- **Infinite Craft** : combinaison d'éléments
-
-**Discussion :**
-- Simplicité de l'interaction
-- Scroll ou clic comme seul geste
-- Territoire : **Interfaces expérimentales** + **Lecture augmentée**
-
----
-
-#### 3. Incredibox - Outil créatif musical
-
-**Lien :** [incredibox.com](https://www.incredibox.com/)
-
-**Test :** Drag and drop de personnages pour créer de la musique.
-
-**Discussion :**
-- Interface tactile intuitive
-- Création sans compétence musicale
-- Territoire : **Outils créatifs**
-
----
-
-#### 4. The Pudding - Data storytelling
-
-**Lien :** [pudding.cool](https://pudding.cool/)
-
-**Exemples à voir :**
-- **The Office** dialogue analysis
-- **Hip Hop vocabulary**
-
-**Discussion :**
-- Données rendues narratives
-- Scroll + interactivité
-- Territoire : **Lecture augmentée**
-
----
-
-#### 5. Small Bang Cinemacity - Expérience muséale
-
-**Lien :** [small-bang.com/cinemacity](https://www.small-bang.com/cinemacity/)
-
-**Montrer :** Balade cinéma dans Paris via QR codes.
-
-**Discussion :**
-- Lien physique/numérique
-- QR codes narratifs
-- Territoire : **Expériences muséales**
-
----
-
-#### 6. Chronicles of Crime - Jeu de société hybride
-
-**Montrer :** Vidéo ou screenshots du jeu.
-
-**Discussion :**
-- Application compagnon pour jeu de société
-- Numérique assiste mais ne domine pas
-- Territoire : **Jeux de société hybrides**
-
----
-
-### Synthèse collective
-
-**Questions :**
-- Quel exemple vous a le plus marqué ?
-- Quel territoire vous attire spontanément ?
-- Premières idées qui émergent ?
-
-**Transition :**
-> "Vous avez vu ce que le web permet. Maintenant, on va apprendre à construire des interactions. On va créer un cookie clicker pour comprendre Svelte."
-
----
-
----
-
-## Partie 2 : Cookie Clicker - Niveau 1
-
-### Objectif
-
-Créer un cookie clicker basique pour comprendre :
-- Réactivité automatique
-- Événements
-- Conditions d'affichage
+## Cookie Clicker - Niveau 1
 
 ### Étape 1 : Setup du projet
 
-**Vérifier que tous les étudiants ont :**
+**Si vous n'avez pas encore de projet Svelte, créez-en un :**
+
+```bash
+npm create vite@latest mon-cookie-clicker -- --template svelte
+cd mon-cookie-clicker
+npm install
+npm run dev
+```
+
+**Explication :**
+- `npm create vite@latest` : crée un nouveau projet avec Vite (outil de build ultra-rapide)
+- `mon-cookie-clicker` : nom de votre dossier projet
+- `--template svelte` : configure le projet pour Svelte
+- `cd mon-cookie-clicker` : entre dans le dossier
+- `npm install` : installe les dépendances
+- `npm run dev` : démarre le serveur de développement (accès via `http://localhost:5173`)
+
+Le terminal affichera l'URL locale. Votre navigateur recharge automatiquement quand vous modifiez le code.
+
+---
+
+**Si vous avez déjà un projet Svelte :**
+
+Vérifiez que le serveur tourne :
 - Terminal ouvert
-- Serveur Vite qui tourne (`npm run dev`)
-- Projet dans VSCode/PhpStorm
+- Serveur Vite actif (`npm run dev`)
+- Éditeur de code ouvert (VSCode/PhpStorm)
 
 **Si besoin de créer un nouveau composant :**
 
@@ -243,9 +156,7 @@ New-Item src\lib\CookieClicker.svelte
 {cookieClickerNiveau1}
 ```
 
-<StackBlitzButton title="Cookie Clicker Niveau 1">
-{cookieClickerNiveau1}
-</StackBlitzButton>
+<StackBlitzButton title="Cookie Clicker Niveau 1" code={cookieClickerNiveau1} />
 
 **Utiliser le composant dans `src/App.svelte` :**
 
@@ -322,14 +233,7 @@ function cliquerCookie() {
 
 ---
 
-## Partie 3 : Cookie Clicker - Niveau 2
-
-### Objectif
-
-Ajouter de la complexité pour comprendre :
-- Props (passer des données à un composant)
-- Listes avec `{#each}`
-- État complexe (cookies par seconde)
+## Cookie Clicker - Niveau 2
 
 ### Étape 1 : Créer le composant Upgrade
 
@@ -807,46 +711,12 @@ onMount(() => {
 - [Guide terminal Windows/macOS](/rtmf1m/ressources/terminal-guide)
 - [Utilisation de l'IA](/rtmf1m/ressources/utilisation-ia)
 
-**Si bloqué :**
-- Demandez à l'enseignant
-- Utilisez ChatGPT/Claude (mais comprenez le code généré)
-- Consultez la documentation Svelte
-
----
-
-## Checklist de fin de séance
-
-- [ ] Vous avez exploré 5-6 œuvres web marquantes
-- [ ] Vous avez identifié un territoire qui vous attire
-- [ ] Votre cookie clicker fonctionne (niveau 1 ou 2)
-- [ ] Vous comprenez les concepts Svelte vus aujourd'hui
-- [ ] Vous savez où chercher des œuvres inspirantes
-- [ ] Vous avez la mission pour la prochaine séance
-
----
-
-## Prochaines séances
-
-**Module 2 : Fondamentaux techniques**
-- Interactions avancées (drag, gestes, clavier)
-- Animations et transitions
-- Sons et effets visuels
-- Recettes de code
-
-**Module 3 : Idéation et prototypage**
-- Workshop d'idéation
-- Définition du projet personnel
-- Prototypage et validation technique
-
 ---
 
 ## Ce qu'on a accompli ensemble
 
-- ✅ Exploration d'œuvres inspirantes dans les 5 territoires
 - ✅ Cookie clicker fonctionnel avec réactivité Svelte
 - ✅ Compréhension des props et événements
 - ✅ Gestion de listes avec `{#each}`
 - ✅ État complexe avec cookies par seconde
 - ✅ Premières idées de territoire de projet
-
-**La prochaine étape ?** Approfondir les interactions et commencer à concevoir votre projet personnel.
