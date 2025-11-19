@@ -21,7 +21,6 @@ export default defineConfig({
                 label: 'Introduction',
                 items: [
                     { label: 'Bienvenue', slug: 'index' },
-                    { label: '📊 État du site', slug: 'status' },
                     { label: '📜 Changelog', slug: 'changelog' },
                 ],
             },

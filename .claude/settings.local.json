@@ -7,7 +7,14 @@
       "WebFetch(domain:boingboing.net)",
       "WebFetch(domain:www.vol1brooklyn.com)",
       "WebFetch(domain:driesdepoorter.be)",
-      "WebFetch(domain:browser.dating)"
+      "WebFetch(domain:browser.dating)",
+      "WebFetch(domain:www.niklasroy.com)",
+      "WebFetch(domain:www.visittournai.be)",
+      "WebFetch(domain:www.rtbf.be)",
+      "WebFetch(domain:studiomoniker.com)",
+      "WebFetch(domain:www.mplus.org.hk)",
+      "WebFetch(domain:www.blasttheory.co.uk)",
+      "WebFetch(domain:en.wikipedia.org)"
     ],
     "deny": [],
     "ask": []
