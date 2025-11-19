@@ -44,20 +44,8 @@ export default defineConfig({
             },
             {
                 label: 'MM3B - Décrypter l\'interactivité',
-                collapsed: false,
-                items: [
-                    { label: 'Introduction', slug: 'mm3b-interactivite' },
-                    { label: 'Séance 1 - Les 5 formes', slug: 'mm3b-interactivite/seance-1-formes' },
-                    { label: 'Séance 2 - Storyboarder', slug: 'mm3b-interactivite/seance-2-storyboard' },
-                    { label: 'Séance 3 - Concevoir', slug: 'mm3b-interactivite/seance-3-concevoir' },
-                    { label: 'Séance 4 - Le langage', slug: 'mm3b-interactivite/seance-4-langage' },
-                    { label: 'Séance 5 - Projet final', slug: 'mm3b-interactivite/seance-5-projet' },
-                    {
-                        label: 'Ressources',
-                        collapsed: true,
-                        autogenerate: { directory: 'mm3b-interactivite/ressources' }
-                    }
-                ]
+                collapsed: true,
+                autogenerate: { directory: 'mm3b-interactivite' },
             },
             {
                 label: 'RTMF1M - Sites web dynamiques 2',
